@@ -1,0 +1,14 @@
+{
+    "test": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-platenbowl-test-154226-authRole",
+            "UnauthRoleArn": "arn:aws:iam::428663290127:role/amplify-platenbowl-test-154226-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::428663290127:role/amplify-platenbowl-test-154226-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-platenbowl-test-154226-deployment",
+            "UnauthRoleName": "amplify-platenbowl-test-154226-unauthRole",
+            "StackName": "amplify-platenbowl-test-154226",
+            "StackId": "arn:aws:cloudformation:us-east-1:428663290127:stack/amplify-platenbowl-test-154226/170d9010-00ef-11ea-bd1c-0e16aabfe77c"
+        }
+    }
+}
