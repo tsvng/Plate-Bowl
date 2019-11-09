@@ -23,7 +23,7 @@ module.exports = {
         hot: true
     },
     plugins: [
-        new CopyWebpackPlugin(['index.html','test.html','style.css','home.html']),
+        new CopyWebpackPlugin(['index.html','style.css','home.html']),
         new webpack.HotModuleReplacementPlugin()
     ]
 };
