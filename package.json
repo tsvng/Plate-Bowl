@@ -4,7 +4,8 @@
   "description": "Amplify JavaScript Example",
   "dependencies": {
     "@aws-amplify/api": "latest",
-    "@aws-amplify/pubsub": "latest"
+    "@aws-amplify/pubsub": "latest",
+    "aws-amplify": "latest"
   },
   "devDependencies": {
     "webpack": "^4.17.1",
@@ -13,7 +14,7 @@
     "webpack-dev-server": "^3.1.5"
   },
   "scripts": {
-    "start": "webpack && webpack-dev-server --mode development && cp src/assets dist",
+    "start": "webpack && webpack-dev-server --mode development",
     "build": "webpack"
   }
 }
