@@ -75,4 +75,10 @@ h1 { font-weight: 300; font-family: "Amazon Ember", "Helvetica", "sans-serif";}
   height: 400px;
   width: 300px;
   border-radius: 30px;
+  margin-right:5%;
+}
+#recommendPartition{
+  overflow:auto;
+  white-space: nowrap;
+  height: 450px; 
 }
