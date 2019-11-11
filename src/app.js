@@ -2,7 +2,7 @@ import API, { graphqlOperation } from '@aws-amplify/api'
 import PubSub from '@aws-amplify/pubsub';
 import { createTodo } from './graphql/mutations'
 
-//import { Auth } from 'aws-amplify';
+import { Auth } from '@aws-amplify/auth';
 import awsconfig from './aws-exports';
 API.configure(awsconfig);
 PubSub.configure(awsconfig);
@@ -12,14 +12,14 @@ const SignupButton = document.getElementById('SignupButton');
 
 if (LoginButton) {
   LoginButton.addEventListener('click', (event) => {
-    //Auth.federatedSignIn();
+    Auth.federatedSignIn();
     console.log("clicked login button");
   });
 }
 
 if (SignupButton) {
   SignupButton.addEventListener('click', (event) => {
-    //Auth.federatedSignIn();
+    Auth.federatedSignIn();
     console.log("clicked signup button");
   });
 };
