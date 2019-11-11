@@ -1,5 +1,6 @@
 var request = new XMLHttpRequest()
-request.open('GET', 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term="bagels"&location="Los Angeles, CA"', true)
+request.open('GET', 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location="Los Angeles, CA"', true)
+//term="bagels"&
 request.setRequestHeader('Authorization', 'Bearer GOwKiYf6YgplxeQAJWLN6kZ6oF56Su8hiZ9yv1fk4Zw6D-xFG0GGteQiwPWBw0Wa7glsFlfSyydsFSegpPSF3rb4dm0xe6IqKn0jrKHnsKAbQCWJvc0cjfArvQKlXXYx')
 request.onload = function() {
   // Begin accessing JSON data here
