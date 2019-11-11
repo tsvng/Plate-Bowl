@@ -1,41 +1,55 @@
-import API, { graphqlOperation } from '@aws-amplify/api'
-import PubSub from '@aws-amplify/pubsub';
-import { createTodo } from './graphql/mutations'
-import Auth from '@aws-amplify/auth';
+// src/App.js
 
-import awsconfig from './aws-exports';
-API.configure(awsconfig);
-PubSub.configure(awsconfig);
+// import useEffect hook
+import React, { useEffect } from 'react';
+//import logo from './logo.svg';
+//import './App.css';
 
+// import Hub
+import { Auth, Hub } from 'aws-amplify'
 
-Auth.configure({
-    mandatorySignIn: true,
-    region: 'us-east-1',
-    userPoolId: 'us-east-1_uLqyIsqnt',
-    userPoolWebClientId: '224uf0oqjqib1oac70r3jd24g3'
-});
-
-const LoginButton = document.getElementById('LoginButton');
-const SignupButton = document.getElementById('SignupButton');
-
-if (LoginButton) {
-  LoginButton.addEventListener('click', (event) => {
-    Auth.federatedSignIn();
-    console.log("clicked login button");
-  });
+function checkUser() {
+  Auth.currentAuthenticatedUser()
+    .then(user => console.log({ user }))
+    .catch(err => console.log(err));
 }
 
-if (SignupButton) {
-  SignupButton.addEventListener('click', (event) => {
-    Auth.federatedSignIn();
-    console.log("clicked signup button");
-  });
-};
-
-async function createNewTodo() {
-  const todo = { name: "Use AppSync" , description: "Realtime and Offline"}
-  return await API.graphql(graphqlOperation(createTodo, { input: todo }))
+function signOut() {
+  Auth.signOut()
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
 }
 
+function App(props) {
+  // in useEffect, we create the listener
+  useEffect(() => {
+    Hub.listen('auth', (data) => {
+      const { payload } = data
+      console.log('A new auth event has happened: ', data)
+       if (payload.event === 'signIn') {
+         console.log('a user has signed in!')
+       }
+       if (payload.event === 'signOut') {
+         console.log('a user has signed out!')
+       }
+    })
+  }, [])
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <button onClick={() => Auth.federatedSignIn()}>Sign In</button>
+        <button onClick={checkUser}>Check User</button>
+        <button onClick={signOut}>Sign Out</button>
+        <button onClick={() => Auth.federatedSignIn({provider: 'Facebook'})}>Sign In with Facebook</button>
+        <button onClick={() => Auth.federatedSignIn({provider: 'Google'})}>Sign In with Google</button>
 
+      </header>
+    </div>
+  );
+}
 
+export default App
