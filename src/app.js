@@ -1,11 +1,11 @@
 import API, { graphqlOperation } from '@aws-amplify/api'
 import PubSub from '@aws-amplify/pubsub';
 import { createTodo } from './graphql/mutations'
-
 import Auth from '@aws-amplify/auth';
 import awsconfig from './aws-exports';
 API.configure(awsconfig);
 PubSub.configure(awsconfig);
+Auth.configure(awsconfig);
 
 const LoginButton = document.getElementById('LoginButton');
 const SignupButton = document.getElementById('SignupButton');
