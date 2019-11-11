@@ -13,11 +13,7 @@ Auth.configure({
     mandatorySignIn: true,
     region: process.env.AWS_REGION,
     userPoolId: process.env.AWS_USER_POOL_ID,
-    userPoolWebClientId: process.env.AWS_USER_POOL_CLIENT_ID,
-
-    cookieStorage: {
-      domain: process.env.AWS_COOKIE_DOMAIN
-    }
+    userPoolWebClientId: process.env.AWS_USER_POOL_CLIENT_ID
 });
 
 const LoginButton = document.getElementById('LoginButton');
