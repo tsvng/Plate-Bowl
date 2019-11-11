@@ -17,7 +17,8 @@ Auth.configure({
 
     cookieStorage: {
       domain: process.env.AWS_COOKIE_DOMAIN
-    });
+    }
+});
 
 const LoginButton = document.getElementById('LoginButton');
 const SignupButton = document.getElementById('SignupButton');
