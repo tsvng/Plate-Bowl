@@ -7,23 +7,22 @@ import awsconfig from './aws-exports';
 API.configure(awsconfig);
 PubSub.configure(awsconfig);
 
-window.onload=function() {
-  const LoginButton = document.getElementById('LoginButton');
-  const SignupButton = document.getElementById('SignupButton');
-  
+const LoginButton = document.getElementById('LoginButton');
+const SignupButton = document.getElementById('SignupButton');
+
+if (LoginButton)
   LoginButton.addEventListener('click', (event) => {
     //Auth.federatedSignIn();
     console.log("clicked login button");
   })
 });
 
-SignupButton.addEventListener('click', (event) => {
+if (SignupButton)  
+  SignupButton.addEventListener('click', (event) => {
     //Auth.federatedSignIn();
     console.log("clicked signup button");
   })
 });
-
-}
 
 async function createNewTodo() {
   const todo = { name: "Use AppSync" , description: "Realtime and Offline"}
