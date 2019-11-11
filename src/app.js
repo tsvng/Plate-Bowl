@@ -2,7 +2,7 @@ import API, { graphqlOperation } from '@aws-amplify/api'
 import PubSub from '@aws-amplify/pubsub';
 import { createTodo } from './graphql/mutations'
 
-import { Auth } from '@aws-amplify/auth';
+import Auth from '@aws-amplify/auth';
 import awsconfig from './aws-exports';
 API.configure(awsconfig);
 PubSub.configure(awsconfig);
