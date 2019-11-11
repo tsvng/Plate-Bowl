@@ -9,11 +9,10 @@ PubSub.configure(awsconfig);
 
 
 Auth.configure({
-    identityPoolId: process.env.AWS_IDENTITY_POOL_ID,
     mandatorySignIn: true,
-    region: process.env.AWS_REGION,
-    userPoolId: process.env.AWS_USER_POOL_ID,
-    userPoolWebClientId: process.env.AWS_USER_POOL_CLIENT_ID
+    region: 'us-east-1',
+    userPoolId: 'us-east-1_uLqyIsqnt',
+    userPoolWebClientId: '224uf0oqjqib1oac70r3jd24g3'
 });
 
 const LoginButton = document.getElementById('LoginButton');
