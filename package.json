@@ -1,11 +1,11 @@
 {
   "name": "amplify-js-app",
   "version": "1.0.0",
-  "description": "Amplify JavaScript Example",
+  "description": "Amplify-based web app for food exploration.",
   "dependencies": {
     "@aws-amplify/api": "latest",
-    "@aws-amplify/pubsub": "latest",
-    "aws-amplify": "^1.2.4"
+    "@aws-amplify/auth": "^1.5.0",
+    "@aws-amplify/pubsub": "latest"
   },
   "devDependencies": {
     "webpack": "^4.17.1",

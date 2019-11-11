@@ -10,19 +10,19 @@ PubSub.configure(awsconfig);
 const LoginButton = document.getElementById('LoginButton');
 const SignupButton = document.getElementById('SignupButton');
 
-if (LoginButton)
+if (LoginButton) {
   LoginButton.addEventListener('click', (event) => {
     //Auth.federatedSignIn();
     console.log("clicked login button");
-  })
-});
+  });
+}
 
-if (SignupButton)  
+if (SignupButton) {
   SignupButton.addEventListener('click', (event) => {
     //Auth.federatedSignIn();
     console.log("clicked signup button");
-  })
-});
+  });
+};
 
 async function createNewTodo() {
   const todo = { name: "Use AppSync" , description: "Realtime and Offline"}
