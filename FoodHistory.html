@@ -1,8 +1,44 @@
 <!DOCTYPE html>
-<script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
 <html>
+<head>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
 
-   <head>
+<script>
+	AWS.config.update({
+  region: "us-east-1",
+  endpoint: 'https://dynamodb.us-west-2.amazonaws.com',
+  // accessKeyId default can be used while using the downloadable version of DynamoDB. 
+  // For security reasons, do not store AWS Credentials in your files. Use Amazon Cognito instead.
+  accessKeyId: "AKIAWHTSSXEHSIE5R5XS"
+  // secretAccessKey default can be used while using the downloadable version of DynamoDB. 
+  // For security reasons, do not store AWS Credentials in your files. Use Amazon Cognito instead.
+  secretAccessKey: "L5Ofny6rU3vCHYwWljyy+Uy3nLXxQ4rMrs/VKblO"
+});
+
+var dynamodb = new AWS.DynamoDB().DocumentClient();
+
+function test(){
+	var table = "User-Food"
+	var name = "Joe"
+
+	var params = {
+		TableName: table
+		Key: {
+			"User": name
+		}
+	};
+
+	dynamodb.get(params, function(err, data){
+		if (err){
+			 document.getElementById('textarea').innerHTML = "Unable to read item: " + "\n" + JSON.stringify(err, undefined, 2);
+		} else {
+			document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
+		}
+	});
+}
+
+</script>
+
         <meta charset="utf-8">
         <title>Plate-Bowl</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">       
@@ -43,8 +79,11 @@
 			<image id = "rec3" class = "tile"></image>
 			<image id = "rec4" class = "tile"></image>
 		</div>
-    </div>
-</div>
+    	</div>
+    	<input id="readItem" type="button" value="Read Item" onclick="test();" />
+		<br><br>
+		<textarea readonly id= "textarea" style="width:100px; height:150px"></textarea>
+	</div>
 <script src = "API_Request.js"></script>
 <script>
 var menuState = 0;
