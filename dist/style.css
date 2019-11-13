@@ -77,8 +77,48 @@ h1 { font-weight: 300; font-family: "Amazon Ember", "Helvetica", "sans-serif";}
   border-radius: 30px;
   margin-right:5%;
 }
+
 #recommendPartition{
   overflow:auto;
   white-space: nowrap;
   height: 450px; 
+}
+
+.tileHistory{
+  height: 150px;
+  width: 100px;
+  border-radius: 10px;
+  margin-right:1%;
+}
+
+.tile__wrap {
+  position: relative;
+  height: 250px;
+  width: 200px;
+  border-radius: 30px;
+  margin-right:3%;
+}
+
+.img__description {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(29, 106, 154, 0.72);
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .2s, visibility .2s;
+}
+
+.tile__wrap:hover .tileHistory {
+  visibility: : visible;
+  opacity: 1;
+}
+
+#historyPartition{
+  overflow:auto;
+  white-space: nowrap;
+  height: 400px; 
 }
