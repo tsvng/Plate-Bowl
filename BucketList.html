@@ -1,1 +1,126 @@
-<script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+<!DOCTYPE html>
+<html>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script> 
+
+<script>
+	AWS.config.update({
+	region: "us-east-1",
+	accessKeyId: 'xxxx',
+	secretAccessKey: 'xxxx',
+	endpoint: 'dynamodb.us-east-1.amazonaws.com',
+	
+});
+
+var dynamodb = new AWS.DynamoDB();
+
+function addToBucket(){
+	var table = "User-Food"
+	var name = "Joe"
+	var cuisineToAdd= "Mexican"
+	
+	var params = {
+		TableName: table
+	};
+	
+	dynamodb.describeTable(params, function(err, data){
+		if (err) console.log(err, err.stack);
+		else     console.log(data);
+	});
+}
+	
+
+function deleteFromBucket(){
+}
+
+</script>
+
+        <meta charset="utf-8">
+        <title>Plate-Bowl</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">       
+		<link rel = "stylesheet" href = "style.css">
+	</head>
+	<body>
+		<div id="mySidenav" class="sidenav">
+  			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  			<a href="BucketList.html">Bucket List</a>
+	  		<a href="FoodHistory.html">Food History</a>
+  			<a href="LeaderBoard.html">LeaderBoard</a>
+  			<a href="RecommendFood.html">Explore Food</a>		
+		</div>
+		<button id = "floating-button" type="button" onclick="toggleNav()">&#9776;</button>
+
+	<div id = "main">
+	    <div class="app">
+	        <div class="app-header">
+	            <div class="app-logo">
+	                <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style="width:200px;" />
+	            </div>
+	            <h1>Bucket List</h1>
+	            <nav>
+	            <a href = "index.html"><button type="button">Logout</button></a>
+	            </nav>
+	        </div>
+	        <div class="app-body">
+	            <div id="MutationResult"></div>
+	            <div id="QueryResult"></div>
+	            <div id="SubscriptionResult"></div>
+	        </div>
+	    </div>
+		<div id = "BucketList">
+			<h1 style = "font-family: Brush Script MT, Brush Script Std, cursive; font-size: 30pt;">Your List</h1>
+		<input id="addBucket" type="button" value="Add Entry" onclick="addToBucket();" />
+		<input id="delBucket" type="button" value="Delete Entry" onclick="deleteFromBucket();" />
+			<p>
+				I want this section to be at minimum, a text list of cuisines i.e.<br>
+				1. Mexican<br>
+				2. Indian<br>
+				3. Nepalese<br>
+				...<br>
+				And when you click on the word 'Mexican' or 'Indian' it redirects to a food search with the corresponding keyword
+			</p>
+		</div>
+		<div id = "bucketListRecs">
+			<h1 style = "font-family: Brush Script MT, Brush Script Std, cursive; font-size: 30pt;">You May Be Interested</h1>
+			
+			<image id = "rec1" class = "tile"></image>
+			<image id = "rec2" class = "tile"></image>
+			<image id = "rec3" class = "tile"></image>
+			<image id = "rec4" class = "tile"></image>
+		</div>
+			<p> cuisine bucket list suggestions based on food history, and cuisines similar to those already on the user's bucket list</p>
+		<!--<br><br>
+		<textarea readonly id= "textarea" style="width:100px; height:150px"></textarea>
+		-->
+		
+	</div>
+<script src = "API_Request.js"></script>
+<script>
+var menuState = 0;
+function toggleNav(){
+	if(menuState ==0){
+		menuState = 1;
+		openNav();
+	}
+	else{
+		menuState = 0;
+		closeNav();
+	}
+}
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("floating-button").style.marginLeft = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("floating-button").style.marginLeft = "0";
+  document.getElementById("main").style.marginLeft = "0px";
+}
+</script>
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+ 	<!-- Load our React component. -->
+    </body>
+</html>
