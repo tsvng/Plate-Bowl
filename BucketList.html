@@ -11,7 +11,7 @@
 	
 });
 
-var dynamodb = new AWS.DynamoDB();
+/*var dynamodb = new AWS.DynamoDB();
 
 function addToBucket(){
 	var table = "User-Food"
@@ -30,7 +30,7 @@ function addToBucket(){
 	
 
 function deleteFromBucket(){
-}
+}*/
 
 </script>
 
@@ -66,18 +66,21 @@ function deleteFromBucket(){
 	            <div id="SubscriptionResult"></div>
 	        </div>
 	    </div>
-		<div id = "BucketList">
-			<h1 style = "font-family: Brush Script MT, Brush Script Std, cursive; font-size: 30pt;">Your List</h1>
-		<input id="addBucket" type="button" value="Add Entry" onclick="addToBucket();" />
-		<input id="delBucket" type="button" value="Delete Entry" onclick="deleteFromBucket();" />
-			<p>
-				I want this section to be at minimum, a text list of cuisines i.e.<br>
-				1. Mexican<br>
-				2. Indian<br>
-				3. Nepalese<br>
-				...<br>
-				And when you click on the word 'Mexican' or 'Indian' it redirects to a food search with the corresponding keyword
-			</p>
+		<div id="BucketList" class="header">
+  			<h2 style = "font-family: Brush Script MT, Brush Script Std, cursive; font-size: 26pt;">Your List</h2>
+  			<input type="text" id="myInput" placeholder="Search...">
+  			<span onclick="newElement()" class="addBtn">Add</span>
+		</div>
+
+		<ul id="myUL">
+  			<li>Mexican</li>
+  			<li class="checked">Chinese</li>
+  			<li>Nepalese</li>
+  			<li>Ethiopian</li>
+  			<li>Mongolian</li>
+  			<li>German</li>
+		</ul>
+
 		</div>
 		<div id = "bucketListRecs">
 			<h1 style = "font-family: Brush Script MT, Brush Script Std, cursive; font-size: 30pt;">You May Be Interested</h1>
@@ -116,6 +119,64 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
   document.getElementById("floating-button").style.marginLeft = "0";
   document.getElementById("main").style.marginLeft = "0px";
+}
+</script>
+
+<script>
+// Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
 }
 </script>
 
