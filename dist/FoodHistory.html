@@ -1,6 +1,41 @@
 <!DOCTYPE html>
 <html>
-   <head>
+<head>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+
+<script>
+	AWS.config.update({
+  region: "us-east-1",
+  endpoint: 'https://dynamodb.us-west-2.amazonaws.com',
+  // accessKeyId default can be used while using the downloadable version of DynamoDB. 
+  // For security reasons, do not store AWS Credentials in your files. Use Amazon Cognito instead.
+//REEEEEEE//
+});
+
+var dynamodb = new AWS.DynamoDB().DocumentClient();
+
+function test(){
+	var table = "User-Food"
+	var name = "Joe"
+
+	var params = {
+		TableName: table
+		Key: {
+			"User": name
+		}
+	};
+
+	dynamodb.get(params, function(err, data){
+		if (err){
+			 document.getElementById('textarea').innerHTML = "Unable to read item: " + "\n" + JSON.stringify(err, undefined, 2);
+		} else {
+			document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
+		}
+	});
+}
+
+</script>
+
         <meta charset="utf-8">
         <title>Plate-Bowl</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">       
@@ -24,7 +59,7 @@
 	            </div>
 	            <h1>Food Search</h1>
 	            <nav>
-	            <a href = "index.html">Logout</a>
+	            <a href = "index.html"><button type="button">Logout</button></a>
 	            </nav>
 	        </div>
 	        <div class="app-body">
@@ -34,18 +69,18 @@
 	        </div>
 	    </div>		
 		<div id = "RecommendFood">
-		<h1 style = "font-family: Brush Script MT, Brush Script Std, cursive; font-size: 30pt;">Our Suggestions</h1>
-		<div id = "recommendPartition">
+		<h1 style = "font-family: Brush Script MT, Brush Script Std, cursive; font-size: 30pt;">History</h1>
+		<div id = "historyPartition">
 			<image id = "rec1" class = "tile"></image>
 			<image id = "rec2" class = "tile"></image>
 			<image id = "rec3" class = "tile"></image>
 			<image id = "rec4" class = "tile"></image>
 		</div>
-		<div id = "Cuisine Search">
-		<h1 style = "font-family: Brush Script MT, Brush Script Std, cursive; font-size: 30pt;">Cuisine Search</h1>
-
-		</div>
-    </div>
+    	</div>
+    	<input id="readItem" type="button" value="Read Item" onclick="test();" />
+		<br><br>
+		<textarea readonly id= "textarea" style="width:100px; height:150px"></textarea>
+	</div>
 <script src = "API_Request.js"></script>
 <script>
 var menuState = 0;
