@@ -1,1 +1,9 @@
-{}
+{
+	"auth": {
+		"platebowl1b339ffc": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}
