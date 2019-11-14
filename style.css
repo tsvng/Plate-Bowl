@@ -51,11 +51,11 @@ h1 { font-weight: 300; font-family: "Amazon Ember", "Helvetica", "sans-serif";}
 }
 
 #floating-button{
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background: ;
+  width: 30px;
+  height: 30px;
+  background-color: #003366;
   position: absolute;
+  color: white;
   top: 10px;
   left: 10px;
   cursor: pointer;
