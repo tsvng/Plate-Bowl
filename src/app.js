@@ -2,11 +2,24 @@
 
 // import useEffect hook
 import React, { useEffect } from 'react';
-//import logo from './logo.svg';
-//import './App.css';
-
 // import Hub
-import { Auth, Hub } from 'aws-amplify'
+import Amplify, { Auth, Hub } from 'aws-amplify';
+
+Amplify.configure({
+  Auth: {
+    region: 'us-east-1',
+    userPoolId: 'us-east-1_uLqyIsqnt',
+    userPoolWebClientId: '224uf0oqjqib1oac70r3jd24g3',
+    mandatorySignIn: true,
+    oauth: {
+      domain: 'platenbowl.auth.us-east-1.amazoncognito.com',
+      scope: ['phone','email','profile','openid','aws.cognito.signin.user.admin'],
+      redirectSignIn: 'https://master.d1artn8nksk20o.amplifyapp.com/home.html',
+      redirectSignOut: 'https://master.d1artn8nksk20o.amplifyapp.com/index.html',
+      responseType: 'token'
+    }
+  }
+  });
 
 function checkUser() {
   Auth.currentAuthenticatedUser()
@@ -37,71 +50,12 @@ function App(props) {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
         <button onClick={() => Auth.federatedSignIn()}>Sign In</button>
         <button onClick={checkUser}>Check User</button>
         <button onClick={signOut}>Sign Out</button>
-        <button onClick={() => Auth.federatedSignIn({provider: 'Facebook'})}>Sign In with Facebook</button>
-        <button onClick={() => Auth.federatedSignIn({provider: 'Google'})}>Sign In with Google</button>
-
       </header>
     </div>
   );
 }
 
 export default App
-
-import API, { graphqlOperation } from '@aws-amplify/api'
-import PubSub from '@aws-amplify/pubsub';
-import { createTodo } from './graphql/mutations'
-
-import awsconfig from './aws-exports';
-API.configure(awsconfig);
-PubSub.configure(awsconfig);
-
-async function createNewTodo() {
-  const todo = { name: "Use AppSync" , description: "Realtime and Offline"}
-  return await API.graphql(graphqlOperation(createTodo, { input: todo }))
-}
-
-const MutationButton = document.getElementById('MutationEventButton');
-const MutationResult = document.getElementById('MutationResult');
-
-MutationButton.addEventListener('click', (evt) => {
-  MutationResult.innerHTML = `MUTATION RESULTS:`;
-  createNewTodo().then( (evt) => {
-    MutationResult.innerHTML += `<p>${evt.data.createTodo.name} - ${evt.data.createTodo.description}</p>`
-  })
-});
-
-// other imports
-import { listTodos } from './graphql/queries'
-
-const QueryResult = document.getElementById('QueryResult');
-
-async function getData() {
-  QueryResult.innerHTML = `QUERY RESULTS`;
-  API.graphql(graphqlOperation(listTodos)).then((evt) => {
-    evt.data.listTodos.items.map((todo, i) => 
-    QueryResult.innerHTML += `<p>${todo.name} - ${todo.description}</p>`
-    );
-  })
-}
-
-getData();
-
-// other imports
-import { onCreateTodo } from './graphql/subscriptions'
-
-const SubscriptionResult = document.getElementById('SubscriptionResult');
-
-API.graphql(graphqlOperation(onCreateTodo)).subscribe({
-  next: (evt) =>{
-    SubscriptionResult.innerHTML = `SUBSCRIPTION RESULTS`
-    const todo = evt.value.data.onCreateTodo;
-    SubscriptionResult.innerHTML += `<p>${todo.name} - ${todo.description}</p>`
-  }
-});
