@@ -4,7 +4,6 @@
 import React, { useEffect } from 'react';
 // import Hub
 import Amplify, { Auth, Hub } from 'aws-amplify';
-import { withAuthenticator } from 'aws-amplify-react';
 
 Amplify.configure({
   Auth: {
@@ -59,4 +58,4 @@ function App(props) {
   );
 }
 
-export default withAuthenticator(App)
+export default App
