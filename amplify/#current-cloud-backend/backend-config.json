@@ -14,9 +14,10 @@
 				"authConfig": {
 					"additionalAuthenticationProviders": [],
 					"defaultAuthentication": {
-						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
-						"userPoolConfig": {
-							"userPoolId": "authplatebowl1b339ffc"
+						"authenticationType": "API_KEY",
+						"apiKeyConfig": {
+							"description": "Test",
+							"apiKeyExpirationDays": "365"
 						}
 					}
 				}

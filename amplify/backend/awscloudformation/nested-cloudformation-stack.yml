@@ -71,7 +71,7 @@
 		"authplatebowl1b339ffc": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/amplify-plate-bowl-awsenr-01707-deployment/amplify-cfn-templates/auth/platebowl1b339ffc-cloudformation-template.yml",
+				"TemplateURL": "https://s3.amazonaws.com/amplify-plate-bowl-eileen-111907-deployment/amplify-cfn-templates/auth/platebowl1b339ffc-cloudformation-template.yml",
 				"Parameters": {
 					"identityPoolName": "platebowl1b339ffc_identitypool_1b339ffc",
 					"allowUnauthenticatedIdentities": false,
@@ -112,28 +112,22 @@
 					"usernameAttributes": "email",
 					"userPoolGroupList": "",
 					"dependsOn": "",
-					"env": "awsenr"
+					"env": "eileen"
 				}
 			}
 		},
 		"apiGraphQL": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/amplify-plate-bowl-awsenr-01707-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/amplify-plate-bowl-eileen-111907-deployment/amplify-cfn-templates/api/cloudformation-template.json",
 				"Parameters": {
-					"CreateAPIKey": 0,
+					"CreateAPIKey": 1,
 					"AppSyncApiName": "GraphQL",
 					"DynamoDBBillingMode": "PAY_PER_REQUEST",
 					"DynamoDBEnableServerSideEncryption": "false",
-					"AuthCognitoUserPoolId": {
-						"Fn::GetAtt": [
-							"authplatebowl1b339ffc",
-							"Outputs.UserPoolId"
-						]
-					},
-					"S3DeploymentBucket": "amplify-plate-bowl-awsenr-01707-deployment",
-					"S3DeploymentRootKey": "amplify-appsync-files/1949d7b693f10a6e2a2cb0827c039142da42ea43",
-					"env": "awsenr"
+					"S3DeploymentBucket": "amplify-plate-bowl-eileen-111907-deployment",
+					"S3DeploymentRootKey": "amplify-appsync-files/03ec59df0a4635cf2d5c89c9a15980eeeb7182ed",
+					"env": "eileen"
 				}
 			}
 		},
