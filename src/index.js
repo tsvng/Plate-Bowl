@@ -4,5 +4,5 @@ import App from './app.js';
 
 ReactDOM.render(
 	<App />,
-	document.getElementsByClassName('app-body')
+	document.getElementsById('app-body')
 );
