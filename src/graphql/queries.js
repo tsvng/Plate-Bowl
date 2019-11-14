@@ -1,24 +1,24 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getUser = `query GetUser($username: String!) {
-  getUser(username: $username) {
-    username
-    points
+export const getTodo = `query GetTodo($id: ID!) {
+  getTodo(id: $id) {
     id
+    name
+    description
   }
 }
 `;
-export const listUsers = `query ListUsers(
-  $filter: TableUserFilterInput
+export const listTodos = `query ListTodos(
+  $filter: ModelTodoFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
-      username
-      points
       id
+      name
+      description
     }
     nextToken
   }
