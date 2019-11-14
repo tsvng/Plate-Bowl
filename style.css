@@ -3,10 +3,10 @@ body { font-family: "Amazon Ember", "Helvetica", "sans-serif"; margin: 0; }
 a { color: #c4e9ff; }
 h1 { font-weight: 300; font-family: "Amazon Ember", "Helvetica", "sans-serif";}
 .app { width: 100%;}
-.app-header { color: black; text-align: center; background: white; width: 100%; margin: 0 0 0 0; padding: 0em 0 3em 0; box-shadow: 1px 2px 4px rgba(0, 0, 0, .3); }
+.app-header { color: black; text-align: center; background: white; width: 100%; margin: 0 0 5px 0; padding: 0em 0 3em 0; box-shadow: 1px 2px 4px rgba(0, 0, 0, .3); }
 .app-logo { margin: 0 auto; }
 .app-body { width: 400px; margin: 0 auto; text-align: center; }
-.app-body button { background-color: white; font-size: 14px; color: black; text-transform: uppercase; padding: 1em; border: none; }
+.app-body button { background-color: #003366; font-size: 14px; color: white; text-transform: uppercase; margin: 4em 3em 2em 3em; padding: 1em; border-radius: 8px; border: none; }
 .app-body button:hover { opacity: 0.8; }
 .preview{
   height: 200px;
