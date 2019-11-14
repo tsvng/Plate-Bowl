@@ -51,8 +51,6 @@ function App(props) {
     <div className="App">
       <header className="App-header">
         <button id="SignInButton" onClick={() => Auth.federatedSignIn()}>Sign In</button>
-        //<button onClick={checkUser}>Check User</button>
-        //<button onClick={signOut}>Sign Out</button>
       </header>
     </div>
   );
