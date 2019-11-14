@@ -1,5 +1,5 @@
 projects:
-  GraphQL:
+  Plate&Bowl:
     schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.js
@@ -10,6 +10,9 @@ projects:
         codeGenTarget: javascript
         generatedFileName: ''
         docsFilePath: src/graphql
+        region: us-east-1
+        apiId: ncuw6ujg4zbnrp2htzwjjmz3my
+        maxDepth: 2
 extensions:
   amplify:
     version: 3
