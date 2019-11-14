@@ -2,7 +2,7 @@
 <html>
 <head>
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
-
+<script src="https://kit.fontawesome.com/43b2224741.js" crossorigin="anonymous"></script>
 <script>
 	AWS.config.update({
   region: "us-east-1",
@@ -44,10 +44,11 @@ function test(){
 	<body>
 		<div id="mySidenav" class="sidenav">
   			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  			<a href="BucketList.html">Bucket List</a>
-	  		<a href="FoodHistory.html">Food History</a>
-  			<a href="LeaderBoard.html">LeaderBoard</a>
-  			<a href="RecommendFood.html">Explore Food</a>		
+  			<a href="BucketList.html"><i class="fab fa-bitbucket fa-fw"></i></i> Bucket List</a>
+	  		<a href="FoodHistory.html"><i class="fas fa-utensils fa-fw"></i> Food History</a>
+  			<a href="LeaderBoard.html"><i class="fas fa-clipboard-list fa-fw"></i> LeaderBoard</a>
+  			<a href="RecommendFood.html"><i class="fas fa-cookie-bite fa-fw" ></i> Explore Food</a>		
+  			<a href="index.html"><i class="fas fa-door-open fa-fw"></i> Logout</a>	
 		</div>
 		<button id = "floating-button" type="button" onclick="toggleNav()">&#9776;</button>
 
@@ -59,7 +60,6 @@ function test(){
 	            </div>
 	            <h1>Food Search</h1>
 	            <nav>
-	            <a href = "index.html"><button type="button">Logout</button></a>
 	            </nav>
 	        </div>
 	        <div class="app-body">
@@ -77,7 +77,7 @@ function test(){
 			<image id = "rec4" class = "tile"></image>
 		</div>
     	</div>
-    	<input id="readItem" type="button" value="Read Item" onclick="test();" />
+    	<button onclick="test()" type="button">Read Item</button>
 		<br><br>
 		<textarea readonly id= "textarea" style="width:100px; height:150px"></textarea>
 	</div>
