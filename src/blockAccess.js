@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 // import Hub
 import Amplify, { Auth, Hub } from 'aws-amplify';
 
