@@ -31,7 +31,7 @@ module.exports = {
         hot: true
     },
     plugins: [
-        new CopyWebpackPlugin(['index.html','style.css','home.html','RecommendFood.html','src/assets/exampleimage.jpg','FoodHistory.html','BucketList.html','LeaderBoard.html','API_Request.js','src/blockAccess.js','src/app.js']),
+        new CopyWebpackPlugin(['index.html','style.css','home.html','RecommendFood.html','src/assets/exampleimage.jpg','FoodHistory.html','BucketList.html','LeaderBoard.html','API_Request.js','src/blockAccess.js','src/app.js', 'LeaderBoard_Request.js']),
         new webpack.HotModuleReplacementPlugin()
     ]
 };
