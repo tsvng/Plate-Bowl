@@ -241,3 +241,28 @@ input {
 .addBtn:hover {
   background-color: #bbb;
 }
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.wrapper .text {
+  position: absolute;
+  color: white;
+  text-shadow: black 1px 1px;
+  font-size: 30px;
+  padding-top: 15px;
+  left: 20px;
+  opacity: 0;
+}
+
+.wrapper:hover .text {
+  position: absolute;
+  color: white;
+  text-shadow: black 1px 1px;
+  font-size: 30px;
+  padding-top: 15px;
+  left: 20px;
+  opacity: 100;
+}
