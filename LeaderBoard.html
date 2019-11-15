@@ -2,6 +2,9 @@
 <html>
 <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
 <script src="https://kit.fontawesome.com/43b2224741.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
         <meta charset="utf-8">
         <title>Plate-Bowl</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">       
@@ -25,6 +28,7 @@
 	                <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style="width:200px;" />
 	            </div>
 	            <h1 style = "font-family: Brush Script MT, Brush Script Std, cursive; font-size: 30pt;">LeaderBoard</h1>
+            <div id="list"></div>
 	            <nav>
 	            </nav>
 	        </div>
@@ -61,6 +65,37 @@ function closeNav() {
   document.getElementById("floating-button").style.marginLeft = "0";
   document.getElementById("main").style.marginLeft = "0px";
 }
+
+// load react
+'use strict';
+const e = React.createElement;
+
+class UserRow extends React.Component {
+    render() {
+        return e("div", null, 
+            e("div", {style: {"display": "flex", "justifyContent": "space-between", padding: "10px", "marginLeft": "auto", "marginRight": "auto", "marginTop": "10px", "marginBottom": "10px", width: 500, "borderRadius": "25px", "borderStyle": "solid"}}, 
+                [e("div", null, `#${this.props.position}`), e("div", {style: {"font-weight": "bold"}}, `${this.props.name}`), e("div", null, `${this.props.score} pts`) ]))
+    };
+}
+
+class UserList extends React.Component {
+    render() {
+        return e("div", null, this.props.users.map((u, i) => 
+            e(UserRow, {name: u.name, score: u.score, position: i+1}, null)));
+    }
+}
+
+const leaders = [
+    { name: "Eileen", score: 200},
+    { name: "Anthony", score: 100},
+    { name: "Joseph", score: 70},
+    { name: "Ted", score: 50 },
+    { name: "William", score: 20 },
+    { name: "Stephen", score: 20 }
+];
+  
+const domContainer = document.querySelector('#list');
+ReactDOM.render(e(UserList, {users: leaders}, null), domContainer);
 </script>
 </body>
 
