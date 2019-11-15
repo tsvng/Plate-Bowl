@@ -12,28 +12,6 @@
 //REEEEEEE//
 });
 
-var dynamodb = new AWS.DynamoDB().DocumentClient();
-
-function test(){
-	var table = "User-Food"
-	var name = "Joe"
-
-	var params = {
-		TableName: table
-		Key: {
-			"User": name
-		}
-	};
-
-	dynamodb.get(params, function(err, data){
-		if (err){
-			 document.getElementById('textarea').innerHTML = "Unable to read item: " + "\n" + JSON.stringify(err, undefined, 2);
-		} else {
-			document.getElementById('textarea').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
-		}
-	});
-}
-
 </script>
 
         <meta charset="utf-8">
@@ -76,11 +54,9 @@ function test(){
 			<image id = "rec3" class = "tile"></image>
 			<image id = "rec4" class = "tile"></image>
 		</div>
-    	</div>
-    	<button onclick="test()" type="button">Read Item</button>
-		<br><br>
-		<textarea readonly id= "textarea" style="width:100px; height:150px"></textarea>
 	</div>
+</div>
+</body>
 <script src = "API_Request.js"></script>
 <script>
 var menuState = 0;
