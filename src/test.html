@@ -1,0 +1,46 @@
+			<div>
+			<script src="https://kit.fontawesome.com/43b2224741.js" crossOrigin="anonymous"></script>
+		   	<head>
+		        <meta charSet="utf-8"/>
+		        <title>Plate-Bowl</title>
+		        <meta name="viewport" content="width=device-width, initial-scale=1"/>       
+				<link rel = "stylesheet" href = "style.css"/>
+			</head>
+			<body>
+					<div id="mySidenav" className="sidenav">
+		  			<a href="javascript:void(0)" className="closebtn" onClick={this.closeNav()}>&times;</a>
+		  			<a href="BucketList.html"><i className="fab fa-bitbucket fa-fw"></i> Bucket List</a>
+			  		<a href="FoodHistory.html"><i className="fas fa-utensils fa-fw"></i> Food History</a>
+		  			<a href="LeaderBoard.html"><i className="fas fa-clipboard-list fa-fw"></i> LeaderBoard</a>
+		  			<a href="RecommendFood.html"><i className="fas fa-cookie-bite fa-fw" ></i> Explore Food</a>		
+		  			<a href="index.html"><i className="fas fa-door-open fa-fw"></i> Logout</a>	
+				</div>
+				<button id = "floating-button" type="button" onClick={this.toggleNav()}>&#9776;</button>
+
+			<div id = "main">	
+			    <div clasName="app">
+			        <div className="app-header">
+			            <div className="app-logo">
+			                <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style={{width:'200px'}} />
+			            </div>
+			            <h1>Home Page</h1>
+			        </div>
+			        <div className="app-body">
+			            <div id="MutationResult"></div>
+			            <div id="QueryResult"></div>
+			            <div id="SubscriptionResult"></div>
+			        </div>
+			    </div>
+			    <div id="like_button_container"></div>
+			    <div id="bucketPreview" className="preview">
+			    	<h1>Your Bucket List</h1>
+			    </div>
+			    <div id="foodHistPreview" className="preview">
+			    	<h1>Your Food History</h1>
+			    </div>
+			    <div id="leaderBoard" className= "preview">
+			    	<h1>Leaderboard</h1>
+			    </div>
+		    </div>
+		    </body>
+		</div>
