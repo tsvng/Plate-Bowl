@@ -69,16 +69,16 @@ function App(props) {
             <Link to="/home">Home</Link>
           </li>
           <li>
-            <Link to="/RecommendFood">RecommendFood</Link>
+            <Link to="/recommendfood">RecommendFood</Link>
           </li>
           <li>
-            <Link to="/LeaderBoard">LeaderBoard</Link>
+            <Link to="/leaderboard">LeaderBoard</Link>
           </li>
           <li>
-            <Link to="/FoodHistory">FoodHistory</Link>
+            <Link to="/foodhistory">FoodHistory</Link>
           </li>
           <li>
-            <Link to="/BucketList">BucketList</Link>
+            <Link to="/bucketlist">BucketList</Link>
           </li>
         </ul>
 
@@ -87,19 +87,19 @@ function App(props) {
             <NavBar />
             <Home />
           </Route>
-          <Route path="/RecommendFood">
+          <Route path="/recommendfood">
             <NavBar />
             <RecommendFood />
           </Route>
-          <Route path="/LeaderBoard">
+          <Route path="/leaderboard">
             <NavBar />
             <LeaderBoard />
           </Route>
-          <Route path="/FoodHistory">
+          <Route path="/foodhistory">
             <NavBar />
             <FoodHistory />
           </Route>
-          <Route path="/BucketList">
+          <Route path="/bucketlist">
             <NavBar />
             <BucketList />
           </Route>

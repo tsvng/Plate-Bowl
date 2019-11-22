@@ -8,7 +8,7 @@ import Home from './Home.js';
 import NavBar from './NavBar.js';
 import LeaderBoard from './Leaderboard.js';
 import BucketList from './BucketList.js';
-
+import RecommendFood from './RecommendFood.js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -128,10 +128,6 @@ function Login() {
         </header>
       </div>    
     </div>;
-}
-
-function RecommendFood() {
-  return <h2>RecommendFood</h2>;
 }
 
 function FoodHistory() {

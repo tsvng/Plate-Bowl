@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 export default class NavBar extends React.Component{
 	constructor(props) {
@@ -45,11 +51,11 @@ export default class NavBar extends React.Component{
 				<script src="https://kit.fontawesome.com/43b2224741.js" crossOrigin="anonymous"></script>
 				<div id="mySidenav" className="sidenav">
 		  			<a href="javascript:void(0)" className="closebtn" onClick={()=>this.toggleNav()}>&times;</a>
-		  			<a href="BucketList.html"><i className="fab fa-bitbucket fa-fw"></i> Bucket List</a>
-			  		<a href="FoodHistory.html"><i className="fas fa-utensils fa-fw"></i> Food History</a>
-		  			<a href="LeaderBoard.html"><i className="fas fa-clipboard-list fa-fw"></i> LeaderBoard</a>
-		  			<a href="RecommendFood.html"><i className="fas fa-cookie-bite fa-fw" ></i> Explore Food</a>		
-		  			<a href="index.html"><i className="fas fa-door-open fa-fw"></i> Logout</a>	
+		  			<Link to="/bucketlist"><i className="fab fa-bitbucket fa-fw"></i>BucketList</Link>
+			  		<Link to="/foodhistory"><i className="fas fa-utensils fa-fw"></i>FoodHistory</Link>
+		  			<Link to="/leaderboard"><i className="fas fa-clipboard-list fa-fw"></i>LeaderBoard</Link>
+		  			<Link to="/recommendfood"><i className="fas fa-cookie-bite fa-fw" ></i>RecommendFood</Link>		
+		  			<Link to="/home"><i className="fas fa-door-open fa-fw"></i>Home</Link>
 				</div>
 				<button id = "floating-button" type="button" onClick={()=>this.toggleNav()}>&#9776;</button>
 			</div>
