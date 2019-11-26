@@ -42,80 +42,97 @@ function signOut() {
     .then(data => console.log(data))
     .catch(err => console.log(err));
 }
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {user: null};
+  }
+  
+  async componentDidMount() {
+    try {
+      const res = await checkUser();
+      if (!res.ok) {
+        throw Error(res.statusText);
+      }
+      this.setState({user: res};
+    } catch (e) {
+      console.log(e);  
+    }
+  }
+  
+  render() {
+    useEffect(() => {
+      Hub.listen('auth', (data) => {
+        const { payload } = data
+        console.log('A new auth event has happened: ', data)
+         if (payload.event === 'signIn') {
+           console.log('a user has signed in!')
+         }
+         if (payload.event === 'signOut') {
+           console.log('a user has signed out!')
+         }
+      })
+    }, [])
+    if (checkUser() == null) {
+     return (
+       <div>
+          <Login/>
+       </ div>
+     );
+    } else {
+      return (
+        <Router>
+          <div>
+            <ul>
+              <li>
+                <Link to="/">Login</Link>
+              </li>
+              <li>
+                <Link to="/home">Home</Link>
+              </li>
+              <li>
+                <Link to="/recommendfood">RecommendFood</Link>
+              </li>
+              <li>
+                <Link to="/leaderboard">LeaderBoard</Link>
+              </li>
+              <li>
+                <Link to="/foodhistory">FoodHistory</Link>
+              </li>
+              <li>
+                <Link to="/bucketlist">BucketList</Link>
+              </li>
+            </ul>
 
-function App(props) {
-  // in useEffect, we create the listener
-  useEffect(() => {
-    Hub.listen('auth', (data) => {
-      const { payload } = data
-      console.log('A new auth event has happened: ', data)
-       if (payload.event === 'signIn') {
-         console.log('a user has signed in!')
-       }
-       if (payload.event === 'signOut') {
-         console.log('a user has signed out!')
-       }
-    })
-  }, [])
-  if (checkUser() == null) {
-   return (
-     <div>
-        <Login/>
-     </ div>
-   );
-  } else {
-    return (
-      <Router>
-        <div>
-          <ul>
-            <li>
-              <Link to="/">Login</Link>
-            </li>
-            <li>
-              <Link to="/home">Home</Link>
-            </li>
-            <li>
-              <Link to="/recommendfood">RecommendFood</Link>
-            </li>
-            <li>
-              <Link to="/leaderboard">LeaderBoard</Link>
-            </li>
-            <li>
-              <Link to="/foodhistory">FoodHistory</Link>
-            </li>
-            <li>
-              <Link to="/bucketlist">BucketList</Link>
-            </li>
-          </ul>
-
-          <Switch>
-            <Route path="/home">
-              <NavBar />
-              <Home />
-            </Route>
-            <Route path="/recommendfood">
-              <NavBar />
-              <RecommendFood />
-            </Route>
-            <Route path="/leaderboard">
-              <NavBar />
-              <LeaderBoard />
-            </Route>
-            <Route path="/foodhistory">
-              <NavBar />
-              <FoodHistory />
-            </Route>
-            <Route path="/bucketlist">
-              <NavBar />
-              <BucketList />
-            </Route>
-            <Route path="/">
-              <Login />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-  );
+            <Switch>
+              <Route path="/home">
+                <NavBar />
+                <Home />
+              </Route>
+              <Route path="/recommendfood">
+                <NavBar />
+                <RecommendFood />
+              </Route>
+              <Route path="/leaderboard">
+                <NavBar />
+                <LeaderBoard />
+              </Route>
+              <Route path="/foodhistory">
+                <NavBar />
+                <FoodHistory />
+              </Route>
+              <Route path="/bucketlist">
+                <NavBar />
+                <BucketList />
+              </Route>
+              <Route path="/">
+                <Login />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+    );
+    }
   }
 }
 
