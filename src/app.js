@@ -62,6 +62,7 @@ function App(props) {
      <div>
         <Login/>
      </ div>
+   );
   } else {
     return (
       <Router>
