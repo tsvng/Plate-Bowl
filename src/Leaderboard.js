@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { createUser, createTodo } from './graphql/mutations'
-import { listUsers, listTodos } from './graphql/queries';
 import API, { graphqlOperation } from '@aws-amplify/api'
 import PubSub from '@aws-amplify/pubsub';
+import { createUser, createTodo } from './graphql/mutations'
+import { listUsers, listTodos } from './graphql/queries';
 
 import awsconfig from './aws-exports';
 API.configure(awsconfig);
 PubSub.configure(awsconfig);
+
+
 					
 export default class LeaderBoard extends React.Component {
 	async componentDidMount(){
