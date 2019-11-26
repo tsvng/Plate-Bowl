@@ -4,6 +4,8 @@
 import React, { useEffect } from 'react';
 // import Hub
 import Amplify, { Auth, Hub } from 'aws-amplify';
+import API, { graphqlOperation } from '@aws-amplify/api'
+import PubSub from '@aws-amplify/pubsub';
 import Home from './Home.js';
 import NavBar from './NavBar.js';
 import LeaderBoard from './Leaderboard.js';
@@ -18,6 +20,7 @@ import {
 
 Amplify.configure({
   Auth: {
+    IdentityPoolId: 'us-east-1:3198bc65-dde4-426c-bdde-b35ac383f330',
     region: 'us-east-1',
     userPoolId: 'us-east-1_uLqyIsqnt',
     userPoolWebClientId: '224uf0oqjqib1oac70r3jd24g3',
