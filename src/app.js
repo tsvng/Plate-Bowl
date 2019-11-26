@@ -115,8 +115,8 @@ function App(props) {
           </Switch>
         </div>
       </Router>
-      }
   );
+  }
 }
 
 const imgStyle = {width: '200px'};
