@@ -34,9 +34,11 @@ Amplify.configure({
   });
 
 function checkUser() {
-  Auth.currentAuthenticatedUser()
-    .then(user => console.log({ user }))
-    .catch(err => console.log(err));
+  const res = Auth.currentAuthenticatedUser()
+    .then(user => return user;)
+    .catch(err => return null);
+  
+  return res;
 }
 
 function signOut() {
@@ -59,57 +61,64 @@ function App(props) {
        }
     })
   }, [])
-  return (
-    <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Login</Link>
-          </li>
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
-          <li>
-            <Link to="/recommendfood">RecommendFood</Link>
-          </li>
-          <li>
-            <Link to="/leaderboard">LeaderBoard</Link>
-          </li>
-          <li>
-            <Link to="/foodhistory">FoodHistory</Link>
-          </li>
-          <li>
-            <Link to="/bucketlist">BucketList</Link>
-          </li>
-        </ul>
+  if (checkUser() == null) {
+   return (
+     <div>
+        <Login/>
+     </ div>
+  } else {
+    return (
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to="/">Login</Link>
+            </li>
+            <li>
+              <Link to="/home">Home</Link>
+            </li>
+            <li>
+              <Link to="/recommendfood">RecommendFood</Link>
+            </li>
+            <li>
+              <Link to="/leaderboard">LeaderBoard</Link>
+            </li>
+            <li>
+              <Link to="/foodhistory">FoodHistory</Link>
+            </li>
+            <li>
+              <Link to="/bucketlist">BucketList</Link>
+            </li>
+          </ul>
 
-        <Switch>
-          <Route path="/home">
-            <NavBar />
-            <Home />
-          </Route>
-          <Route path="/recommendfood">
-            <NavBar />
-            <RecommendFood />
-          </Route>
-          <Route path="/leaderboard">
-            <NavBar />
-            <LeaderBoard />
-          </Route>
-          <Route path="/foodhistory">
-            <NavBar />
-            <FoodHistory />
-          </Route>
-          <Route path="/bucketlist">
-            <NavBar />
-            <BucketList />
-          </Route>
-          <Route path="/">
-            <Login />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+          <Switch>
+            <Route path="/home">
+              <NavBar />
+              <Home />
+            </Route>
+            <Route path="/recommendfood">
+              <NavBar />
+              <RecommendFood />
+            </Route>
+            <Route path="/leaderboard">
+              <NavBar />
+              <LeaderBoard />
+            </Route>
+            <Route path="/foodhistory">
+              <NavBar />
+              <FoodHistory />
+            </Route>
+            <Route path="/bucketlist">
+              <NavBar />
+              <BucketList />
+            </Route>
+            <Route path="/">
+              <Login />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+      }
   );
 }
 
