@@ -34,11 +34,7 @@ Amplify.configure({
   });
 
 function checkUser() {
-  const res = Auth.currentAuthenticatedUser()
-    .then(user => return user;)
-    .catch(err => return null);
-  
-  return res;
+  return Auth.currentAuthenticatedUser();
 }
 
 function signOut() {
