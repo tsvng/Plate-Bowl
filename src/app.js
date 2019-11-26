@@ -33,8 +33,8 @@ Amplify.configure({
   }
   });
 
-async function checkUser() {
-  await return Auth.currentAuthenticatedUser();
+async fuction checkUser() {
+  return (await Auth.currentAuthenticatedUser());
 }
 
 function signOut() {
