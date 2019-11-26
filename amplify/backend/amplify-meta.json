@@ -34,6 +34,27 @@
         }
     },
     "api": {
+        "PlateBowlAPI": {
+            "service": "AppSync",
+            "providerPlugin": "awscloudformation",
+            "output": {
+                "authConfig": {
+                    "additionalAuthenticationProviders": [],
+                    "defaultAuthentication": {
+                        "authenticationType": "API_KEY",
+                        "apiKeyConfig": {
+                            "description": "",
+                            "apiKeyExpirationDays": "365"
+                        }
+                    }
+                }
+            },
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/amplify-plate-bowl-eileen-111907-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+                "logicalId": "apiPlateBowlAPI"
+            },
+            "lastPushTimeStamp": "2019-11-26T10:11:25.467Z"
+        },
         "Plate&Bowl": {
             "service": "AppSync",
             "output": {
@@ -54,7 +75,7 @@
                 "name": "Plate&Bowl",
                 "region": "us-east-1"
             },
-            "lastPushTimeStamp": "2019-11-26T05:43:05.203Z"
+            "lastPushTimeStamp": "2019-11-26T10:17:15.776Z"
         }
     }
 }
