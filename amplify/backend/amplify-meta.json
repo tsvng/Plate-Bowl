@@ -1,80 +1,79 @@
 {
-    "providers": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-plate-bowl-eileen-111907-authRole",
-            "UnauthRoleArn": "arn:aws:iam::428663290127:role/amplify-plate-bowl-eileen-111907-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::428663290127:role/amplify-plate-bowl-eileen-111907-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "amplify-plate-bowl-eileen-111907-deployment",
-            "UnauthRoleName": "amplify-plate-bowl-eileen-111907-unauthRole",
-            "StackName": "amplify-plate-bowl-eileen-111907",
-            "StackId": "arn:aws:cloudformation:us-east-1:428663290127:stack/amplify-plate-bowl-eileen-111907/770e64c0-064a-11ea-b780-0e09773e6f3f"
-        }
-    },
-    "auth": {
-        "platebowl1b339ffc": {
-            "service": "Cognito",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": [],
-            "providerMetadata": {
-                "s3TemplateURL": "https://s3.amazonaws.com/amplify-plate-bowl-eileen-111907-deployment/amplify-cfn-templates/auth/platebowl1b339ffc-cloudformation-template.yml",
-                "logicalId": "authplatebowl1b339ffc"
-            },
-            "lastPushTimeStamp": "2019-11-13T19:23:48.589Z",
-            "output": {
-                "AppClientSecret": "seu7ic5r58ietfs8kokuv7v27201fmrioh85d6lm261ii1a70fk",
-                "UserPoolId": "us-east-1_2XUAas34p",
-                "AppClientIDWeb": "34vhis5g7iug6sngoeglsfpuu7",
-                "AppClientID": "16s201e8tuc35vhebv8ru8h1rg",
-                "IdentityPoolId": "us-east-1:10d063ea-7f73-4b67-a85a-1de5596c0a91",
-                "IdentityPoolName": "platebowl1b339ffc_identitypool_1b339ffc__eileen",
-                "UserPoolName": "platebowl1b339ffc_userpool_1b339ffc"
-            },
-            "lastPushDirHash": "EEmMp0UAIeLt6fKijt/Dw59Ot2Y="
-        }
-    },
-    "api": {
-        "GraphQL": {
-            "service": "AppSync",
-            "providerPlugin": "awscloudformation",
-            "output": {
-                "authConfig": {
-                    "additionalAuthenticationProviders": [],
-                    "defaultAuthentication": {
-                        "authenticationType": "API_KEY",
-                        "apiKeyConfig": {
-                            "description": "Test",
-                            "apiKeyExpirationDays": "365"
-                        }
-                    }
-                },
-                "GraphQLAPIIdOutput": "w6hgbqgyuvf5hdwicts24vacky",
-                "GraphQLAPIEndpointOutput": "https://wxiepa4oxba7xm63lpyszkg5xq.appsync-api.us-east-1.amazonaws.com/graphql",
-                "GraphQLAPIKeyOutput": "da2-xfv4czklsvdatoqhid7wo2jv2u"
-            },
-            "providerMetadata": {
-                "s3TemplateURL": "https://s3.amazonaws.com/amplify-plate-bowl-eileen-111907-deployment/amplify-cfn-templates/api/cloudformation-template.json",
-                "logicalId": "apiGraphQL"
-            },
-            "lastPushTimeStamp": "2019-11-13T19:23:48.589Z",
-            "lastPushDirHash": "mjcP9w0bFTYnih1+onxK9iL8Qtw="
-        },
-        "Plate&Bowl": {
-            "service": "AppSync",
-            "output": {
-                "authConfig": {
-                    "defaultAuthentication": {
-                        "authenticationType": "API_KEY"
-                    },
-                    "additionalAuthenticationProviders": null
-                },
-                "GraphQLAPIIdOutput": "ncuw6ujg4zbnrp2htzwjjmz3my",
-                "GraphQLAPIEndpointOutput": "https://3mgh7oklmbgh3kkon4jm2hrusi.appsync-api.us-east-1.amazonaws.com/graphql",
-                "name": "Plate&Bowl",
-                "region": "us-east-1",
-                "GraphQLAPIKeyOutput": "da2-zkv4rg654vgjhem7st56vsoyoi"
-            },
-            "lastPushTimeStamp": "2019-11-14T05:33:10.069Z"
-        }
-    }
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "amplify-plate-bowl-eileen-111907-authRole",
+			"UnauthRoleArn": "arn:aws:iam::428663290127:role/amplify-plate-bowl-eileen-111907-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::428663290127:role/amplify-plate-bowl-eileen-111907-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "amplify-plate-bowl-eileen-111907-deployment",
+			"UnauthRoleName": "amplify-plate-bowl-eileen-111907-unauthRole",
+			"StackName": "amplify-plate-bowl-eileen-111907",
+			"StackId": "arn:aws:cloudformation:us-east-1:428663290127:stack/amplify-plate-bowl-eileen-111907/770e64c0-064a-11ea-b780-0e09773e6f3f"
+		}
+	},
+	"auth": {
+		"platebowl1b339ffc": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plate-bowl-eileen-111907-deployment/amplify-cfn-templates/auth/platebowl1b339ffc-cloudformation-template.yml",
+				"logicalId": "authplatebowl1b339ffc"
+			},
+			"lastPushTimeStamp": "2019-11-13T19:23:48.589Z",
+			"output": {
+				"AppClientSecret": "seu7ic5r58ietfs8kokuv7v27201fmrioh85d6lm261ii1a70fk",
+				"UserPoolId": "us-east-1_2XUAas34p",
+				"AppClientIDWeb": "34vhis5g7iug6sngoeglsfpuu7",
+				"AppClientID": "16s201e8tuc35vhebv8ru8h1rg",
+				"IdentityPoolId": "us-east-1:10d063ea-7f73-4b67-a85a-1de5596c0a91",
+				"IdentityPoolName": "platebowl1b339ffc_identitypool_1b339ffc__eileen",
+				"UserPoolName": "platebowl1b339ffc_userpool_1b339ffc"
+			},
+			"lastPushDirHash": "EEmMp0UAIeLt6fKijt/Dw59Ot2Y="
+		}
+	},
+	"api": {
+		"GraphQL": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authplatebowl1b339ffc"
+						}
+					}
+				},
+				"GraphQLAPIIdOutput": "w6hgbqgyuvf5hdwicts24vacky",
+				"GraphQLAPIEndpointOutput": "https://wxiepa4oxba7xm63lpyszkg5xq.appsync-api.us-east-1.amazonaws.com/graphql",
+				"GraphQLAPIKeyOutput": "da2-xfv4czklsvdatoqhid7wo2jv2u"
+			},
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-plate-bowl-eileen-111907-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"logicalId": "apiGraphQL"
+			},
+			"lastPushTimeStamp": "2019-11-13T19:23:48.589Z",
+			"lastPushDirHash": "mjcP9w0bFTYnih1+onxK9iL8Qtw="
+		},
+		"Plate&Bowl": {
+			"service": "AppSync",
+			"output": {
+				"authConfig": {
+					"defaultAuthentication": {
+						"authenticationType": "API_KEY"
+					},
+					"additionalAuthenticationProviders": null
+				},
+				"GraphQLAPIIdOutput": "ncuw6ujg4zbnrp2htzwjjmz3my",
+				"GraphQLAPIEndpointOutput": "https://3mgh7oklmbgh3kkon4jm2hrusi.appsync-api.us-east-1.amazonaws.com/graphql",
+				"name": "Plate&Bowl",
+				"region": "us-east-1",
+				"GraphQLAPIKeyOutput": "da2-zkv4rg654vgjhem7st56vsoyoi"
+			},
+			"lastPushTimeStamp": "2019-11-14T05:33:10.069Z"
+		}
+	}
 }
