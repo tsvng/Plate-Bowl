@@ -73,7 +73,7 @@ class App extends Component {
          }
       })
     }, [])
-    if (checkUser() == null) {
+    if (this.state.user == null) {
      return (
        <div>
           <Login/>
