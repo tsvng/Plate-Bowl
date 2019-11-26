@@ -115,3 +115,27 @@ export const deleteFood = `mutation DeleteFood($input: DeleteFoodInput!) {
   }
 }
 `;
+export const createTodo = `mutation CreateTodo($input: CreateTodoInput!) {
+  createTodo(input: $input) {
+    id
+    name
+    description
+  }
+}
+`;
+export const updateTodo = `mutation UpdateTodo($input: UpdateTodoInput!) {
+  updateTodo(input: $input) {
+    id
+    name
+    description
+  }
+}
+`;
+export const deleteTodo = `mutation DeleteTodo($input: DeleteTodoInput!) {
+  deleteTodo(input: $input) {
+    id
+    name
+    description
+  }
+}
+`;
