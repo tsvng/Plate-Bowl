@@ -33,8 +33,8 @@ Amplify.configure({
   }
   });
 
-function checkUser() {
-  return Auth.currentAuthenticatedUser();
+async function checkUser() {
+  await return Auth.currentAuthenticatedUser();
 }
 
 function signOut() {
@@ -64,15 +64,8 @@ class App extends React.Component {
   }
   
   async componentDidMount() {
-     try {
-      const res = await checkUser();
-      if (!res.ok) {
-        throw Error(res.statusText);
-      }
+      const res = checkUser();
       this.setState({user: res});
-    } catch (e) {
-      console.log(e);  
-    }
   }
   
   render() {
