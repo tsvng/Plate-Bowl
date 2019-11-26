@@ -46,22 +46,25 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {user: null};
+    
+    Hub.listen('auth', (data) => {
+        const { payload } = data;
+        this.onAuthEvent(payload);
+        console.log('A new auth event has happened: ', data);
+      })
+  }
+  
+  onAuthEvent(payload) {
+    if (payload.event === 'signIn') {
+      console.log('a user has signed in!')
+    }
+    if (payload.event === 'signOut') {
+      console.log('a user has signed out!')
+    }
   }
   
   async componentDidMount() {
-     Hub.listen('auth', (data) => {
-        const { payload } = data
-        console.log('A new auth event has happened: ', data)
-         if (payload.event === 'signIn') {
-           console.log('a user has signed in!')
-         }
-         if (payload.event === 'signOut') {
-           console.log('a user has signed out!')
-         }
-      })
-    }, [])
-    
-    try {
+     try {
       const res = await checkUser();
       if (!res.ok) {
         throw Error(res.statusText);
