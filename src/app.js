@@ -49,6 +49,18 @@ class App extends React.Component {
   }
   
   async componentDidMount() {
+     Hub.listen('auth', (data) => {
+        const { payload } = data
+        console.log('A new auth event has happened: ', data)
+         if (payload.event === 'signIn') {
+           console.log('a user has signed in!')
+         }
+         if (payload.event === 'signOut') {
+           console.log('a user has signed out!')
+         }
+      })
+    }, [])
+    
     try {
       const res = await checkUser();
       if (!res.ok) {
@@ -61,18 +73,6 @@ class App extends React.Component {
   }
   
   render() {
-    //useEffect(() => {
-    //  Hub.listen('auth', (data) => {
-//         const { payload } = data
-//         console.log('A new auth event has happened: ', data)
-//          if (payload.event === 'signIn') {
-//            console.log('a user has signed in!')
-//          }
-//          if (payload.event === 'signOut') {
-//            console.log('a user has signed out!')
-//          }
-//       })
-//     }, [])
     if (this.state.user == null) {
      return (
        <div>
