@@ -64,17 +64,22 @@
             "output": {
                 "authConfig": {
                     "defaultAuthentication": {
-                        "authenticationType": "API_KEY"
+                        "authenticationType": "AMAZON_COGNITO_USER_POOLS"
                     },
-                    "additionalAuthenticationProviders": null
+                    "additionalAuthenticationProviders": null,
+                    "userPoolConfig": {
+                        "userPoolId": "us-east-1_uLqyIsqnt",
+                        "awsRegion": "us-east-1",
+                        "defaultAction": "ALLOW",
+                        "appIdClientRegex": null
+                    }
                 },
                 "GraphQLAPIIdOutput": "ncuw6ujg4zbnrp2htzwjjmz3my",
                 "GraphQLAPIEndpointOutput": "https://3mgh7oklmbgh3kkon4jm2hrusi.appsync-api.us-east-1.amazonaws.com/graphql",
                 "name": "Plate&Bowl",
-                "region": "us-east-1",
-                "GraphQLAPIKeyOutput": "da2-zkv4rg654vgjhem7st56vsoyoi"
+                "region": "us-east-1"
             },
-            "lastPushTimeStamp": "2019-11-14T05:33:10.069Z"
+            "lastPushTimeStamp": "2019-11-26T05:43:05.203Z"
         }
     }
 }
