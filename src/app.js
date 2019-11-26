@@ -54,7 +54,7 @@ class App extends Component {
       if (!res.ok) {
         throw Error(res.statusText);
       }
-      this.setState({user: res};
+      this.setState({user: res});
     } catch (e) {
       console.log(e);  
     }
