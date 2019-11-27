@@ -65,7 +65,7 @@ class App extends React.Component {
   
   async componentDidMount() {
       const res = await checkUser();
-      console.log("User is " + res);
+      console.log("User is " + JSON.stringify(res));
       this.setState({user: res});
   }
   
