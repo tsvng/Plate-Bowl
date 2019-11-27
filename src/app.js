@@ -138,8 +138,8 @@ class App extends React.Component {
 const imgStyle = {width: '200px'};
 
 function Login() {
-  return <div className="app">
-        <div className="app-header">
+  return <div id="login-page" className="app">
+        <div id="login-page" className="app-header">
           <div className="app-logo">
             <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style={imgStyle} />
           </div>
