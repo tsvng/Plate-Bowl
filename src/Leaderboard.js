@@ -12,58 +12,58 @@ PubSub.configure(awsconfig);
 					
 export default class LeaderBoard extends React.Component {
 	async componentDidMount(){
-		/*async function createNewUser() {
+		async function createNewUser() {
   			const userInput = { username: "bob" , points: 20}
   			return await API.graphql(graphqlOperation(createUser, { input: userInput }))
-		}*/
-async function createNewTodo() {
-  const todo = { name: "Use AppSync" , description: "Realtime and Offline"}
-  return await API.graphql(graphqlOperation(createTodo, { input: todo }))
-}
+		}
+    /*async function createNewTodo() {
+      const todo = { name: "Use AppSync" , description: "Realtime and Offline"}
+      return await API.graphql(graphqlOperation(createTodo, { input: todo }))
+    }*/
 
-const MutationButton = document.getElementById('MutationEventButton');
-const MutationResult = document.getElementById('MutationResult');
+    const MutationButton = document.getElementById('MutationEventButton');
+    const MutationResult = document.getElementById('MutationResult');
 
-/*MutationButton.addEventListener('click', (evt) => {
-  MutationResult.innerHTML = `MUTATION RESULTS:`;
-  createNewUser().then( (evt) => {
-    MutationResult.innerHTML += `<p>${evt.data.createUser.username} - ${evt.data.createUser.points}</p>`
-  })
-});*/
+    MutationButton.addEventListener('click', (evt) => {
+      MutationResult.innerHTML = `MUTATION RESULTS:`;
+      createNewUser().then( (evt) => {
+        MutationResult.innerHTML += `<p>${evt.data.createUser.username} - ${evt.data.createUser.points}</p>`
+      })
+    });
 
-MutationButton.addEventListener('click', (evt) => {
-  MutationResult.innerHTML = `MUTATION RESULTS:`;
-  createNewTodo().then( (evt) => {
-    MutationResult.innerHTML += `<p>${evt.data.createTodo.name} - ${evt.data.createTodo.description}</p>`
-  })
-});
+    /*MutationButton.addEventListener('click', (evt) => {
+      MutationResult.innerHTML = `MUTATION RESULTS:`;
+      createNewTodo().then( (evt) => {
+        MutationResult.innerHTML += `<p>${evt.data.createTodo.name} - ${evt.data.createTodo.description}</p>`
+      })
+    });*/
 
 
-const QueryResult = document.getElementById('QueryResult');
+    const QueryResult = document.getElementById('QueryResult');
 
-/*async function getLeaders() {
-  QueryResult.innerHTML = `QUERY RESULTS`;
-  API.graphql(graphqlOperation(listUsers)).then((evt) => {
-    evt.data.listUsers.items.map((user, i) => 
-    QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
-    );
-  })
-}
-		
-getLeaders();*/
+    async function getLeaders() {
+      QueryResult.innerHTML = `QUERY RESULTS`;
+      API.graphql(graphqlOperation(listUsers)).then((evt) => {
+        evt.data.listUsers.items.map((user, i) => 
+        QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
+        );
+      })
+    }
+    		
+    getLeaders();
 
-async function getData() {
-  QueryResult.innerHTML = `QUERY RESULTS`;
-  API.graphql(graphqlOperation(listTodos)).then((evt) => {
-    evt.data.listTodos.items.map((todo, i) => 
-    QueryResult.innerHTML += `<p>${todo.name} - ${todo.description}</p>`
-    );
-  })
-}
+    /*async function getData() {
+      QueryResult.innerHTML = `QUERY RESULTS`;
+      API.graphql(graphqlOperation(listTodos)).then((evt) => {
+        evt.data.listTodos.items.map((todo, i) => 
+        QueryResult.innerHTML += `<p>${todo.name} - ${todo.description}</p>`
+        );
+      })
+    }
 
-getData();
+    getData();*/
 
-	}
+    	}
 	render() {
 		return <div id='main'>
 					<h1>Fill In Leaderboard Code here</h1>
