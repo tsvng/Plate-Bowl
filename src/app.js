@@ -7,7 +7,6 @@ import Amplify, { Auth, Hub } from 'aws-amplify';
 import Home from './Home.js';
 import NavBar from './NavBar.js';
 import LeaderBoard from './Leaderboard.js';
-import { StyleSheet, Alert, View, Image, TouchableOpacity } from 'react-native';
 import BucketList from './BucketList.js';
 import RecommendFood from './RecommendFood.js';
 import {
