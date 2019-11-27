@@ -73,11 +73,11 @@ class App extends React.Component {
   render() {
     if (this.state.user == null) {
      return (
-      <ImageBackground source = {'/assets/background.jpg'} style = {{width: '100%', height: '100%'}}>
-      </ImageBackground>
+      <ImageBackground source = {'../assets/background.jpg'} style = {{width: '100%', height: '100%'}}>
        <div>
           <Login/>
        </div>
+       </ImageBackground>
      );
     } else {
       return (
