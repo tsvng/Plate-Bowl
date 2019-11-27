@@ -18,6 +18,7 @@ import {
 
 Amplify.configure({
   Auth: {
+    IdentityPoolId: 'us-east-1:3198bc65-dde4-426c-bdde-b35ac383f330',
     region: 'us-east-1',
     userPoolId: 'us-east-1_uLqyIsqnt',
     userPoolWebClientId: '224uf0oqjqib1oac70r3jd24g3',
@@ -25,17 +26,15 @@ Amplify.configure({
     oauth: {
       domain: 'platenbowl.auth.us-east-1.amazoncognito.com',
       scope: ['phone','email','profile','openid','aws.cognito.signin.user.admin'],
-      redirectSignIn: 'https://master.d1artn8nksk20o.amplifyapp.com/home.html',
-      redirectSignOut: 'https://master.d1artn8nksk20o.amplifyapp.com/index.html',
+      redirectSignIn: 'https://master.d1artn8nksk20o.amplifyapp.com',
+      redirectSignOut: 'https://master.d1artn8nksk20o.amplifyapp.com',
       responseType: 'token'
     }
   }
   });
 
-function checkUser() {
-  Auth.currentAuthenticatedUser()
-    .then(user => console.log({ user }))
-    .catch(err => console.log(err));
+async function checkUser() {
+  return (await Auth.currentAuthenticatedUser());
 }
 
 function signOut() {
@@ -43,73 +42,97 @@ function signOut() {
     .then(data => console.log(data))
     .catch(err => console.log(err));
 }
-
-function App(props) {
-  // in useEffect, we create the listener
-  useEffect(() => {
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {user: null};
+    
     Hub.listen('auth', (data) => {
-      const { payload } = data
-      console.log('A new auth event has happened: ', data)
-       if (payload.event === 'signIn') {
-         console.log('a user has signed in!')
-       }
-       if (payload.event === 'signOut') {
-         console.log('a user has signed out!')
-       }
-    })
-  }, [])
-  return (
-    <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Login</Link>
-          </li>
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
-          <li>
-            <Link to="/recommendfood">RecommendFood</Link>
-          </li>
-          <li>
-            <Link to="/leaderboard">LeaderBoard</Link>
-          </li>
-          <li>
-            <Link to="/foodhistory">FoodHistory</Link>
-          </li>
-          <li>
-            <Link to="/bucketlist">BucketList</Link>
-          </li>
-        </ul>
+        const { payload } = data;
+        this.onAuthEvent(payload);
+        console.log('A new auth event has happened: ', data);
+      })
+  }
+  
+  onAuthEvent(payload) {
+    if (payload.event === 'signIn') {
+      console.log('a user has signed in!')
+    }
+    if (payload.event === 'signOut') {
+      console.log('a user has signed out!')
+    }
+  }
+  
+  async componentDidMount() {
+      const res = await checkUser();
+      console.log("User is " + JSON.stringify(res));
+      this.setState({user: res});
+  }
+  
+  render() {
+    if (this.state.user == null) {
+     return (
+      <ImageBackground source = {'../assets/background.jpg'} style = {{width: '100%', height: '100%'}}>
+       <div>
+          <Login/>
+       </div>
+       </ImageBackground>
+     );
+    } else {
+      return (
+        <Router>
+          <div>
+            <ul>
+              <li>
+                <Link to="/">Login</Link>
+              </li>
+              <li>
+                <Link to="/home">Home</Link>
+              </li>
+              <li>
+                <Link to="/recommendfood">RecommendFood</Link>
+              </li>
+              <li>
+                <Link to="/leaderboard">LeaderBoard</Link>
+              </li>
+              <li>
+                <Link to="/foodhistory">FoodHistory</Link>
+              </li>
+              <li>
+                <Link to="/bucketlist">BucketList</Link>
+              </li>
+            </ul>
 
-        <Switch>
-          <Route path="/home">
-            <NavBar />
-            <Home />
-          </Route>
-          <Route path="/recommendfood">
-            <NavBar />
-            <RecommendFood />
-          </Route>
-          <Route path="/leaderboard">
-            <NavBar />
-            <LeaderBoard />
-          </Route>
-          <Route path="/foodhistory">
-            <NavBar />
-            <FoodHistory />
-          </Route>
-          <Route path="/bucketlist">
-            <NavBar />
-            <BucketList />
-          </Route>
-          <Route path="/">
-            <Login />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
+            <Switch>
+              <Route path="/home">
+                <NavBar />
+                <Home />
+              </Route>
+              <Route path="/recommendfood">
+                <NavBar />
+                <RecommendFood />
+              </Route>
+              <Route path="/leaderboard">
+                <NavBar />
+                <LeaderBoard />
+              </Route>
+              <Route path="/foodhistory">
+                <NavBar />
+                <FoodHistory />
+              </Route>
+              <Route path="/bucketlist">
+                <NavBar />
+                <BucketList />
+              </Route>
+              <Route path="/">
+                <Login />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+    );
+    }
+  }
 }
 
 const imgStyle = {width: '200px'};
