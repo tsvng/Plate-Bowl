@@ -26,7 +26,7 @@ Amplify.configure({
     oauth: {
       domain: 'platenbowl.auth.us-east-1.amazoncognito.com',
       scope: ['phone','email','profile','openid','aws.cognito.signin.user.admin'],
-      redirectSignIn: 'https://master.d1artn8nksk20o.amplifyapp.com/home.html',
+      redirectSignIn: 'https://master.d1artn8nksk20o.amplifyapp.com/index.html',
       redirectSignOut: 'https://master.d1artn8nksk20o.amplifyapp.com/index.html',
       responseType: 'token'
     }
