@@ -7,6 +7,7 @@ import Amplify, { Auth, Hub } from 'aws-amplify';
 import Home from './Home.js';
 import NavBar from './NavBar.js';
 import LeaderBoard from './Leaderboard.js';
+import { StyleSheet, Alert, View, Image, TouchableOpacity } from 'react-native';
 import BucketList from './BucketList.js';
 import RecommendFood from './RecommendFood.js';
 import {
@@ -72,9 +73,11 @@ class App extends React.Component {
   render() {
     if (this.state.user == null) {
      return (
+      <ImageBackground source = {'/assets/background.jpg'} style = {{width: '100%', height: '100%'}}>
+      </ImageBackground>
        <div>
           <Login/>
-       </ div>
+       </div>
      );
     } else {
       return (
