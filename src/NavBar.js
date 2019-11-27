@@ -5,7 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
-
+import Amplify, { Auth, Hub } from 'aws-amplify';
 export default class NavBar extends React.Component{
 	constructor(props) {
     super(props);
@@ -43,8 +43,10 @@ export default class NavBar extends React.Component{
 	  		document.getElementById("main").style.marginLeft = "0px";
 		}
 	}
-
-
+	signOut() {
+		Auth.signOut()
+    	.then(data => console.log(data))
+    	.catch(err => console.log(err));}
 	render(){
 		return (
 			<div>
@@ -56,6 +58,7 @@ export default class NavBar extends React.Component{
 		  			<Link to="/leaderboard"><i className="fas fa-clipboard-list fa-fw"></i>LeaderBoard</Link>
 		  			<Link to="/recommendfood"><i className="fas fa-cookie-bite fa-fw" ></i>RecommendFood</Link>		
 		  			<Link to="/home"><i className="fas fa-door-open fa-fw"></i>Home</Link>
+		  			<button id = "logout" onClick={()=>this.signOut()}>LogOut</button>
 				</div>
 				<button id = "floating-button" type="button" onClick={()=>this.toggleNav()}>&#9776;</button>
 			</div>
