@@ -31,7 +31,7 @@ module.exports = {
         hot: true
     },
     plugins: [
-        new CopyWebpackPlugin(['style.css','src/assets/exampleimage.jpg','API_Request.js','src/blockAccess.js','src/app.js', 'src/assets/background.jpg']),
+        new CopyWebpackPlugin(['style.css','src/assets/exampleimage.jpg','API_Request.js','src/blockAccess.js','src/app.js']),
         new webpack.HotModuleReplacementPlugin()
     ]
 };
