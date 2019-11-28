@@ -142,8 +142,8 @@ function Login() {
         <div id="login-page" className="app-header">
           <div className="app-logo">
             <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style={imgStyle} />
-          </div>
-          <h1>Welcome to Plate&Bowl</h1>
+        </div>
+          <h2> Get recommendations. Find new favorites. </h2>
         </div>
         <div className="App">
           <header className="App-header">
