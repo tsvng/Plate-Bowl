@@ -1,8 +1,0 @@
-{
-    "CreateAPIKey": 1,
-    "AppSyncApiName": "platenbowl",
-    "DynamoDBBillingMode": "PAY_PER_REQUEST",
-    "DynamoDBEnableServerSideEncryption": "false",
-    "S3DeploymentBucket": "amplify-platenbowl-test-154226-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/ae55a5d6c60177ed5aebd592db340b54bf8c60e6"
-}

@@ -20,8 +20,60 @@
         "platebowl1b339ffc": {
             "service": "Cognito",
             "providerPlugin": "awscloudformation",
-            "dependsOn": []
+            "dependsOn": [],
+            "output": {
+                "AppClientSecret": "irar0vqatljoj2ae5v5ev9o67s5c2e5pvm2j5gb2831o94d6aqa",
+                "UserPoolId": "us-east-1_61zYNnv3a",
+                "AppClientIDWeb": "1k95ert59gm665mag0um6u1d96",
+                "AppClientID": "5tdfqngm2j09jganf0f5mkhil1",
+                "IdentityPoolId": "us-east-1:98c260c1-dddf-4f4d-84aa-78fbd259f6fc",
+                "IdentityPoolName": "platebowl1b339ffc_identitypool_1b339ffc__awsenr",
+                "UserPoolName": "platebowl1b339ffc_userpool_1b339ffc"
+            },
+            "lastPushTimeStamp": "2019-11-28T23:43:17.634Z",
+            "providerMetadata": {
+                "s3TemplateURL": "https://s3.amazonaws.com/amplify-plate-bowl-awsenr-01707-deployment/amplify-cfn-templates/auth/platebowl1b339ffc-cloudformation-template.yml",
+                "logicalId": "authplatebowl1b339ffc"
+            }
         }
     },
-    "api": {}
+    "api": {
+        "platebowl2": {
+            "service": "AppSync",
+            "providerPlugin": "awscloudformation",
+            "output": {
+                "authConfig": {
+                    "additionalAuthenticationProviders": [],
+                    "defaultAuthentication": {
+                        "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+                        "userPoolConfig": {
+                            "userPoolId": "authplatebowl1b339ffc"
+                        }
+                    }
+                }
+            }
+        },
+        "Plate&Bowl": {
+            "service": "AppSync",
+            "output": {
+                "authConfig": {
+                    "defaultAuthentication": {
+                        "authenticationType": "AMAZON_COGNITO_USER_POOLS"
+                    },
+                    "additionalAuthenticationProviders": null,
+                    "userPoolConfig": {
+                        "userPoolId": "us-east-1_uLqyIsqnt",
+                        "awsRegion": "us-east-1",
+                        "defaultAction": "ALLOW",
+                        "appIdClientRegex": null
+                    }
+                },
+                "GraphQLAPIIdOutput": "ncuw6ujg4zbnrp2htzwjjmz3my",
+                "GraphQLAPIEndpointOutput": "https://3mgh7oklmbgh3kkon4jm2hrusi.appsync-api.us-east-1.amazonaws.com/graphql",
+                "name": "Plate&Bowl",
+                "region": "us-east-1"
+            },
+            "lastPushTimeStamp": "2019-11-28T23:54:22.500Z"
+        }
+    }
 }

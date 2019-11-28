@@ -1,74 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getUser = `query GetUser($username: String!) {
-  getUser(username: $username) {
-    username
-    points
-    foodlog {
-      mainCuisine
-      secondaryCuisine
-      region
-      restaurantName
-    }
-    friends {
-      username
-      points
-    }
-    bucketlist {
-      mainCuisine
-      secondaryCuisine
-      region
-      restaurantName
-    }
-    disinterested {
-      mainCuisine
-      secondaryCuisine
-      region
-      restaurantName
-    }
-  }
-}
-`;
-export const listUsers = `query ListUsers(
-  $filter: TableUserFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      username
-      points
-    }
-    nextToken
-  }
-}
-`;
-export const getFood = `query GetFood($mainCuisine: String!) {
-  getFood(mainCuisine: $mainCuisine) {
-    mainCuisine
-    secondaryCuisine
-    region
-    restaurantName
-  }
-}
-`;
-export const listFoods = `query ListFoods(
-  $filter: TableFoodFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listFoods(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      mainCuisine
-      secondaryCuisine
-      region
-      restaurantName
-    }
-    nextToken
-  }
-}
-`;
 export const getTodo = `query GetTodo($id: ID!) {
   getTodo(id: $id) {
     id
@@ -87,6 +19,156 @@ export const listTodos = `query ListTodos(
       id
       name
       description
+    }
+    nextToken
+  }
+}
+`;
+export const getRestaurant = `query GetRestaurant($name: String!) {
+  getRestaurant(name: $name) {
+    name
+    cuisine
+    region
+    imgurl
+    points
+    price
+    location
+  }
+}
+`;
+export const listRestaurants = `query ListRestaurants(
+  $filter: TableRestaurantFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listRestaurants(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      cuisine
+      region
+      imgurl
+      points
+      price
+      location
+    }
+    nextToken
+  }
+}
+`;
+export const queryRestaurantsByCuisineIndex = `query QueryRestaurantsByCuisineIndex(
+  $cuisine: String!
+  $first: Int
+  $after: String
+) {
+  queryRestaurantsByCuisineIndex(
+    cuisine: $cuisine
+    first: $first
+    after: $after
+  ) {
+    items {
+      name
+      cuisine
+      region
+      imgurl
+      points
+      price
+      location
+    }
+    nextToken
+  }
+}
+`;
+export const getRecipe = `query GetRecipe($name: String!) {
+  getRecipe(name: $name) {
+    name
+    cuisine
+    region
+    imgurl
+    points
+    time
+    steps
+  }
+}
+`;
+export const listRecipes = `query ListRecipes(
+  $filter: TableRecipeFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listRecipes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      name
+      cuisine
+      region
+      imgurl
+      points
+      time
+      steps
+    }
+    nextToken
+  }
+}
+`;
+export const queryRecipesByCuisineIndex = `query QueryRecipesByCuisineIndex(
+  $cuisine: String!
+  $first: Int
+  $after: String
+) {
+  queryRecipesByCuisineIndex(cuisine: $cuisine, first: $first, after: $after) {
+    items {
+      name
+      cuisine
+      region
+      imgurl
+      points
+      time
+      steps
+    }
+    nextToken
+  }
+}
+`;
+export const getUser = `query GetUser($username: String!) {
+  getUser(username: $username) {
+    username
+    points
+    foodhistory
+    bucketlist
+    disinsterested
+    recommendations
+    friends
+  }
+}
+`;
+export const listUsers = `query ListUsers(
+  $filter: TableUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      username
+      points
+      foodhistory
+      bucketlist
+      disinsterested
+      recommendations
+      friends
+    }
+    nextToken
+  }
+}
+`;
+export const queryUsersByPointsIndex = `query QueryUsersByPointsIndex($points: Int!, $first: Int, $after: String) {
+  queryUsersByPointsIndex(points: $points, first: $first, after: $after) {
+    items {
+      username
+      points
+      foodhistory
+      bucketlist
+      disinsterested
+      recommendations
+      friends
     }
     nextToken
   }
