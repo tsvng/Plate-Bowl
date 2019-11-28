@@ -266,3 +266,14 @@ input {
   left: 20px;
   opacity: 100;
 }
+
+.app#login-page {
+    height: 100%;
+    position: fixed;
+    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/background.jpg');
+    background-size: cover;
+}
+
+.app-header#login-page {
+    background: transparent;
+}
