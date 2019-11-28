@@ -42,7 +42,7 @@ export default class LeaderBoard extends React.Component {
     const QueryResult = document.getElementById('QueryResult');
 
     async function getLeaders() {
-      QueryResult.innerHTML = `Leaderboard`;
+      QueryResult.innerHTML = `<p>User - Points</p>`;
       API.graphql(graphqlOperation(listUsers)).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
@@ -67,9 +67,7 @@ export default class LeaderBoard extends React.Component {
 	render() {
 		return <div id='main'>
           <div className = "leaderboardBackground">
-					<h1>Fill In Leaderboard Code here</h1>
-					//<button id="MutationEventButton">Add User</button>
-            		//<div id="MutationResult"></div>
+					<h1>Leaderboard</h1>
 					<div id='QueryResult'></div>
           </div>
 				</div>
