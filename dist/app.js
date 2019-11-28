@@ -72,11 +72,9 @@ class App extends React.Component {
   render() {
     if (this.state.user == null) {
      return (
-      //<ImageBackground source = {'./assets/background.jpg'} style = {{width: '100%', height: '100%'}}>
        <div>
           <Login/>
        </div>
-       //</ImageBackground>
      );
     } else {
       return (
@@ -140,7 +138,7 @@ const imgStyle = {width: '200px'};
 function Login() {
   return <div id="login-page" className="app">
         <div id="login-page" className="app-header">
-          <div className="home-page-logo">
+          <div className="app-logo">
             <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style={imgStyle} />
         </div>
           <h1> Get recommendations. Find new favorites. </h1>
