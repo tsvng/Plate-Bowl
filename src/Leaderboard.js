@@ -12,16 +12,16 @@ PubSub.configure(awsconfig);
 					
 export default class LeaderBoard extends React.Component {
 	async componentDidMount(){
-		async function createNewUser() {
+		/*async function createNewUser() {
   			const userInput = { username: "bob" , points: 20}
   			return await API.graphql(graphqlOperation(createUser, { input: userInput }))
-		}
+		}*/
     /*async function createNewTodo() {
       const todo = { name: "Use AppSync" , description: "Realtime and Offline"}
       return await API.graphql(graphqlOperation(createTodo, { input: todo }))
     }*/
 
-    const MutationButton = document.getElementById('MutationEventButton');
+    /*const MutationButton = document.getElementById('MutationEventButton');
     const MutationResult = document.getElementById('MutationResult');
 
     MutationButton.addEventListener('click', (evt) => {
@@ -29,7 +29,7 @@ export default class LeaderBoard extends React.Component {
       createNewUser().then( (evt) => {
         MutationResult.innerHTML += `<p>${evt.data.createUser.username} - ${evt.data.createUser.points}</p>`
       })
-    });
+    });*/
 
     /*MutationButton.addEventListener('click', (evt) => {
       MutationResult.innerHTML = `MUTATION RESULTS:`;
@@ -42,7 +42,7 @@ export default class LeaderBoard extends React.Component {
     const QueryResult = document.getElementById('QueryResult');
 
     async function getLeaders() {
-      QueryResult.innerHTML = `QUERY RESULTS`;
+      QueryResult.innerHTML = `Leaderboard`;
       API.graphql(graphqlOperation(listUsers)).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
@@ -68,8 +68,8 @@ export default class LeaderBoard extends React.Component {
 		return <div id='main'>
           <div className = "leaderboardBackground">
 					<h1>Fill In Leaderboard Code here</h1>
-					<button id="MutationEventButton">Add User</button>
-            		<div id="MutationResult"></div>
+					//<button id="MutationEventButton">Add User</button>
+            		//<div id="MutationResult"></div>
 					<div id='QueryResult'></div>
           </div>
 				</div>
