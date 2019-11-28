@@ -66,10 +66,12 @@ export default class LeaderBoard extends React.Component {
     	}
 	render() {
 		return <div id='main'>
+          <div className = "leaderBoardBackground">
 					<h1>Fill In Leaderboard Code here</h1>
 					<button id="MutationEventButton">Add User</button>
             		<div id="MutationResult"></div>
 					<div id='QueryResult'></div>
+          </div>
 				</div>
 
 	}
