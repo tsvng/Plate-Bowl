@@ -65,11 +65,9 @@ export default class LeaderBoard extends React.Component {
 
     	}
 	render() {
-		return <div id='main'>
-          <div className = "leaderboardBackground">
+		return <div id='main' className = "leaderboard">
 					<h1>Leaderboard</h1>
 					<div id='QueryResult'></div>
-          </div>
 				</div>
 
 	}
