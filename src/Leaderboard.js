@@ -3,7 +3,7 @@ import API, { graphqlOperation } from '@aws-amplify/api'
 import Amplify, { Auth, Hub } from 'aws-amplify';
 import PubSub from '@aws-amplify/pubsub';
 import { createUser, createTodo } from './graphql/mutations'
-import { listUsers, listTodos, getUser } from './graphql/queries';
+import { listUsers, listTodos } from './graphql/queries';
 import Home from './Home.js';
 import NavBar from './NavBar.js';
 import BucketList from './BucketList.js';
