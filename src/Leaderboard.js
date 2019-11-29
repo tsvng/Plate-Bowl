@@ -55,21 +55,10 @@ export default class LeaderBoard extends React.Component {
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
 
-    const CheckResult = document.getElementById('CheckResult');
-
     //This function displays the Friends Leaderboard
     async function getFriendLeaders() {
       MutationResult.innerHTML = `<h4>${currentUser}'s Friend Leaderboard</h4>`;
       QueryResult.innerHTML = ``;
-      //Try to get getUser to work
-      checkResult.innerHTML = `<p>getuser hasn't worked</p>`
-      API.graphql(graphqlOperation(getUser, {username:currentUser})).then((evt) => {
-        evt.data.getUser.items.map((user, i) =>
-        CheckResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
-        );
-        CheckResult.innerHTML = `<p>getuser actually works!</p>`
-        
-      })
       //List own user's points at top by applying a filter to only query currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
@@ -151,7 +140,6 @@ export default class LeaderBoard extends React.Component {
       </div>
       <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bowlby+One" />
           <button id='MutationEventButton'>Change Leaderboard</button>
-          <div id='checkResult'></div>
           <div id='MutationResult'></div>
           <div id='QueryResult'></div>
         </div>
