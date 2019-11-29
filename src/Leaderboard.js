@@ -60,7 +60,7 @@ export default class LeaderBoard extends React.Component {
 
     async function getLeaders() {
       QueryResult.innerHTML = `<h2>${currentUser}'s Friends User - Points</h2>`;
-      API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:JSON.stringify(currentUser)}}})).then((evt) => {
+      API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
