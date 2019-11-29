@@ -42,20 +42,25 @@ export default class RecommendFood extends React.Component{
     }   
 	render(){
         const h1Style ={
-            fontFamily: 'Brush Script MT,Brush Script Std, cursive', 
-            fontSize: '30pt'
+            fontFamily: 'Optima', 
+            fontSize: '20pt'
         }
 		return (
 			<div>
                 <div id = "main">
-                    <div className="app">
-                        <div className="app-header">
-                            <div className="app-logo">
-                                <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style={{width:'200px'}} />
-                            </div>
+                    <div id = "recommend" className="app">
+                                          <div class = "nav">
+      <div class = "nav-right">
+        <a href="#home">Home</a>
+        <a href="#leaderboard" >Leaderboard</a>
+        <a href="#recommendFood">Recommendations</a>
+        <a href="#foodHistory">History</a>
+        <a href="#bucketList">Bucket List</a>
+      </div>
+      </div>
+                        <div id = "login-page" className="app-header">
                             <h1>Explore Food</h1>
-                        </div>
-                    </div>		
+                            
                     <div id = "RecommendFood">
                         <h1 style = {h1Style}>Our Suggestions</h1>
                         <div id = "recommendPartition">
@@ -67,6 +72,8 @@ export default class RecommendFood extends React.Component{
                         <div id = "Cuisine Search">
                         <h1 style = {h1Style}>Cuisine Search</h1>
                         </div>
+                        </div>
+                    </div>  
                     </div>
                 </div>
 			</div>
