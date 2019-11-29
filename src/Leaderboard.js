@@ -75,8 +75,6 @@ export default class LeaderBoard extends React.Component {
       })
     }
 
-    getFriendLeaders();
-
     MutationButton.addEventListener('click', leaderboardModeHandler())
 
     async function leaderboardModeHandler(){
