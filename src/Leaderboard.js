@@ -44,11 +44,6 @@ export default class LeaderBoard extends React.Component {
     const MutationButton = document.getElementById('MutationEventButton');
     const MutationResult = document.getElementById('MutationResult');
 
-    MutationButton.addEventListener('toggle', (evt) => {
-      MutationResult.innerHTML = `<h3>Global Leaderboard</h3>`;
-      getGlobalLeaders();
-    });
-
     /*MutationButton.addEventListener('click', (evt) => {
       MutationResult.innerHTML = `MUTATION RESULTS:`;
       createNewTodo().then( (evt) => {
@@ -80,6 +75,11 @@ export default class LeaderBoard extends React.Component {
       })
     }
 
+     MutationButton.addEventListener('toggle', (evt) => {
+      MutationResult.innerHTML = `<h3>Global Leaderboard</h3>`;
+      getGlobalLeaders();
+    });
+
     /*async function getData() {
       QueryResult.innerHTML = `QUERY RESULTS`;
       API.graphql(graphqlOperation(listTodos)).then((evt) => {
@@ -94,8 +94,8 @@ export default class LeaderBoard extends React.Component {
     	}
 	 render() {
     return <div id='main' className = "leaderboard">
-      <div class = "nav">
-      <div class = "nav-right">
+      <div className = "nav">
+      <div className = "nav-right">
         <a href="#home">Home</a>
         <a href="#leaderboard" >Leaderboard</a>
         <a href="#recommendFood">Recommendations</a>
