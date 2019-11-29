@@ -3,7 +3,7 @@ import API, { graphqlOperation } from '@aws-amplify/api'
 import Amplify, { Auth, Hub } from 'aws-amplify';
 import PubSub from '@aws-amplify/pubsub';
 import { createUser, createTodo } from './graphql/mutations'
-import { listUsers, listTodos, getUser } from './graphql/queries';
+import { listUsers, listTodos } from './graphql/queries';
 import Home from './Home.js';
 import NavBar from './NavBar.js';
 import BucketList from './BucketList.js';
@@ -53,7 +53,7 @@ export default class LeaderBoard extends React.Component {
     });*/
 
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
-    const QueryResult = document.getElementById('QueryResult');
+    const QueryResult = document.getElementById('QueryResult').setAttribute("style","overflow:auto;height:90px;width:500px");
 
     //This function displays the Friends Leaderboard
     async function getFriendLeaders() {
