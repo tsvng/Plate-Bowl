@@ -59,7 +59,7 @@ export default class LeaderBoard extends React.Component {
       MutationResult.innerHTML = `<h4>${currentUser}'s Friend Leaderboard</h4>`;
       QueryResult.innerHTML = ``;
       //List own user's points
-      API.graphql(graphqlOperation(getUser, {input: {username: currentUser}})).then((evt) => {
+      API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
