@@ -106,6 +106,7 @@ export default class LeaderBoard extends React.Component {
         <a href="#bucketList">Bucket List</a>
       </div>
       </div>
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bowlby+One" />
 					<h4>Leaderboard</h4>
 					<div id='QueryResult'></div>
         </div>
