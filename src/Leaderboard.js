@@ -55,7 +55,7 @@ export default class LeaderBoard extends React.Component {
       })
     });*/
 
-    const currentUser = await Auth.currentAuthenticatedUser().username;
+    const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
 
     async function getLeaders() {
