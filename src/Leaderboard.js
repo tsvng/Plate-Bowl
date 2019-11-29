@@ -147,7 +147,7 @@ export default class LeaderBoard extends React.Component {
       </div>
           <button id='MutationEventButton'>Change Leaderboard</button>
           <div id='MutationResult'></div>
-          <div id='QueryResult'></div>
+          <div id='QueryResult' className='scrollableY'></div>
         </div>
 
   }
