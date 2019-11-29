@@ -8,6 +8,7 @@ import Home from './Home.js';
 import NavBar from './NavBar.js';
 import LeaderBoard from './Leaderboard.js';
 import BucketList from './BucketList.js';
+import FoodHistory from './FoodHistory.js';
 import RecommendFood from './RecommendFood.js';
 import {
   BrowserRouter as Router,
@@ -151,10 +152,6 @@ function Login() {
       </div>
       </div>    
     </div>;
-}
-
-function FoodHistory() {
-  return <h2>FoodHistory</h2>;
 }
 
 
