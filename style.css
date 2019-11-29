@@ -373,3 +373,7 @@ input {
 .app-header#login-page {
     background: transparent;
 }
+
+.scrollableY{
+  overflow-y: scroll;
+}
