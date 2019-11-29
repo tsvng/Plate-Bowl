@@ -27,8 +27,9 @@ export default class RecommendFood extends React.Component{
       function API_Request(loc){
         var NUM_RECS = 4;
         var request = new XMLHttpRequest()
-        request.open('GET', 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location="Los Angeles, CA"', true)
-        //term="bagels"&
+        var query = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?'.concat(loc);
+
+        request.open('GET', query, true)
         request.setRequestHeader('Authorization', 'Bearer GOwKiYf6YgplxeQAJWLN6kZ6oF56Su8hiZ9yv1fk4Zw6D-xFG0GGteQiwPWBw0Wa7glsFlfSyydsFSegpPSF3rb4dm0xe6IqKn0jrKHnsKAbQCWJvc0cjfArvQKlXXYx')
         request.onload = function() {
           // Begin accessing JSON data here
