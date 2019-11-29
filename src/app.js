@@ -71,13 +71,13 @@ class App extends React.Component {
   }
   
   render() {
-    if (this.state.user != null || this.state.user == null) { //nav bar always shows
+    if (this.state.user != null || this.state.user == null) {
      return (
        <div>
           <Login/>
        </div>
      );
-    } else {
+    } if (true) { //NavBar always shows, change to else statement to revert
       return (
         <Router>
           <div>
