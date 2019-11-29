@@ -6,5 +6,21 @@
 			"dependsOn": []
 		}
 	},
-	"api": {}
+	"api": {
+		"platebowl2": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authplatebowl1b339ffc"
+						}
+					}
+				}
+			}
+		}
+	}
 }

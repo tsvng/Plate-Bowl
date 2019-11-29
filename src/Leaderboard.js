@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import API, { graphqlOperation } from '@aws-amplify/api'
+import Amplify, { Auth, Hub } from 'aws-amplify';
 import PubSub from '@aws-amplify/pubsub';
 import { createUser, createTodo } from './graphql/mutations'
 import { listUsers, listTodos } from './graphql/queries';
@@ -12,6 +13,22 @@ API.configure(awsconfig);
 PubSub.configure(awsconfig);
 
 const imgStyle = {width: '80px'};
+Amplify.configure({
+  Auth: {
+    IdentityPoolId: 'us-east-1:3198bc65-dde4-426c-bdde-b35ac383f330',
+    region: 'us-east-1',
+    userPoolId: 'us-east-1_uLqyIsqnt',
+    userPoolWebClientId: '224uf0oqjqib1oac70r3jd24g3',
+    mandatorySignIn: true,
+    oauth: {
+      domain: 'platenbowl.auth.us-east-1.amazoncognito.com',
+      scope: ['phone','email','profile','openid','aws.cognito.signin.user.admin'],
+      redirectSignIn: 'https://master.d1artn8nksk20o.amplifyapp.com',
+      redirectSignOut: 'https://master.d1artn8nksk20o.amplifyapp.com',
+      responseType: 'token'
+    }
+  }
+  });
 					
 export default class LeaderBoard extends React.Component {
 	async componentDidMount(){
@@ -41,19 +58,30 @@ export default class LeaderBoard extends React.Component {
       })
     });*/
 
-
+    const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
 
-    async function getLeaders() {
-      QueryResult.innerHTML = `<p>User - Points</p>`;
-      API.graphql(graphqlOperation(listUsers)).then((evt) => {
+    async function getFriendLeaders() {
+      QueryResult.innerHTML = `<h2>${currentUser}'s Friends User - Points</h2>`;
+      API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
       })
     }
     		
-    getLeaders();
+    getFriendLeaders();
+
+    async function getGlobalLeaders() {
+      QueryResult.innerHTML = `<h2>Global User - Points</h2>`;
+      API.graphql(graphqlOperation(listUsers)).then((evt) => {
+        evt.data.listUsers.items.map((user, i) => 
+        QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
+        );
+      })
+    }
+        
+    getGlobalLeaders();
 
     /*async function getData() {
       QueryResult.innerHTML = `QUERY RESULTS`;
