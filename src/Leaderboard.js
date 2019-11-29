@@ -96,11 +96,7 @@ export default class LeaderBoard extends React.Component {
 
     	}
 	render() {
-		return 
-    <div id='main' className = 'leaderboard'>
-      <div id = "content">
-      <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style={imgStyle} />
-      </div>
+		return <div id='main' className = "leaderboard">
       <div class = "nav">
       <div class = "nav-right">
         <a href="#home">Home</a>
@@ -110,9 +106,9 @@ export default class LeaderBoard extends React.Component {
         <a href="#bucketList">Bucket List</a>
       </div>
       </div>
-					<h1>Leaderboard</h1>
+					<h4>Leaderboard</h4>
 					<div id='QueryResult'></div>
-				</div>
+        </div>
 
 	}
 }
