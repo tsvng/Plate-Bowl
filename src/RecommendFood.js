@@ -52,6 +52,10 @@ export default class RecommendFood extends React.Component{
               document.getElementById("rec2").setAttribute('src',data.businesses[recNum[1]].image_url)
               document.getElementById('rec3').setAttribute('src',data.businesses[recNum[2]].image_url)
               document.getElementById('rec4').setAttribute('src',data.businesses[recNum[3]].image_url)
+              document.getElementById("r1name").innerHTML = data.businesses[recNum[0]].name;
+              document.getElementById("r2name").innerHTML = data.businesses[recNum[1]].name;
+              document.getElementById('r3name').innerHTML = data.businesses[recNum[2]].name;
+              document.getElementById('r4name').innerHTML = data.businesses[recNum[3]].name;
               console.log(data.businesses[0].image_url)
               console.log(data.businesses[0].name)
             /*data.forEach(movie => {
@@ -90,10 +94,10 @@ export default class RecommendFood extends React.Component{
                     <div id = "RecommendFood">
                         <h1 style = {h1Style}>Our Suggestions</h1>
                         <div id = "recommendPartition">
-                            <img id = "rec1" className = "tile"></img>
-                            <img id = "rec2" className = "tile"></img>
-                            <img id = "rec3" className = "tile"></img>
-                            <img id = "rec4" className = "tile"></img>
+                            <div className="wrapper"><div className="text" id = "r1name"></div><img id = "rec1" className = "tile"></img></div>
+                            <div className="wrapper"><div className="text" id = "r2name"></div><img id = "rec2" className = "tile"></img></div>
+                            <div className="wrapper"><div className="text" id = "r3name"></div><img id = "rec3" className = "tile"></img></div>
+                            <div className="wrapper"><div className="text" id = "r4name"></div><img id = "rec4" className = "tile"></img></div>
                         </div>
                         <div id = "Cuisine Search">
                         <h1 style = {h1Style}>Cuisine Search</h1>
