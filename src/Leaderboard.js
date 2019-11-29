@@ -75,7 +75,17 @@ export default class LeaderBoard extends React.Component {
       })
     }
 
-    MutationButton.addEventListener('click', getGlobalLeaders());
+    MutationButton.addEventListener('click', (evt) => {
+      if(!globalLeadersActive)
+      {
+        getFriendLeaders();
+      }
+      else
+      {
+        getGlobalLeaders();
+      }
+      globalLeadersActive = !globalLeadersActive;
+    });
 
    /* async function leaderboardModeHandler(){
       if(!globalLeadersActive)
