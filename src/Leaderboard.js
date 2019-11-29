@@ -63,10 +63,9 @@ export default class LeaderBoard extends React.Component {
         );
       })
     }
-    		
-    getFriendLeaders();
 
     async function getGlobalLeaders() {
+      MutationResult.innerHTML = `<h4>Global Leaderboard</h4>`;
       QueryResult.innerHTML = ``;
       API.graphql(graphqlOperation(listUsers)).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
@@ -75,10 +74,11 @@ export default class LeaderBoard extends React.Component {
       })
     }
 
-     MutationButton.addEventListener('click', (evt) => {
-      MutationResult.innerHTML = `<h3>Global Leaderboard</h3>`;
+     if(MutationButton.addEventListener('toggle'))
       getGlobalLeaders();
-    });
+     else
+      getFriendLeaders();
+
 
     /*async function getData() {
       QueryResult.innerHTML = `QUERY RESULTS`;
