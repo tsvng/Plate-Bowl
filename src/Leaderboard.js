@@ -60,7 +60,7 @@ export default class LeaderBoard extends React.Component {
       QueryResult.innerHTML = ``;
       //List own user's points
       API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
-        evt.data.listUsers.items.map((user, i) => 
+        evt.data.getUser.items.map((user, i) => 
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
       })
