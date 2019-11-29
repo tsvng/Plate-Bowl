@@ -154,9 +154,5 @@ function Login() {
     </div>;
 }
 
-function FoodHistory() {
-  return <h2>FoodHistory</h2>;
-}
-
 
 export default App
