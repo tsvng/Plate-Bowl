@@ -43,6 +43,7 @@ export default class LeaderBoard extends React.Component {
 
     const MutationButton = document.getElementById('MutationEventButton');
     const MutationResult = document.getElementById('MutationResult');
+    var globalLeadersActive = false;
 
     /*MutationButton.addEventListener('click', (evt) => {
       MutationResult.innerHTML = `MUTATION RESULTS:`;
@@ -74,10 +75,14 @@ export default class LeaderBoard extends React.Component {
       })
     }
 
-     if(MutationButton.addEventListener('toggle'))
-      getGlobalLeaders();
-     else
-      getFriendLeaders();
+    MutationButton.addEventListener('click', leaderboardModeHandler())
+
+    async function leaderboardModeHandler(){
+      if(!globalLeadersActive)
+        getFriendLeaders();
+      else
+        getGlobalLeaders();
+    }
 
 
     /*async function getData() {
