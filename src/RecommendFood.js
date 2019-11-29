@@ -52,10 +52,10 @@ export default class RecommendFood extends React.Component{
               document.getElementById("rec2").setAttribute('src',data.businesses[recNum[1]].image_url)
               document.getElementById('rec3').setAttribute('src',data.businesses[recNum[2]].image_url)
               document.getElementById('rec4').setAttribute('src',data.businesses[recNum[3]].image_url)
-              document.getElementById("r1name").innerHTML = data.businesses[recNum[0]].name;
-              document.getElementById("r2name").innerHTML = data.businesses[recNum[1]].name;
-              document.getElementById('r3name').innerHTML = data.businesses[recNum[2]].name;
-              document.getElementById('r4name').innerHTML = data.businesses[recNum[3]].name;
+              document.getElementById("r1name").textContent = data.businesses[recNum[0]].name;
+              document.getElementById("r2name").textContent = data.businesses[recNum[1]].name;
+              document.getElementById('r3name').textContent = data.businesses[recNum[2]].name;
+              document.getElementById('r4name').textContent = data.businesses[recNum[3]].name;
               console.log(data.businesses[0].image_url)
               console.log(data.businesses[0].name)
             /*data.forEach(movie => {
