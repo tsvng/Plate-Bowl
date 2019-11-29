@@ -4,11 +4,15 @@ import Amplify, { Auth, Hub } from 'aws-amplify';
 import PubSub from '@aws-amplify/pubsub';
 import { createUser, createTodo } from './graphql/mutations'
 import { listUsers, listTodos } from './graphql/queries';
+import Home from './Home.js';
+import NavBar from './NavBar.js';
+import BucketList from './BucketList.js';
 
 import awsconfig from './aws-exports';
 API.configure(awsconfig);
 PubSub.configure(awsconfig);
 
+const imgStyle = {width: '80px'};
 Amplify.configure({
   Auth: {
     IdentityPoolId: 'us-east-1:3198bc65-dde4-426c-bdde-b35ac383f330',
@@ -25,7 +29,6 @@ Amplify.configure({
     }
   }
   });
-
 					
 export default class LeaderBoard extends React.Component {
 	async componentDidMount(){
@@ -94,11 +97,25 @@ export default class LeaderBoard extends React.Component {
     	}
 	render() {
 		return <div id='main' className = "leaderboard">
+<<<<<<< HEAD
 					<h1>Leaderboard</h1>
           <button id='MutationEventButton> Change Leaderboard </button>'
           <div id='MutationResult'></div>
+=======
+      <div class = "nav">
+      <div class = "nav-right">
+        <a href="#home">Home</a>
+        <a href="#leaderboard" >Leaderboard</a>
+        <a href="#recommendFood">Recommendations</a>
+        <a href="#foodHistory">History</a>
+        <a href="#bucketList">Bucket List</a>
+      </div>
+      </div>
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bowlby+One" />
+					<h4>Leaderboard</h4>
+>>>>>>> a4e3798035f7d405311616b1d3c67f0410d8e92f
 					<div id='QueryResult'></div>
-				</div>
+        </div>
 
 	}
 }
