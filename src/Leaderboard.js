@@ -41,15 +41,13 @@ export default class LeaderBoard extends React.Component {
       return await API.graphql(graphqlOperation(createTodo, { input: todo }))
     }*/
 
-    /*const MutationButton = document.getElementById('MutationEventButton');
+    const MutationButton = document.getElementById('MutationEventButton');
     const MutationResult = document.getElementById('MutationResult');
 
-    MutationButton.addEventListener('click', (evt) => {
-      MutationResult.innerHTML = `MUTATION RESULTS:`;
-      createNewUser().then( (evt) => {
-        MutationResult.innerHTML += `<p>${evt.data.createUser.username} - ${evt.data.createUser.points}</p>`
-      })
-    });*/
+    MutationButton.addEventListener('toggle', (evt) => {
+      MutationResult.innerHTML = `<h3>Global Leaderboard</h3>`;
+      getGlobalLeaders();
+    });
 
     /*MutationButton.addEventListener('click', (evt) => {
       MutationResult.innerHTML = `MUTATION RESULTS:`;
@@ -62,7 +60,8 @@ export default class LeaderBoard extends React.Component {
     const QueryResult = document.getElementById('QueryResult');
 
     async function getFriendLeaders() {
-      QueryResult.innerHTML = `<h2>${currentUser}'s Friends User - Points</h2>`;
+      MutationResult.innerHTML = `<h4>${currentUser}'s Friend Leaderboard</h4>`;
+      QueryResult.innerHTML = ``;
       API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
@@ -73,15 +72,13 @@ export default class LeaderBoard extends React.Component {
     getFriendLeaders();
 
     async function getGlobalLeaders() {
-      QueryResult.innerHTML = `<h2>Global User - Points</h2>`;
+      QueryResult.innerHTML = ``;
       API.graphql(graphqlOperation(listUsers)).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
       })
     }
-        
-    getGlobalLeaders();
 
     /*async function getData() {
       QueryResult.innerHTML = `QUERY RESULTS`;
@@ -107,7 +104,8 @@ export default class LeaderBoard extends React.Component {
       </div>
       </div>
       <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bowlby+One" />
-          <h4>Leaderboard</h4>
+          <button id='MutationEventButton'>Change Leaderboard</button>
+          <div id='MutationResult'></div>
           <div id='QueryResult'></div>
         </div>
 
