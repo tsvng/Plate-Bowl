@@ -45,6 +45,11 @@ export default class LeaderBoard extends React.Component {
     const MutationResult = document.getElementById('MutationResult');
     var friendLeadersActive = true;
 
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+
     /*MutationButton.addEventListener('click', (evt) => {
       MutationResult.innerHTML = `MUTATION RESULTS:`;
       createNewTodo().then( (evt) => {
@@ -56,7 +61,7 @@ export default class LeaderBoard extends React.Component {
     const QueryResult = document.getElementById('QueryResult');
 
     //This function displays the Friends Leaderboard
-    function getFriendLeaders() {
+    async function getFriendLeaders() {
       MutationResult.innerHTML = `<h4>${currentUser}'s Friend Leaderboard</h4>`;
       QueryResult.innerHTML = ``;
       //List own user's points at top by applying a filter to only query currentUser
@@ -65,7 +70,7 @@ export default class LeaderBoard extends React.Component {
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
       })
-      
+      await sleep(500);
       //List friend's points by applying a filter that only lists users who have currentUser in their friends list
       API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
@@ -75,7 +80,7 @@ export default class LeaderBoard extends React.Component {
     }
 
     //This function displays the Global Leaderboard
-    function getGlobalLeaders() {
+    async function getGlobalLeaders() {
       MutationResult.innerHTML = `<h4>Global Leaderboard</h4>`;
       QueryResult.innerHTML = ``;
       //List own user's points at top by applying a filter to only query currentUser
@@ -84,6 +89,7 @@ export default class LeaderBoard extends React.Component {
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
       })
+      await sleep(500);
       //List other user's points by applying a filter to only query users not equal to currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
