@@ -55,11 +55,12 @@ export default class LeaderBoard extends React.Component {
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
 
+    //This function displays the Friends Leaderboard
     async function getFriendLeaders() {
       MutationResult.innerHTML = `<h4>${currentUser}'s Friend Leaderboard</h4>`;
       QueryResult.innerHTML = ``;
-      //List own user's points
-      API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
+      //List own user's points at top
+      API.graphql(graphqlOperation(getUser, {username:currentUser})).then((evt) => {
         evt.data.getUser.items.map((user, i) => 
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
@@ -72,9 +73,11 @@ export default class LeaderBoard extends React.Component {
       })
     }
 
+    //This function displays the Global Leaderboard
     async function getGlobalLeaders() {
       MutationResult.innerHTML = `<h4>Global Leaderboard</h4>`;
       QueryResult.innerHTML = ``;
+      //List other user's points
       API.graphql(graphqlOperation(listUsers)).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
@@ -84,6 +87,7 @@ export default class LeaderBoard extends React.Component {
 
     getFriendLeaders();
 
+    //controls which leaderboard is displayed
     MutationButton.addEventListener('click', (evt) => {
       friendLeadersActive = !friendLeadersActive;
       if(friendLeadersActive)
