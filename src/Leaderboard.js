@@ -3,7 +3,7 @@ import API, { graphqlOperation } from '@aws-amplify/api'
 import Amplify, { Auth, Hub } from 'aws-amplify';
 import PubSub from '@aws-amplify/pubsub';
 import { createUser, createTodo } from './graphql/mutations'
-import { listUsers, listTodos, getUser } from './graphql/queries';
+import { listUsers, listTodos } from './graphql/queries';
 import Home from './Home.js';
 import NavBar from './NavBar.js';
 import BucketList from './BucketList.js';
@@ -45,6 +45,11 @@ export default class LeaderBoard extends React.Component {
     const MutationResult = document.getElementById('MutationResult');
     var friendLeadersActive = true;
 
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+
     /*MutationButton.addEventListener('click', (evt) => {
       MutationResult.innerHTML = `MUTATION RESULTS:`;
       createNewTodo().then( (evt) => {
@@ -65,6 +70,7 @@ export default class LeaderBoard extends React.Component {
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
       })
+      await sleep(50);
       //List friend's points by applying a filter that only lists users who have currentUser in their friends list
       API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
@@ -83,6 +89,7 @@ export default class LeaderBoard extends React.Component {
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
       })
+      await sleep(50);
       //List other user's points by applying a filter to only query users not equal to currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
@@ -140,7 +147,7 @@ export default class LeaderBoard extends React.Component {
       </div>
           <button id='MutationEventButton'>Change Leaderboard</button>
           <div id='MutationResult'></div>
-          <div id='QueryResult'></div>
+          <div id='QueryResult' style="overflow-y:scroll;"></div>
         </div>
 
   }

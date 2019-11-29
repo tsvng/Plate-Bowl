@@ -1,9 +1,33 @@
 
-window.onload = API_Request();
-function API_Request(){
+//window.onload = API_Request();
+var options = {
+  		enableHighAccuracy: true,
+  		timeout: 5000,
+  		maximumAge: 0
+};
+
+function success(pos) {
+  	var crd = pos.coords;
+
+  	console.log('Your current position is:');
+  	console.log(`Latitude : ${crd.latitude}`);
+  	console.log(`Longitude: ${crd.longitude}`);
+  	console.log(`More or less ${crd.accuracy} meters.`);
+  	API_Request(`latitude=${crd.latitude}&longitude=${crd.longitude}`);
+
+}
+
+function error(err) {
+  	console.warn(`ERROR(${err.code}): ${err.message}`);
+  	API_Request('location="Los Angeles, CA"')
+}
+navigator.geolocation.getCurrentPosition(success, error, options);
+function API_Request(loc){
 	var NUM_RECS = 4;
 	var request = new XMLHttpRequest()
-	request.open('GET', 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location="Los Angeles, CA"', true)
+	var query = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?'.concat(loc);
+
+	request.open('GET', query, true)
 	//term="bagels"&
 	request.setRequestHeader('Authorization', 'Bearer GOwKiYf6YgplxeQAJWLN6kZ6oF56Su8hiZ9yv1fk4Zw6D-xFG0GGteQiwPWBw0Wa7glsFlfSyydsFSegpPSF3rb4dm0xe6IqKn0jrKHnsKAbQCWJvc0cjfArvQKlXXYx')
 	request.onload = function() {
@@ -26,7 +50,11 @@ function API_Request(){
 	  	document.getElementById("rec1").setAttribute('src',data.businesses[recNum[0]].image_url)
 	  	document.getElementById("rec2").setAttribute('src',data.businesses[recNum[1]].image_url)
 	  	document.getElementById('rec3').setAttribute('src',data.businesses[recNum[2]].image_url)
-	  	document.getElementById('rec4').setAttribute('src',data.businesses[recNum[3]].image_url)
+		document.getElementById('rec4').setAttribute('src',data.businesses[recNum[3]].image_url)
+		document.getElementById("r1name").textContent = data.businesses[recNum[0]].name;
+		document.getElementById("r2name").textContent = data.businesses[recNum[1]].name;
+		document.getElementById('r3name').textContent = data.businesses[recNum[2]].name;
+		document.getElementById('r4name').textContent = data.businesses[recNum[3]].name;  
 	  	console.log(data.businesses[0].image_url)
 	  	console.log(data.businesses[0].name)
 	    /*data.forEach(movie => {
