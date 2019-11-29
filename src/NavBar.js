@@ -6,9 +6,6 @@ import {
   Link
 } from "react-router-dom";
 import Amplify, { Auth, Hub } from 'aws-amplify';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBitBucket } from '@fortawesome/free-brands-svg-icons'
-import { faUtensils, faCookie, faClipBoard, faDoorOpen } from '@fortawesome/free-solid-svg-icons'
 
 export default class NavBar extends React.Component{
 	constructor(props) {
