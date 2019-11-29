@@ -42,8 +42,8 @@ export default class RecommendFood extends React.Component{
     }   
 	render(){
         const h1Style ={
-            fontFamily: 'Brush Script MT,Brush Script Std, cursive', 
-            fontSize: '30pt'
+            fontFamily: 'Optima', 
+            fontSize: '20pt'
         }
 		return (
 			<div>
