@@ -148,7 +148,7 @@ export default class LeaderBoard extends React.Component {
       <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bowlby+One" />
           <button id='MutationEventButton'>Change Leaderboard</button>
           <div id='MutationResult'></div>
-          <div id='QueryResult' style={"overflow-y:scroll;"}></div>
+          <div id='QueryResult' style={overflow-y: 'scroll'}></div>
         </div>
 
   }
