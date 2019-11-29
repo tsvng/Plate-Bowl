@@ -2,6 +2,7 @@
 body { font-family: "Amazon Ember", "Helvetica", "sans-serif"; margin: 0; }
 a { color: #003366; }
 h1 { font-weight: 300; font-family: "Amazon Ember", "Helvetica", "sans-serif";}
+h4 { font-weight: 300; font-family: "Amazon Ember", "Helvetica", "sans-serif"; color:white; font-size: 45px;}
 h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; width: 700px; margin-left: -60px; position: relative;}
 .app { width: 100%;}
 .app-header { color: black; text-align: center; background: white; width: 100%; margin: 20px 0 5px 0; padding: 0em 0 3em 0; }
@@ -40,6 +41,8 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   top: 0px;
   left: 0px;
 }
+
+
 .nav {
   background-color: transparent;
   overflow: hidden;
@@ -47,7 +50,8 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
 
 .nav a {
   float: left;
-  color: white;
+  color: #3C3D3E;
+  border-radius: 12px;
   text-align:center;
   padding: 12px 11px;
   font-size: 15px;

@@ -2,7 +2,7 @@
 body { font-family: "Amazon Ember", "Helvetica", "sans-serif"; margin: 0; }
 a { color: #003366; }
 h1 { font-weight: 300; font-family: "Amazon Ember", "Helvetica", "sans-serif";}
-h4 { font-weight: 300; font-family: "Amazon Ember", "Helvetica", "sans-serif"; color:white; font-size: 45px;}
+h4 { font-weight: 300; font-family: "Bubblegum Sans"; color:white; font-size: 45px;}
 h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; width: 700px; margin-left: -60px; position: relative;}
 .app { width: 100%;}
 .app-header { color: black; text-align: center; background: white; width: 100%; margin: 20px 0 5px 0; padding: 0em 0 3em 0; }
@@ -41,18 +41,23 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   top: 0px;
   left: 0px;
 }
+
+
 .nav {
-  background-color: transparent;
+  background-color: #4B2E16;
   overflow: hidden;
+  top: 0;
 }
 
 .nav a {
   float: left;
   color: white;
+  border-radius: 8px;
   text-align:center;
-  padding: 12px 11px;
+  margin: 0 5px 0 0;
+  padding: 8px;
   font-size: 15px;
-  font-family: Optima;
+  font-family: Candara;
   text-decoration: none;
 }
 
@@ -119,7 +124,6 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
 
 #main {
   transition: margin-left .5s;
-  padding: 10px;
   position:relative;
 }
 
@@ -329,6 +333,10 @@ input {
 .leaderboard#main{
     height: 100%;
     width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     position: fixed;
     background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/Board.jpg');
     background-size: cover;
