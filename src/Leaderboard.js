@@ -81,13 +81,12 @@ export default class LeaderBoard extends React.Component {
       if(!globalLeadersActive)
       {
         getFriendLeaders();
-        globalLeadersActive = true;
       }
       else
       {
         getGlobalLeaders();
-        globalLeadersActive = false;
       }
+      globalLeadersActive = !globalLeadersActive;
     }
 
 
