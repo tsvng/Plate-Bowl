@@ -53,7 +53,7 @@ export default class LeaderBoard extends React.Component {
     });*/
 
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
-    const QueryResult = document.getElementById('QueryResult').setAttribute("style","overflow:auto;height:90px;width:500px");
+    const QueryResult = document.getElementById('QueryResult');
 
     //This function displays the Friends Leaderboard
     async function getFriendLeaders() {
