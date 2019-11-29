@@ -75,7 +75,7 @@ export default class LeaderBoard extends React.Component {
       })
     }
 
-     MutationButton.addEventListener('toggle', (evt) => {
+     MutationButton.addEventListener('click', (evt) => {
       MutationResult.innerHTML = `<h3>Global Leaderboard</h3>`;
       getGlobalLeaders();
     });
