@@ -1,6 +1,30 @@
 import React from 'react';
 export default class RecommendFood extends React.Component{ 
     componentDidMount(){
+      var options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+      };
+
+      function success(pos) {
+          var crd = pos.coords;
+
+          console.log('Your current position is:');
+          console.log(`Latitude : ${crd.latitude}`);
+          console.log(`Longitude: ${crd.longitude}`);
+          console.log(`More or less ${crd.accuracy} meters.`);
+          API_Request(`latitude=${crd.latitude}&longitude=${crd.longitude}`);
+
+      }
+
+      function error(err) {
+          console.warn(`ERROR(${err.code}): ${err.message}`);
+          API_Request('location="Los Angeles, CA"')
+      }
+      navigator.geolocation.getCurrentPosition(success, error, options);
+
+      function API_Request(loc){
         var NUM_RECS = 4;
         var request = new XMLHttpRequest()
         request.open('GET', 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?location="Los Angeles, CA"', true)
@@ -39,7 +63,8 @@ export default class RecommendFood extends React.Component{
         }
     
         request.send()
-    }   
+    }
+  }   
 	render(){
         const h1Style ={
             fontFamily: 'Optima', 
