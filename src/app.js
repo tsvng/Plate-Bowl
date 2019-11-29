@@ -8,7 +8,6 @@ import Home from './Home.js';
 import NavBar from './NavBar.js';
 import LeaderBoard from './Leaderboard.js';
 import BucketList from './BucketList.js';
-import FoodHistory from './FoodHistory.js';
 import RecommendFood from './RecommendFood.js';
 import {
   BrowserRouter as Router,
@@ -71,13 +70,13 @@ class App extends React.Component {
   }
   
   render() {
-    if (this.state.user != null || this.state.user == null) {
+    if (this.state.user == null) {
      return (
        <div>
           <Login/>
        </div>
      );
-    } if (true) { //NavBar always shows, change to else statement to revert
+    } else {
       return (
         <Router>
           <div>
@@ -152,6 +151,10 @@ function Login() {
       </div>
       </div>    
     </div>;
+}
+
+function FoodHistory() {
+  return <h2>FoodHistory</h2>;
 }
 
 
