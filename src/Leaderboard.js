@@ -95,13 +95,8 @@ export default class LeaderBoard extends React.Component {
     getData();*/
 
     	}
-	render() {
-		return <div id='main' className = "leaderboard">
-<<<<<<< HEAD
-					<h1>Leaderboard</h1>
-          <button id='MutationEventButton> Change Leaderboard </button>'
-          <div id='MutationResult'></div>
-=======
+	 render() {
+    return <div id='main' className = "leaderboard">
       <div class = "nav">
       <div class = "nav-right">
         <a href="#home">Home</a>
@@ -112,11 +107,10 @@ export default class LeaderBoard extends React.Component {
       </div>
       </div>
       <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bowlby+One" />
-					<h4>Leaderboard</h4>
->>>>>>> a4e3798035f7d405311616b1d3c67f0410d8e92f
-					<div id='QueryResult'></div>
+          <h4>Leaderboard</h4>
+          <div id='QueryResult'></div>
         </div>
 
-	}
+  }
 }
 
