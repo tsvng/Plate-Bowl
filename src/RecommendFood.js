@@ -48,14 +48,9 @@ export default class RecommendFood extends React.Component{
 		return (
 			<div>
                 <div id = "main">
-                    <div className="app">
-                        <div className="app-header">
-                            <div className="app-logo">
-                                <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style={{width:'200px'}} />
-                            </div>
-                            <h1>Explore Food</h1>
-                        </div>
-                    </div>		
+                    <div id = "recommend" className="app">
+                        <div id = "login-page" className="app-header">
+                            <h1>Explore Food</h1>	
                     <div id = "RecommendFood">
                         <h1 style = {h1Style}>Our Suggestions</h1>
                         <div id = "recommendPartition">
@@ -67,6 +62,8 @@ export default class RecommendFood extends React.Component{
                         <div id = "Cuisine Search">
                         <h1 style = {h1Style}>Cuisine Search</h1>
                         </div>
+                        </div>
+                    </div>  
                     </div>
                 </div>
 			</div>

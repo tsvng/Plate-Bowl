@@ -14,6 +14,27 @@ h2 {  font-family: "Brush Script MT", cursive; font-size: 48px; font-style: norm
   width: 100%;
 }
 
+.nav {
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.nav a {
+  float: left;
+  color: #F5F5F5;
+  text-align:center;
+  padding: 12px 14px;
+  font-size: 10px;
+}
+
+.nav a:hover {
+  color: white;
+}
+
+.nav-right {
+  float: right;
+}
+
 .sidenav {
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
@@ -274,6 +295,14 @@ input {
     background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/test.jpg');
     background-size: cover;
     background-position: bottom;
+}
+
+.leaderboard#main{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/Board.jpg');
+    background-size: cover;
 }
 
 .app-header#login-page {

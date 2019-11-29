@@ -70,7 +70,7 @@ class App extends React.Component {
   }
   
   render() {
-    if (this.state.user != null) {
+    if (this.state.user == null) {
      return (
        <div>
           <Login/>
@@ -133,20 +133,22 @@ class App extends React.Component {
   }
 }
 
-const imgStyle = {width: '200px'};
+const imgStyle = {width: '400px'};
 
 function Login() {
   return <div id="login-page" className="app">
         <div id="login-page" className="app-header">
+        <div className = "container">
           <div className="app-logo">
             <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style={imgStyle} />
         </div>
           <h2> Get recommendations. Find new favorites. </h2>
-        </div>
         <div className="App">
           <header className="App-header">
             <button id="SignInButton" onClick={() => Auth.federatedSignIn()}>Sign In</button>
         </header>
+        </div>
+      </div>
       </div>    
     </div>;
 }

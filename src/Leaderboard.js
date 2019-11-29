@@ -3,12 +3,15 @@ import API, { graphqlOperation } from '@aws-amplify/api'
 import PubSub from '@aws-amplify/pubsub';
 import { createUser, createTodo } from './graphql/mutations'
 import { listUsers, listTodos } from './graphql/queries';
+import Home from './Home.js';
+import NavBar from './NavBar.js';
+import BucketList from './BucketList.js';
 
 import awsconfig from './aws-exports';
 API.configure(awsconfig);
 PubSub.configure(awsconfig);
 
-
+const imgStyle = {width: '80px'};
 					
 export default class LeaderBoard extends React.Component {
 	async componentDidMount(){
@@ -65,7 +68,20 @@ export default class LeaderBoard extends React.Component {
 
     	}
 	render() {
-		return <div id='main' className = 'leaderboard'>
+		return 
+    <div id='main' className = 'leaderboard'>
+      <div id = "content">
+      <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style={imgStyle} />
+      </div>
+      <div class = "nav">
+      <div class = "nav-right">
+        <a href="#home">Home</a>
+        <a href="#leaderboard" >Leaderboard</a>
+        <a href="#recommendFood">Recommendations</a>
+        <a href="#foodHistory">History</a>
+        <a href="#bucketList">Bucket List</a>
+      </div>
+      </div>
 					<h1>Leaderboard</h1>
 					<div id='QueryResult'></div>
 				</div>
