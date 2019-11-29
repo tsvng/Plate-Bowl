@@ -71,7 +71,7 @@ class App extends React.Component {
   }
   
   render() {
-    if (this.state.user != null) {
+    if (this.state.user != null || this.state.user == null) { //nav bar always shows
      return (
        <div>
           <Login/>
