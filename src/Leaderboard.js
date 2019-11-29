@@ -42,7 +42,7 @@ export default class LeaderBoard extends React.Component {
     const QueryResult = document.getElementById('QueryResult');
 
     async function getLeaders() {
-      QueryResult.innerHTML = `<p>User - Points</p>`;
+      QueryResult.innerHTML = `<h2>User - Points</h2>`;
       API.graphql(graphqlOperation(listUsers)).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
