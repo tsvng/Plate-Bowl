@@ -55,10 +55,19 @@ export default class LeaderBoard extends React.Component {
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
 
+    const checkResult = document.getElementById('checkResult');
+
     //This function displays the Friends Leaderboard
     async function getFriendLeaders() {
       MutationResult.innerHTML = `<h4>${currentUser}'s Friend Leaderboard</h4>`;
       QueryResult.innerHTML = ``;
+      //Try to get getUser to work
+      checkResult.innerHTML = `<p>getuser hasnt worked</p>`
+      API.graphql(graphqlOperation(getUser, {username:currentUser})).then((evt) => {
+        evt.data.getUser.items.map((user, i) => 
+        checkResult.innerHTML = `<p>getuser actually works!</p>`
+        );
+      })
       //List own user's points at top by applying a filter to only query currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
@@ -83,8 +92,8 @@ export default class LeaderBoard extends React.Component {
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
       })
-      //List other user's points by applying a filter to only query users Not equal to currentUser
-      API.graphql(graphqlOperation(listUsers, {filter:{username:{neq:currentUser}}})).then((evt) => {
+      //List other user's points by applying a filter to only query users not equal to currentUser
+      API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
@@ -140,6 +149,7 @@ export default class LeaderBoard extends React.Component {
       </div>
       <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bowlby+One" />
           <button id='MutationEventButton'>Change Leaderboard</button>
+          <div id='checkResult'></div>
           <div id='MutationResult'></div>
           <div id='QueryResult'></div>
         </div>
