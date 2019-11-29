@@ -58,7 +58,7 @@ export default class LeaderBoard extends React.Component {
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
 
-    async function getLeaders() {
+    async function getFriendLeaders() {
       QueryResult.innerHTML = `<h2>${currentUser}'s Friends User - Points</h2>`;
       API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
@@ -67,7 +67,18 @@ export default class LeaderBoard extends React.Component {
       })
     }
     		
-    getLeaders();
+    getFriendLeaders();
+
+    async function getGlobalLeaders() {
+      QueryResult.innerHTML = `<h2>Global User - Points</h2>`;
+      API.graphql(graphqlOperation(listUsers)).then((evt) => {
+        evt.data.listUsers.items.map((user, i) => 
+        QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
+        );
+      })
+    }
+        
+    getGlobalLeaders();
 
     /*async function getData() {
       QueryResult.innerHTML = `QUERY RESULTS`;
