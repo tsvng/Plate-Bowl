@@ -8,6 +8,22 @@ import awsconfig from './aws-exports';
 API.configure(awsconfig);
 PubSub.configure(awsconfig);
 
+Amplify.configure({
+  Auth: {
+    IdentityPoolId: 'us-east-1:3198bc65-dde4-426c-bdde-b35ac383f330',
+    region: 'us-east-1',
+    userPoolId: 'us-east-1_uLqyIsqnt',
+    userPoolWebClientId: '224uf0oqjqib1oac70r3jd24g3',
+    mandatorySignIn: true,
+    oauth: {
+      domain: 'platenbowl.auth.us-east-1.amazoncognito.com',
+      scope: ['phone','email','profile','openid','aws.cognito.signin.user.admin'],
+      redirectSignIn: 'https://master.d1artn8nksk20o.amplifyapp.com',
+      redirectSignOut: 'https://master.d1artn8nksk20o.amplifyapp.com',
+      responseType: 'token'
+    }
+  }
+  });
 
 					
 export default class LeaderBoard extends React.Component {
@@ -38,12 +54,12 @@ export default class LeaderBoard extends React.Component {
       })
     });*/
 
-
+    const currentUser = await Auth.currentAuthenticatedUser();
     const QueryResult = document.getElementById('QueryResult');
 
     async function getLeaders() {
       QueryResult.innerHTML = `<h2>User - Points</h2>`;
-      API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:JSON.stringify(res)}}})).then((evt) => {
+      API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:JSON.stringify(currentUser)}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
