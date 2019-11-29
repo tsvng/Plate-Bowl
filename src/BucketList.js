@@ -1,5 +1,4 @@
 import React from 'react';
-const imgStyle = {width: '70px'};
 
 export default class BucketList extends React.Component{
 	// Create a "close" button and append it to each list item
