@@ -40,6 +40,7 @@ export default class LeaderBoard extends React.Component {
     }
 
     function sortTable() {
+      console.log("sorted Ran");
       var table, rows, switching, i, x, y, shouldSwitch;
       table = document.getElementById("QueryResult");
       switching = true;
@@ -67,16 +68,16 @@ export default class LeaderBoard extends React.Component {
             shouldSwitch = true;
             break;
           }
-    
-          
-          if (shouldSwitch) {
-            /* If a switch has been marked, make the switch
-            and mark that a switch has been done: */
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-            // Each time a switch is done, increase this count by 1: 
-          }
         }
+          
+        if (shouldSwitch) {
+          /* If a switch has been marked, make the switch
+          and mark that a switch has been done: */
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+          // Each time a switch is done, increase this count by 1: 
+        }
+
       }
     }
 
