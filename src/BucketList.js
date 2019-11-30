@@ -32,7 +32,7 @@ export default class BucketList extends React.Component{
 	// Create a "close" button and append it to each list item
   async componentDidMount(){
     const AddEntryButton = document.getElementById('AddEventButton');
-    const MutationResult = document.getElementById('MutationResult');
+    const AddEntryResult = document.getElementById('AddEventResult');
 
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
@@ -42,7 +42,7 @@ export default class BucketList extends React.Component{
       MutationResult.innerHTML = ``;
       QueryResult.innerHTML = ``;
       //List own user's bucketlist by using getUser
-      API.graphql(graphqlOperation(getUser, {username:'triggertest'})).then((evt) => {
+      API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         evt.data.getUser.bucketlist.map((Food,i) => 
         QueryResult.innerHTML += `<p>${Food}</p>`
         );
@@ -51,20 +51,18 @@ export default class BucketList extends React.Component{
 
     getBucketList();
 
-    //AddEntryButton.addEventListener('click'
+    function addBucketlist(){
+      var term = 'term='.concat('\"',document.getElementById("searchInput").value,'\"');
+      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: term}}));
+      getBucketList();
+    }
+
+    AddEntryButton.addEventListener('click', addBucketlist());
 
   }
 
-
-	render(){
-    function validateForm() {
-      var x = document.forms["myForm"]["fname"].value;
-      if (x == "") {
-        alert("Name must be filled out");
-        return false;
-      }
-    }
-		return <div id='main' className = "bucket">
+  render(){
+    return <div id='main' className = "bucket">
       <div className = "nav">
       <div className = "nav-right">
         <a href="#home">Home</a>
@@ -74,15 +72,15 @@ export default class BucketList extends React.Component{
         <a href="#bucketList">Bucket List</a>
       </div>
       </div>
-			<h1> Bucket List </h1>
-      <form name="foodForm" onsubmit="return validateForm()">
-        Name: <input type="text" name="fname"></input>
-        <input type="submit" value="Submit"></input>
-      </form>
-      <button id='AddEventButton'>Add Entry</button>
-          <div id='MutationResult'></div>
+      <h1> Bucket List </h1>
+      <input type="text" id="searchInput" placeholder="Add a cuisine"/> 
+      <span className="addBtn" id='AddEventButton'>Add Entry</span>
+          <div id='AddEventResult'></div>
           <div id='QueryResult'></div>
-		</ div>;
-	}
+    </ div>;
+  }
+
+
+
 }
 
