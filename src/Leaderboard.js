@@ -57,7 +57,9 @@ export default class LeaderBoard extends React.Component {
       first, which contains table headers): */
         // Start by saying there should be no switching:
         console.log(rows.length);
-        for (i = 0; i < (rows.length - 1); i++) {
+        var len = document.getElementById("LeaderBoardTable").getElementsByTagName("tbody")[0].getElementsByTagName("tr").length;
+        console.log(len);
+        for (i = 0; i < (len - 1); i++) {
           shouldSwitch = false;
           /* Get the two elements you want to compare,
           one from current row and one from the next: */
