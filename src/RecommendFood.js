@@ -65,6 +65,18 @@ export default class RecommendFood extends React.Component{
     }
   }
   searchFood(){
+    var data = null;
+  async function addToFoodHistory(){
+    console.log("adding to Food History");
+    var dataIndex = parseInt(this.id,10);
+    console.log(data.businesses[dataIndex].name);
+  }
+  async function addToBucketList(){
+    console.log("adding To Bucket List")
+    var dataIndex = parseInt(this.id,10);
+    console.log(dataIndex);
+    console.log(data.businesses[dataIndex].name);
+  }
   const myNode = document.getElementById("searchResults");
   while (myNode.firstChild) {
     myNode.removeChild(myNode.firstChild);
@@ -77,22 +89,53 @@ export default class RecommendFood extends React.Component{
     request.setRequestHeader('Authorization', 'Bearer GOwKiYf6YgplxeQAJWLN6kZ6oF56Su8hiZ9yv1fk4Zw6D-xFG0GGteQiwPWBw0Wa7glsFlfSyydsFSegpPSF3rb4dm0xe6IqKn0jrKHnsKAbQCWJvc0cjfArvQKlXXYx')
     request.onload = function() {
       // Begin accessing JSON data here
-      var data = JSON.parse(this.response)
+      data = JSON.parse(this.response)
 
       if (request.status >= 200 && request.status < 400) {
           console.log(data.total);
           console.log(data.businesses.length);
+          //create divs for search results
           for(let i = 0; i< data.businesses.length;i++){
+            //create the containing div for each result
             var newDiv = document.createElement("div");
-            newDiv.style.cssText = "position:relative;float:left;background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/wooden.jpg');background-size: cover;background-repeat:repeat;"
+            newDiv.style.cssText = "width:50%; height:300px; position:relative;float:left;background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/wooden.jpg');background-size: cover;background-repeat:repeat;"
+            
+            //image for the result
             var newImg = document.createElement("IMG");
             newImg.src=data.businesses[i].image_url;
             newImg.className = "searchImage";
             newDiv.appendChild(newImg);
-            var newP = document.createElement("span");
-            var content = document.createTextNode(data.businesses[i].name);
-            newP.appendChild(content);
-            newDiv.appendChild(newP);
+            
+            //span to hold the restaurant name and address in the same line as the image
+            var newSpan = document.createElement("span");
+            var restName = document.createElement("p");
+            restName.textContent = data.businesses[i].name;
+            newSpan.appendChild(restName);
+
+            //restaurant address
+            var address1 = document.createElement("p");
+            address1.textContent=data.businesses[i].location.address1;
+            var address2 = document.createElement("p");
+            address2.textContent=data.businesses[i].location.address2;
+            newSpan.appendChild(address1);
+            //newSpan.appendChild(address2);
+            newDiv.appendChild(newSpan);
+
+            //button to add to bucketList
+            var bucketButton = document.createElement("BUTTON");
+            bucketButton.id = i.toString();
+            bucketButton.addEventListener("click",addToBucketList);
+            bucketButton.textContent = "Bucket";
+
+            //button to add element to food history
+            var histButton = document.createElement("BUTTON");
+            histButton.id = i.toString();
+            histButton.addEventListener("click",addToFoodHistory);
+            histButton.textContent = "History";
+
+            newDiv.appendChild(bucketButton);
+            newDiv.appendChild(histButton);
+
             document.getElementById("searchResults").appendChild(newDiv);
           }    
       }

@@ -484,6 +484,7 @@ input {
   object-fit:cover;
   height: 100px;
   width: 100px;
-  border-radius: 20px;
-  margin-right:1%;
+  border-radius: 10px;
+  margin:1%;
+  float: left;
 }
