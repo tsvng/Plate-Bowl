@@ -65,6 +65,10 @@ export default class RecommendFood extends React.Component{
     }
   }
   searchFood(){
+  const myNode = document.getElementById("searchResults");
+  while (myNode.firstChild) {
+    myNode.removeChild(myNode.firstChild);
+  }
     var term = 'term='.concat('\"',document.getElementById("searchInput").value,'\"');
     var request = new XMLHttpRequest()
     var query = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?'.concat(term,'&location="Los Angeles, CA');
@@ -80,7 +84,12 @@ export default class RecommendFood extends React.Component{
           console.log(data.businesses.length);
           for(let i = 0; i< data.businesses.length;i++){
             var newDiv = document.createElement("div");
-            var newP = document.createElement("p");
+            newDiv.style.cssText = "position:relative;float:left;background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/wooden.jpg');background-size: cover;background-repeat:repeat;"
+            var newImg = document.createElement("IMG");
+            newImg.src=data.businesses[i].image_url;
+            newImg.className = "searchImage";
+            newDiv.appendChild(newImg);
+            var newP = document.createElement("span");
             var content = document.createTextNode(data.businesses[i].name);
             newP.appendChild(content);
             newDiv.appendChild(newP);

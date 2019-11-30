@@ -375,6 +375,9 @@ input {
   position: relative;
   display: inline-block;
   max-width:300px;
+  object-fit:cover;
+  border-radius: 20px;
+  margin-right:1%;
 }
 
 .wrapper .text {
@@ -446,8 +449,9 @@ input {
 .app#recommend{
     height: auto;
     top: 0;
-    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/brownBoard.jpg');
+    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/wooden.jpg');
     background-size: cover;
+    background-repeat:repeat;
 }
 
 .app-header#login-page {
@@ -473,4 +477,14 @@ input {
 }
 #searchResults{
   height:100%;
+  background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/wooden.jpg');
+  background-size: cover;
+  background-repeat:repeat;
+}
+.searchImage{
+  object-fit:cover;
+  height: 100px;
+  width: 100px;
+  border-radius: 20px;
+  margin-right:1%;
 }
