@@ -85,6 +85,7 @@ export default class LeaderBoard extends React.Component {
         });
       })
 
+      JSON.stringify(leaderboardArray);
       console.log(leaderboardArray); //console returns the array
       console.log(leaderboardArray[1]); //console returns undefined???
       console.log(leaderboardArray.sort(function(a, b){return b.points - a.points})); //doesn't work, returns unsorted
