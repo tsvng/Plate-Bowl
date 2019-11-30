@@ -41,27 +41,16 @@ export default class BucketList extends React.Component{
     async function getBucketList() {
       MutationResult.innerHTML = ``;
       QueryResult.innerHTML = ``;
-      //List own user's bucketlist by applying a filter to only query currentUser
-      API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
-        evt.data.listUsers.items.map((user, i) => 
-        QueryResult.innerHTML += `<p>${user.bucketlist}</p>`
+      //List own user's bucketlist by using getUser
+      API.graphql(graphqlOperation(getUser, {username:'triggertest'})).then((evt) => {
+        evt.data.getUser.bucketlist.map((Food,i) => 
+        QueryResult.innerHTML += `<p>${Food}</p>`
         );
       })
     }
+
     getBucketList();
 
-    async function getBucketList2() {
-      MutationResult.innerHTML = ``;
-      QueryResult.innerHTML = ``;
-      //List own user's bucketlist by using getUser
-      API.graphql(graphqlOperation(getUser, {username:currentUser})).then((evt) => {
-        evt.data.getUser.items.map((user, i) => 
-        QueryResult.innerHTML += `<p>${user.bucketlist}</p>`
-        );
-      })
-    }
-
-    getBucketList2();
   }
 
 
