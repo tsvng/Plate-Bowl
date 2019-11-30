@@ -74,7 +74,7 @@ export default class BucketList extends React.Component{
       getBucketList();
     }
 
-    AddEntryButton.addEventListener('click', (evt) => {
+    EditEntryButton.addEventListener('click', (evt) => {
       addBucketlist();
     });
   }
