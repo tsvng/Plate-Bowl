@@ -34,7 +34,7 @@ export default class BucketList extends React.Component{
 
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
-    var userBucketlistArray = [...Array(100)];
+    var userBucketlistArray = [];
 
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
@@ -43,12 +43,11 @@ export default class BucketList extends React.Component{
     //This function displays the user's bucketlist
     async function getBucketList() {
       QueryResult.innerHTML = `<p></p>`;
-      userBucketlistArray = [...Array(100)]; //wipe array of old page data
+      userBucketlistArray = []; //wipe array of old page data
       //List own user's bucketlist by using getUser
       API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         evt.data.getUser.bucketlist.map((Food,i) => {
           QueryResult.innerHTML += `<p>${Food}</p>`
-          userBucketlistArray[i] = Food;
           userBucketlistArray.push(Food);
         });
       })
@@ -72,11 +71,6 @@ export default class BucketList extends React.Component{
       API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: userBucketlistArray}}));
       await sleep(250);
       getBucketList();
-      console.log(userBucketlistArray);
-      console.log(userBucketlistArray[0]);
-      console.log(userBucketlistArray[1]);
-      console.log(userBucketlistArray[200]);
-      console.log(userBucketlistArray[201]);
     }
 
     EditEntryButton.addEventListener('click', (evt) => {
