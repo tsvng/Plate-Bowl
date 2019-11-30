@@ -44,7 +44,7 @@ export default class BucketList extends React.Component{
       QueryResult.innerHTML = ``;
       //List own user's bucketlist by using getUser
       API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
-        evt.data.getUser.bucketlist.map((Food,i) => userBucketlistArray.push(Food),
+        evt.data.getUser.bucketlist.map((Food,i) => userBucketlistArray.push($Food),
         QueryResult.innerHTML += `<p>${Food}</p>`
         );
       })
