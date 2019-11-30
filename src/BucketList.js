@@ -34,7 +34,7 @@ export default class BucketList extends React.Component{
 
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
-    var userBucketlistArray = [];
+    var userBucketlistArray = [...Array(100)];
 
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
