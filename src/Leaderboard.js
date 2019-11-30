@@ -39,6 +39,47 @@ export default class LeaderBoard extends React.Component {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
 
+    function sortTable() {
+      var table, rows, switching, i, x, y, shouldSwitch;
+      table = document.getElementById("QueryResult");
+      switching = true;
+      // Set the sorting direction to ascending:
+      /* Make a loop that will continue until
+      no switching has been done: */
+      while (switching) {
+        // Start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+      /* Loop through all table rows (except the
+      first, which contains table headers): */
+        // Start by saying there should be no switching:
+        for (i = 1; i < (rows.length - 1); i++) {
+          shouldSwitch = false;
+          /* Get the two elements you want to compare,
+          one from current row and one from the next: */
+          x = rows[i].getElementsByTagName("TD")[1];
+          y = rows[i + 1].getElementsByTagName("TD")[1];
+          /* Check if the two rows should switch place,
+          based on the direction, asc or desc: */
+
+          if (x.innerHTML < y.innerHTML) {
+            // If so, mark as a switch and break the loop:
+            shouldSwitch = true;
+            break;
+          }
+    
+          
+          if (shouldSwitch) {
+            /* If a switch has been marked, make the switch
+            and mark that a switch has been done: */
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            // Each time a switch is done, increase this count by 1: 
+          }
+        }
+      }
+    }
+
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
 
@@ -51,16 +92,17 @@ export default class LeaderBoard extends React.Component {
       //List own user's points at top by applying a filter to only query currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
-          QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
+          QueryResult.innerHTML += `<tr><td>${user.username}</td><td>${user.points}</td></tr>`
         });
       })
       await sleep(250);
       //List friend's points by applying a filter that only lists users who have currentUser in their friends list
       API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => { 
-          QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
+          QueryResult.innerHTML += `<tr><td>${user.username}</td><td>${user.points}</td></tr>`
         });
       })
+      sortTable();
     }
 
     //This function displays the Global Leaderboard
@@ -118,7 +160,7 @@ export default class LeaderBoard extends React.Component {
       <div className = "containerLeaderBoard">
           <button id='MutationEventButton'>Change Leaderboard</button>
           <div id='MutationResult'></div>
-          <div id='QueryResult'></div>
+          <table id='QueryResult'></table>
           </div>
         </div>
 
