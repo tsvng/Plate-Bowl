@@ -49,13 +49,6 @@ export default class LeaderBoard extends React.Component {
     }
 
 
-    /*MutationButton.addEventListener('click', (evt) => {
-      MutationResult.innerHTML = `MUTATION RESULTS:`;
-      createNewTodo().then( (evt) => {
-        MutationResult.innerHTML += `<p>${evt.data.createTodo.name} - ${evt.data.createTodo.description}</p>`
-      })
-    });*/
-
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
 
@@ -108,31 +101,7 @@ export default class LeaderBoard extends React.Component {
         getGlobalLeaders();
     });
 
-   /* async function leaderboardModeHandler(){
-      if(!globalLeadersActive)
-      {
-        getFriendLeaders();
-      }
-      else
-      {
-        getGlobalLeaders();
-      }
-      globalLeadersActive = !globalLeadersActive;
-    }*/
-
-
-    /*async function getData() {
-      QueryResult.innerHTML = `QUERY RESULTS`;
-      API.graphql(graphqlOperation(listTodos)).then((evt) => {
-        evt.data.listTodos.items.map((todo, i) => 
-        QueryResult.innerHTML += `<p>${todo.name} - ${todo.description}</p>`
-        );
-      })
-    }
-
-    getData();*/
-
-    	}
+  }
 
 
       // load react
