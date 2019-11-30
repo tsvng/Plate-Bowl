@@ -101,7 +101,6 @@ export default class RecommendFood extends React.Component{
                         </div>
                         <div id = "Cuisine Search">
                         <h1 style = {h1Style}>Cuisine Search</h1>
-                        <form><input type="text" id="myInput" placeholder="Search..."/></form>
                         </div>
                         </div>
                     </div>  
