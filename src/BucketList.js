@@ -49,10 +49,12 @@ export default class BucketList extends React.Component{
       })
     }
   }
+
+  getBucketList();
 	render(){
 		return <div id='main' className = "bucket">
-      <div class = "nav">
-      <div class = "nav-right">
+      <div className = "nav">
+      <div className = "nav-right">
         <a href="#home">Home</a>
         <a href="#leaderboard">Leaderboard</a>
         <a href="#recommendFood">Recommendations</a>
