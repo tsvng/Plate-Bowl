@@ -71,6 +71,8 @@ export default class BucketList extends React.Component{
       API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: userBucketlistArray}}));
       await sleep(250);
       getBucketList();
+      console.log(userBucketlistArray);
+      console.log(userBucketlistArray[0]);
     }
 
     EditEntryButton.addEventListener('click', (evt) => {
