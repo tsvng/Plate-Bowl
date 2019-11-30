@@ -12,7 +12,6 @@ import awsconfig from './aws-exports';
 API.configure(awsconfig);
 PubSub.configure(awsconfig);
 
-const imgStyle = {width: '80px'};
 Amplify.configure({
   Auth: {
     IdentityPoolId: 'us-east-1:3198bc65-dde4-426c-bdde-b35ac383f330',
