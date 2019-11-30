@@ -43,7 +43,7 @@ export default class BucketList extends React.Component{
     //This function displays the user's bucketlist
     async function getBucketList() {
       QueryResult.innerHTML = `<p></p>`;
-      userBucketlistArray = []; //wipe array of old page data
+      userBucketlistArray = [...Array(100)]; //wipe array of old page data
       //List own user's bucketlist by using getUser
       API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         evt.data.getUser.bucketlist.map((Food,i) => {
