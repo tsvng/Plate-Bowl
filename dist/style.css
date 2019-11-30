@@ -141,7 +141,6 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   padding: 10 0 0 0;
   margin: 0 20px 0 20px;
   overflow:auto;
-  white-space: nowrap;
   height: 450px; 
 }
 
@@ -304,6 +303,7 @@ input {
 .wrapper {
   position: relative;
   display: inline-block;
+  max-width:300px;
 }
 
 .wrapper .text {
@@ -314,6 +314,8 @@ input {
   padding-top: 15px;
   left: 20px;
   opacity: 0;
+  max-width:270px;
+  height:auto;
 }
 
 .wrapper:hover .text {
@@ -324,6 +326,8 @@ input {
   padding-top: 15px;
   left: 20px;
   opacity: 100;
+  max-width:270px;
+  height:auto;
 }
 
 .app#login-page {
