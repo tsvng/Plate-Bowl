@@ -86,8 +86,8 @@ export default class LeaderBoard extends React.Component {
       })
 
       console.log(leaderboardArray);
-      console.log(leaderboardArray[0].points);
-      console.log(leaderboardArray.sort(function(a, b){return b.points - a.points}));
+      //console.log(leaderboardArray[0].points);
+      console.log(leaderboardArray.sort(function(a, b){return b.items.points - a.items.points}));
     }
 
     getFriendLeaders();
