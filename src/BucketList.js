@@ -62,6 +62,10 @@ export default class BucketList extends React.Component{
     }
 
     getBucketList2();
+
+    const getusermethod = await API.graphql(graphqlOperation(getUser, {username:'triggertest'}));
+    console.log(getusermethod)
+
   }
 
 
