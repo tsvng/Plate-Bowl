@@ -134,6 +134,10 @@ export default class LeaderBoard extends React.Component {
     getData();*/
 
     	}
+
+
+      // load react
+
 	 render() {
     return <div id='main' className = "leaderboard">
       <div className = "nav">
