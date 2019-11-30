@@ -70,7 +70,7 @@ export default class LeaderBoard extends React.Component {
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
       })
-      await sleep(50);
+      await sleep(250);
       //List friend's points by applying a filter that only lists users who have currentUser in their friends list
       API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
@@ -89,7 +89,7 @@ export default class LeaderBoard extends React.Component {
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
       })
-      await sleep(50);
+      await sleep(250);
       //List other user's points by applying a filter to only query users not equal to currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
@@ -147,7 +147,7 @@ export default class LeaderBoard extends React.Component {
       </div>
           <button id='MutationEventButton'>Change Leaderboard</button>
           <div id='MutationResult'></div>
-          <div id='QueryResult' className='scrollableY'></div>
+          <div id='QueryResult'></div>
         </div>
 
   }
