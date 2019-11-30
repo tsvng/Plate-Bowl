@@ -377,6 +377,7 @@ input {
     position: fixed;
     background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/GreyWood.jpeg');
     background-size: cover;
+    overflow-y: scroll;
 }
 
 .app#recommend{

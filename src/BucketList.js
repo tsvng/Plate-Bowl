@@ -1,7 +1,54 @@
-import React from 'react';
+import React, { Component } from 'react';
+import API, { graphqlOperation } from '@aws-amplify/api'
+import Amplify, { Auth, Hub } from 'aws-amplify';
+import PubSub from '@aws-amplify/pubsub';
+import { createUser, createTodo } from './graphql/mutations'
+import { listUsers, listTodos } from './graphql/queries';
+import Home from './Home.js';
+import NavBar from './NavBar.js';
+import Leaderboard from './Leaderboard.js';
 
+import awsconfig from './aws-exports';
+API.configure(awsconfig);
+PubSub.configure(awsconfig);
+
+Amplify.configure({
+  Auth: {
+    IdentityPoolId: 'us-east-1:3198bc65-dde4-426c-bdde-b35ac383f330',
+    region: 'us-east-1',
+    userPoolId: 'us-east-1_uLqyIsqnt',
+    userPoolWebClientId: '224uf0oqjqib1oac70r3jd24g3',
+    mandatorySignIn: true,
+    oauth: {
+      domain: 'platenbowl.auth.us-east-1.amazoncognito.com',
+      scope: ['phone','email','profile','openid','aws.cognito.signin.user.admin'],
+      redirectSignIn: 'https://master.d1artn8nksk20o.amplifyapp.com',
+      redirectSignOut: 'https://master.d1artn8nksk20o.amplifyapp.com',
+      responseType: 'token'
+    }
+  }
+  });
 export default class BucketList extends React.Component{
 	// Create a "close" button and append it to each list item
+  async componentDidMount(){
+    const MutationButton = document.getElementById('MutationEventButton');
+    const MutationResult = document.getElementById('MutationResult');
+
+    const currentUser = (await Auth.currentAuthenticatedUser()).username;
+    const QueryResult = document.getElementById('QueryResult');
+
+    //This function displays the user's bucketlist
+    async function getBucketList() {
+      MutationResult.innerHTML = ``;
+      QueryResult.innerHTML = ``;
+      //List own user's bucketlist by applying a filter to only query currentUser
+      API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
+        evt.data.listUsers.items.map((user, i) => 
+        QueryResult.innerHTML += `<p>${user.bucketlist}</p>`
+        );
+      })
+    }
+  }
 	render(){
 		return <div id='main' className = "bucket">
       <div class = "nav">
@@ -14,6 +61,9 @@ export default class BucketList extends React.Component{
       </div>
       </div>
 			<h1> Bucket List </h1>
+      <button id='MutationEventButton'>Add Entry</button>
+          <div id='MutationResult'></div>
+          <div id='QueryResult'></div>
 		</ div>;
 	}
 }
