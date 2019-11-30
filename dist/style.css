@@ -1,9 +1,9 @@
 /**html {border-top: 50px solid #003366;} */
 body { font-family: "Amazon Ember", "Helvetica", "sans-serif"; margin: 0; }
 a { color: #003366; }
-h1 { font-weight: 300; font-family: "Optima"; color: white; font-size: 48px;}
+h1 { font-weight: 300; font-family: "Optima"; color: white; font-size: 58px;}
 h4 { font-weight: 300; font-family: "Optima"; color:white; font-size: 45px;}
-h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; width: 700px; margin-left: -90px; position: relative;}
+h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; width: 700px; margin-left: -70px; position: relative;}
 .app { width: 100%;}
 .app-header { color: black; text-align: center; background: white; width: 100%; margin: 20px 0 5px 0; padding: 0em 0 3em 0; }
 .app-logo { margin: 0 auto; position: relative; }
@@ -21,6 +21,14 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   width: 40%;
   background-color: white;
   margin: auto;
+}
+
+.container2 {
+  height: 60%;
+  margin-top: 100px;
+  width: 40%;
+  background-color: white;
+  margin-left: 450px;
 }
 
 #border {
@@ -141,7 +149,6 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   padding: 10 0 0 0;
   margin: 0 20px 0 20px;
   overflow:auto;
-  white-space: nowrap;
   height: 450px; 
 }
 
@@ -304,6 +311,7 @@ input {
 .wrapper {
   position: relative;
   display: inline-block;
+  max-width:300px;
 }
 
 .wrapper .text {
@@ -314,6 +322,8 @@ input {
   padding-top: 15px;
   left: 20px;
   opacity: 0;
+  max-width:270px;
+  height:auto;
 }
 
 .wrapper:hover .text {
@@ -324,10 +334,20 @@ input {
   padding-top: 15px;
   left: 20px;
   opacity: 100;
+  max-width:270px;
+  height:auto;
 }
 
 .app#login-page {
     height: 100%;
+    position: fixed;
+    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/test.jpg');
+    background-size: cover;
+    background-position: bottom;
+}
+.app#home {
+    height: 100%;
+    top: 0;
     position: fixed;
     background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/test.jpg');
     background-size: cover;
@@ -344,6 +364,7 @@ input {
     position: fixed;
     background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/Board.jpg');
     background-size: cover;
+    overflow-y: scroll;
 }
 
 .bucket#main{
@@ -368,4 +389,8 @@ input {
 
 .app-header#login-page {
     background: transparent;
+}
+
+.scrollableY{
+  overflow-y: scroll;
 }

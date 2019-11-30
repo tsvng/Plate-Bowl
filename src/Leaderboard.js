@@ -12,7 +12,6 @@ import awsconfig from './aws-exports';
 API.configure(awsconfig);
 PubSub.configure(awsconfig);
 
-const imgStyle = {width: '80px'};
 Amplify.configure({
   Auth: {
     IdentityPoolId: 'us-east-1:3198bc65-dde4-426c-bdde-b35ac383f330',
@@ -70,7 +69,7 @@ export default class LeaderBoard extends React.Component {
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
       })
-      await sleep(50);
+      await sleep(250);
       //List friend's points by applying a filter that only lists users who have currentUser in their friends list
       API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
@@ -89,7 +88,7 @@ export default class LeaderBoard extends React.Component {
         QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         );
       })
-      await sleep(50);
+      await sleep(250);
       //List other user's points by applying a filter to only query users not equal to currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => 
@@ -134,6 +133,10 @@ export default class LeaderBoard extends React.Component {
     getData();*/
 
     	}
+
+
+      // load react
+
 	 render() {
     return <div id='main' className = "leaderboard">
       <div className = "nav">
@@ -145,10 +148,9 @@ export default class LeaderBoard extends React.Component {
         <a href="#bucketList">Bucket List</a>
       </div>
       </div>
-      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Bowlby+One" />
           <button id='MutationEventButton'>Change Leaderboard</button>
           <div id='MutationResult'></div>
-          <div id='QueryResult' style="overflow-y:scroll;"></div>
+          <div id='QueryResult'></div>
         </div>
 
   }

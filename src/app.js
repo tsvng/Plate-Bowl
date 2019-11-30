@@ -70,7 +70,7 @@ class App extends React.Component {
   }
   
   render() {
-    if (this.state.user == null) {
+    if (this.state.user != null) {
      return (
        <div>
           <Login/>
@@ -141,8 +141,8 @@ function Login() {
         <div className = "container">
           <div className="app-logo">
             <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style={imgStyle} />
+            <p>Get recommendations. Find new favorites.</p>
         </div>
-          <h2> Get recommendations. Find new favorites. </h2>
         <div className="App">
           <header className="App-header">
             <button id="SignInButton" onClick={() => Auth.federatedSignIn()}>Sign In</button>
