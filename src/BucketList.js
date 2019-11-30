@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import API, { graphqlOperation } from '@aws-amplify/api'
 import Amplify, { Auth, Hub } from 'aws-amplify';
 import PubSub from '@aws-amplify/pubsub';
-import { createUser, createTodo } from './graphql/mutations'
+import { createUser, createTodo, updateUser } from './graphql/mutations'
 import { listUsers, listTodos, getUser } from './graphql/queries';
 import Home from './Home.js';
 import NavBar from './NavBar.js';
@@ -39,7 +39,7 @@ export default class BucketList extends React.Component{
 
     //This function displays the user's bucketlist
     async function getBucketList() {
-      MutationResult.innerHTML = ``;
+      AddEntryResult.innerHTML = ``;
       QueryResult.innerHTML = ``;
       //List own user's bucketlist by using getUser
       API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
