@@ -85,7 +85,7 @@ class App extends React.Component {
                 <Link to="/">Login</Link>
               </li>
               <li>
-                <Link to="../home.html">Home</Link>
+                <Link to="../dist/home.html">Home</Link>
               </li>
               <li>
                 <Link to="/recommendfood">RecommendFood</Link>
