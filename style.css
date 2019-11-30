@@ -407,7 +407,6 @@ input {
     background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/test.jpg');
     background-size: cover;
     background-position: bottom;
-    overflow:scroll;
 }
 .app#home {
     height: 100%;
@@ -449,7 +448,6 @@ input {
     top: 0;
     background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/brownBoard.jpg');
     background-size: cover;
-    overflow: scroll;
 }
 
 .app-header#login-page {
