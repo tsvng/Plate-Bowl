@@ -36,6 +36,7 @@ export default class BucketList extends React.Component{
 
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
+    var userBucketlistArray = [];
 
     //This function displays the user's bucketlist
     async function getBucketList() {
@@ -43,22 +44,25 @@ export default class BucketList extends React.Component{
       QueryResult.innerHTML = ``;
       //List own user's bucketlist by using getUser
       API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
-        evt.data.getUser.bucketlist.map((Food,i) => 
+        evt.data.getUser.bucketlist.map((Food,i) => userBucketlistArray.push(Food),
         QueryResult.innerHTML += `<p>${Food}</p>`
         );
       })
     }
 
     getBucketList();
+    console.log(userBucketlistArray);
 
     function addBucketlist(){
-      var term = 'term='.concat('\"',document.getElementById("searchInput").value,'\"');
-      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: term}}));
+      var addedTerm = document.getElementById("searchInput").value;
+      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: addedTerm}}));
       getBucketList();
+      console.log("button clicked");
     }
 
-    AddEntryButton.addEventListener('click', addBucketlist());
-
+    AddEntryButton.addEventListener('click', (evt) => {
+      addBucketlist();
+    });
   }
 
   render(){
