@@ -57,9 +57,10 @@ export default class BucketList extends React.Component{
     function addBucketlist(){
       var addedTerm = document.getElementById("searchInput").value;
       console.log("added term is:" + addedTerm);
-      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: userBucketlistArray.push(addedTerm)}}));
+      userBucketlistArray.push(addedTerm);
+      console.log("the user's array is:" + userBucketlistArray);
+      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: userBucketlistArray}}));
       console.log("button clicked");
-      console.log(userBucketlistArray);
       getBucketList();
     }
 
