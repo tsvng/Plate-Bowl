@@ -3,7 +3,7 @@ html {height:100%;}
 body { font-family: "Amazon Ember", "Helvetica", "sans-serif"; margin: 0; height:100%}
 a { color: #003366; }
 h1 { font-weight: 300; font-family: "Optima"; color: white; font-size: 58px;}
-h4 { font-weight: 300; font-family: "Optima"; color:white; font-size: 45px;}
+h4 { font-weight: 300; font-family: "Optima"; color:black; font-size: 45px;}
 h3 { font-weight: 300; font-family: "Verdana"; color:black; font-size: 20px; margin: auto;}
 h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; width: 700px; margin-left: -70px; position: relative;}
 .app { width: 100%;}
@@ -30,8 +30,8 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   border-radius: 12px;
   overflow: hidden;
   margin-top: 100px;
-  margin-left: 450px;
-  height: 80%;
+  margin-left: 325px;
+  height: 100%;
   width: 60%;
 
 }

@@ -38,6 +38,10 @@ export default class BucketList extends React.Component{
     const QueryResult = document.getElementById('QueryResult');
     var userBucketlistArray = [];
 
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     //This function displays the user's bucketlist
     async function getBucketList() {
       AddEntryResult.innerHTML = ``;
@@ -55,13 +59,14 @@ export default class BucketList extends React.Component{
     getBucketList();
     console.log(userBucketlistArray);
 
-    function addBucketlist(){
+    async function addBucketlist(){
       var addedTerm = document.getElementById("searchInput").value;
       console.log("added term is:" + addedTerm);
       userBucketlistArray.push(addedTerm);
       console.log("the user's array is:" + userBucketlistArray);
       API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: userBucketlistArray}}));
       console.log("button clicked");
+      await sleep(250);
       getBucketList();
     }
 
