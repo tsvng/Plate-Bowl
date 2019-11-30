@@ -13,7 +13,7 @@ import {
 
 export default class Home extends React.Component{
 
-  render() { return <div id = "home" className = "app">	
+  render() { return <div id = main><div id = "home" className = "app">	
 				        <div id = "login-page" className="app-header">
 				            <div className="app-logo">
 				                <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style={{width:'400px'}} />
@@ -27,6 +27,7 @@ export default class Home extends React.Component{
 				    </div>
             </div>
 			    </div>
+          </div>
 	}
 }
 
