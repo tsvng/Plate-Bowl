@@ -77,22 +77,21 @@ export default class RecommendFood extends React.Component{
         }
 		return (
 			<div>
-                <div id = "main">
-                    <div id = "recommend" className="app">
-                                          <div class = "nav">
-      <div class = "nav-right">
-        <a href="#home">Home</a>
-        <a href="#leaderboard" >Leaderboard</a>
-        <a href="#recommendFood">Recommendations</a>
-        <a href="#foodHistory">History</a>
-        <a href="#bucketList">Bucket List</a>
-      </div>
-      </div>
-                        <div id = "login-page" className="app-header">
-                            <h1>Explore Food</h1>
-                            
-                    <div id = "RecommendFood">
-                        <h1 style = {h1Style}>Our Suggestions</h1>
+        <div id = "main">
+          <div id = "recommend" className="app">
+            <div class = "nav">
+             <div class = "nav-right">
+              <a href="#home">Home</a>
+              <a href="#leaderboard" >Leaderboard</a>
+              <a href="#recommendFood">Recommendations</a>
+              <a href="#foodHistory">History</a>
+              <a href="#bucketList">Bucket List</a>
+            </div>
+            </div>
+            <div id = "login-page" className="app-header">
+                <h1>Explore Food</h1>                           
+              <div id = "RecommendFood">
+                  <h1 style = {h1Style}>Our Suggestions</h1>
                         <div id = "recommendPartition">
                             <div className="wrapper"><div className="text" id = "r1name"></div><img id = "rec1" className = "tile"></img></div>
                             <div className="wrapper"><div className="text" id = "r2name"></div><img id = "rec2" className = "tile"></img></div>
@@ -101,9 +100,10 @@ export default class RecommendFood extends React.Component{
                         </div>
                         <div id = "Cuisine Search">
                         <h1 style = {h1Style}>Cuisine Search</h1>
+                        <form><input type="text" id="myInput" placeholder="Search..."/></form>
                         </div>
-                        </div>
-                    </div>  
+                  </div>
+            </div>  
                     </div>
                 </div>
 			</div>
