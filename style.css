@@ -45,6 +45,7 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   text-decoration: none;
   position: absolute;
   padding: 15px;
+  top: 430px;
 }
 
 .buttonContainer a:hover {
@@ -53,22 +54,18 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
 
 .a1 {
   left: 350px;
-  top: 430px;
 }
 
 .a2 {
   left: 540px;
-  top: 430px;
 }
 
 .a3 {
   left: 900px;
-  top: 430px;
 }
 
 .a4 {
   left: 715px;
-  top: 430px
 }
 
 #border {

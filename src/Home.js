@@ -25,7 +25,6 @@ export default class Home extends React.Component{
                   <a class = "a a2" href="#bucketlist">Places to Visit</a>
                   <a class = "a a3" href="#foodhistory">Your History</a>
                   <a class = "a a4" href="#recommendFood">Our Suggestions</a>
-            </div>
 			    </div>
           </div>
 	}
