@@ -330,7 +330,7 @@ ul li.checked::before {
   clear: both;
 }
 
-/* Style the input */
+/* Style the input 
 input {
   margin: 0;
   border: none;
@@ -339,7 +339,7 @@ input {
   padding: 10px;
   float: left;
   font-size: 16px;
-}
+}*/
 
 /* Style the "Add" button */
 .addBtn {

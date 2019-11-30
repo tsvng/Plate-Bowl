@@ -31,7 +31,7 @@ Amplify.configure({
 export default class BucketList extends React.Component{
 	// Create a "close" button and append it to each list item
   async componentDidMount(){
-    const MutationButton = document.getElementById('MutationEventButton');
+    const AddEntryButton = document.getElementById('AddEventButton');
     const MutationResult = document.getElementById('MutationResult');
 
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
@@ -51,10 +51,19 @@ export default class BucketList extends React.Component{
 
     getBucketList();
 
+    //AddEntryButton.addEventListener('click'
+
   }
 
 
 	render(){
+    function validateForm() {
+      var x = document.forms["myForm"]["fname"].value;
+      if (x == "") {
+        alert("Name must be filled out");
+        return false;
+      }
+    }
 		return <div id='main' className = "bucket">
       <div className = "nav">
       <div className = "nav-right">
@@ -66,9 +75,14 @@ export default class BucketList extends React.Component{
       </div>
       </div>
 			<h1> Bucket List </h1>
-      <button id='MutationEventButton'>Add Entry</button>
+      <form name="foodForm" onsubmit="return validateForm()">
+        Name: <input type="text" name="fname"></input>
+        <input type="submit" value="Submit"></input>
+      </form>
+      <button id='AddEventButton'>Add Entry</button>
           <div id='MutationResult'></div>
           <div id='QueryResult'></div>
 		</ div>;
 	}
 }
+
