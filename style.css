@@ -24,6 +24,17 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   margin: auto;
 }
 
+.containerLeaderBoard {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 100px;
+  margin-left: 500px;
+  height: 80%;
+  width: 60%;
+
+}
+
 .buttonContainer {
   height: 65%;
   width: 55%;
@@ -68,6 +79,9 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   left: 715px;
 }
 
+.logOutButton{
+
+}
 #border {
   color: #DEB887;
   position: fixed;
@@ -399,7 +413,7 @@ input {
     left: 0;
     right: 0;
     position: fixed;
-    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/Board.jpg');
+    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/test2.jpg');
     background-size: cover;
     overflow-y: scroll;
 }

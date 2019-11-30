@@ -117,9 +117,11 @@ export default class LeaderBoard extends React.Component {
         <a href="#bucketList">Bucket List</a>
       </div>
       </div>
+      <div className = "containerLeaderBoard">
           <button id='MutationEventButton'>Change Leaderboard</button>
           <div id='MutationResult'></div>
           <div id='QueryResult'></div>
+          </div>
         </div>
 
   }
