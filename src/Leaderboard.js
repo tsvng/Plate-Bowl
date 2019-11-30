@@ -43,6 +43,7 @@ export default class LeaderBoard extends React.Component {
       console.log("sorted Ran");
       var table, rows, switching, i, x, y, shouldSwitch;
       table = document.getElementById("QueryResult");
+      console.log(table);
       switching = true;
       // Set the sorting direction to ascending:
       /* Make a loop that will continue until
@@ -51,12 +52,13 @@ export default class LeaderBoard extends React.Component {
         // Start by saying: no switching is done:
         switching = false;
         rows = table.rows;
+        console.log(rows);
       /* Loop through all table rows (except the
       first, which contains table headers): */
         // Start by saying there should be no switching:
-        for (i = 1; i < (rows.length - 1); i++) {
+        console.log(rows.length);
+        for (i = 0; i < (rows.length - 1); i++) {
           shouldSwitch = false;
-          console.log(rows.lenght);
           /* Get the two elements you want to compare,
           one from current row and one from the next: */
           x = rows[i].getElementsByTagName("TD")[1];
