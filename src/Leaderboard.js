@@ -68,8 +68,7 @@ export default class LeaderBoard extends React.Component {
             shouldSwitch = true;
             break;
           }
-        }
-          
+        }         
         if (shouldSwitch) {
           /* If a switch has been marked, make the switch
           and mark that a switch has been done: */
@@ -77,7 +76,6 @@ export default class LeaderBoard extends React.Component {
           switching = true;
           // Each time a switch is done, increase this count by 1: 
         }
-
       }
     }
 
