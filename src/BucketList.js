@@ -66,7 +66,7 @@ export default class BucketList extends React.Component{
       if(duplicateTerms == 0)
         userBucketlistArray.push(term);
       else
-        delete userBucketlistArray[duplicateTerms];
+        userBucketlistArray.splice(duplicateTerms,1);
       //console.log("the user's array is:" + userBucketlistArray);
       API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: userBucketlistArray}}));
       //console.log("button clicked");
