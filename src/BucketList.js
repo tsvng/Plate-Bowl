@@ -29,10 +29,8 @@ Amplify.configure({
   }
   });
 export default class BucketList extends React.Component{
-	// Create a "close" button and append it to each list item
   async componentDidMount(){
-    const AddEntryButton = document.getElementById('AddEventButton');
-    const AddEntryResult = document.getElementById('AddEventResult');
+    const EditEntryButton = document.getElementById('EditEventButton');
 
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
@@ -44,8 +42,7 @@ export default class BucketList extends React.Component{
 
     //This function displays the user's bucketlist
     async function getBucketList() {
-      AddEntryResult.innerHTML = ``;
-      QueryResult.innerHTML = ``;
+      QueryResult.innerHTML = `<p></p>`;
       userBucketlistArray = []; //wipe Array of old page data
       //List own user's bucketlist by using getUser
       API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
@@ -59,16 +56,17 @@ export default class BucketList extends React.Component{
     getBucketList();
     console.log(userBucketlistArray);
 
-    async function addBucketlist(){
-      var addedTerm = document.getElementById("searchInput").value;
-      //console.log("added term is:" + addedTerm);
+    async function editBucketlist(){
+      var term = document.getElementById("searchInput").value;
       var duplicateTerms = 0;
       for(var i = 0; i < userBucketlistArray.length; i++)
-        if(addedTerm == userBucketlistArray[i])
-          duplicateTerms++;
+        if(term == userBucketlistArray[i])
+          duplicateTerms=i;
 
       if(duplicateTerms == 0)
-        userBucketlistArray.push(addedTerm);
+        userBucketlistArray.push(term);
+      else
+        delete userBucketlistArray[duplicateTerms];
       //console.log("the user's array is:" + userBucketlistArray);
       API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: userBucketlistArray}}));
       //console.log("button clicked");
@@ -93,9 +91,8 @@ export default class BucketList extends React.Component{
       </div>
       </div>
       <h1> Bucket List </h1>
-      <input type="text" id="searchInput" placeholder="Add a cuisine"/> 
-      <span className="addBtn" id='AddEventButton'>Add Entry</span>
-          <div id='AddEventResult'></div>
+      <input type="text" id="searchInput" placeholder="Type a cuisine you'd like to add, or type a cusine already in your list to delete it."/> 
+      <span className="addBtn" id='EditEventButton'>Edit List</span>
           <div id='QueryResult'></div>
     </ div>;
   }
