@@ -48,6 +48,7 @@ export default class BucketList extends React.Component{
       API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         evt.data.getUser.bucketlist.map((Food,i) => {
           QueryResult.innerHTML += `<p>${Food}</p>`
+          userBucketlistArray[i] = Food;
           userBucketlistArray.push(Food);
         });
       })
@@ -73,6 +74,9 @@ export default class BucketList extends React.Component{
       getBucketList();
       console.log(userBucketlistArray);
       console.log(userBucketlistArray[0]);
+      console.log(userBucketlistArray[1]);
+      console.log(userBucketlistArray[200]);
+      console.log(userBucketlistArray[201]);
     }
 
     EditEntryButton.addEventListener('click', (evt) => {
