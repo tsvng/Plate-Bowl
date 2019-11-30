@@ -42,7 +42,7 @@ export default class LeaderBoard extends React.Component {
     function sortTable() {
       console.log("sorted Ran");
       var table, rows, switching, i, x, y, shouldSwitch;
-      table = document.getElementById("QueryResult");
+      table = document.getElementById("LeaderBoardTable");
       console.log(table);
       switching = true;
       // Set the sorting direction to ascending:
@@ -165,7 +165,7 @@ export default class LeaderBoard extends React.Component {
       <div className = "containerLeaderBoard">
           <button id='MutationEventButton'>Change Leaderboard</button>
           <div id='MutationResult'></div>
-          <table id='QueryResult'></table>
+          <table id = "LeaderBoardTable"><tbody id='QueryResult'></tbody></table>
           </div>
         </div>
 
