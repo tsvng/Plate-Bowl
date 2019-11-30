@@ -64,7 +64,7 @@ export default class LeaderBoard extends React.Component {
     }
 
     //This function displays the Global Leaderboard
-    async function getGlobalLeaders() {
+    function getGlobalLeaders() {
       MutationResult.innerHTML = `<h4>Global Leaderboard</h4>`;
       QueryResult.innerHTML = ``;
       var leaderboardArray = [];
@@ -76,7 +76,7 @@ export default class LeaderBoard extends React.Component {
           QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
-      await sleep(250);
+      //await sleep(250);
       //List other user's points by applying a filter to only query users not equal to currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
@@ -85,9 +85,6 @@ export default class LeaderBoard extends React.Component {
         });
       })
 
-      console.log(leaderboardArray);
-      console.log("sort by points");
-      leaderboardArray.sort(function(a, b){return b.points - a.points});
       console.log(leaderboardArray);
       console.log(leaderboardArray.sort(function(a, b){return b.points - a.points}));
     }
