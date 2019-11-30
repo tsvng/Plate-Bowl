@@ -27,6 +27,7 @@ export default class Home extends React.Component{
                   <a class = "a a4" href="#recommendFood">Our Suggestions</a>
             </div>
 			    </div>
+          </div>
 	}
 }
 

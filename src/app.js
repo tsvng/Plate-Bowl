@@ -70,13 +70,13 @@ class App extends React.Component {
   }
   
   render() {
-    if (this.state.user != null) {
+    /*if (this.state.user != null) {
      return (
        <div>
           <Login/>
        </div>
      );
-    } else {
+    } else {*/
       return (
         <Router>
           <div>
@@ -85,7 +85,7 @@ class App extends React.Component {
                 <Link to="/">Login</Link>
               </li>
               <li>
-                <Link to="/home">Home</Link>
+                <Link to="../dist/home.html">Home</Link>
               </li>
               <li>
                 <Link to="/recommendfood">RecommendFood</Link>
@@ -129,7 +129,7 @@ class App extends React.Component {
           </div>
         </Router>
     );
-    }
+    //}
   }
 }
 
