@@ -14,17 +14,17 @@ import {
 export default class Home extends React.Component{
 
   render() { return <div id = "home" className = "app">	
-				        <div id = "login-page" className="app-header">
+  <div className="buttonContainer">
+				        <div className="app-header-home">
 				            <div className="app-logo">
 				                <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style={{width:'400px'}} />
 				              <h3>Welcome Back!</h3>
                     </div>
-              <div className="buttonContainer">
+                    </div>
                   <a class = "a a1" href="#leaderboard">Check Standings</a>
                   <a class = "a a2" href="#bucketlist">Places to Visit</a>
                   <a class = "a a3" href="#foodhistory">Your History</a>
                   <a class = "a a4" href="#recommendFood">Our Suggestions</a>
-				    </div>
             </div>
 			    </div>
 	}
