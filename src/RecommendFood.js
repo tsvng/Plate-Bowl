@@ -101,9 +101,10 @@ export default class RecommendFood extends React.Component{
       userFoodListArray = []; //wipe array of old page data
       //List own user's bucketlist by using getUser
       API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
+        if(evt.data.getUser.foodhistor!=null){
         evt.data.getUser.foodhistory.map((Food,i) => {
           userFoodListArray.push(Food);
-        });
+        });}
       })
     }
     function addToFoodHistory(){
