@@ -104,11 +104,12 @@ export default class RecommendFood extends React.Component{
           userFoodListArray.push(Food);
         });}
       })
+      return 1;
     }
-    function addToFoodHistory(){
+    async function addToFoodHistory(){
       console.log("adding to Food History");
       var dataIndex = parseInt(this.id,10);
-      getFoodList();
+      var dum = await getFoodList();
       console.log(userFoodListArray);
       var term = data.businesses[dataIndex].categories[0].title;
       console.log(term);
