@@ -33,7 +33,7 @@ export default class LeaderBoard extends React.Component {
 	async componentDidMount(){
     const MutationButton = document.getElementById('MutationEventButton');
     const MutationResult = document.getElementById('MutationResult');
-    var friendLeadersActive = true;
+    var followLeadersActive = true;
 
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
@@ -146,13 +146,13 @@ export default class LeaderBoard extends React.Component {
       console.log(leaderboardArray.sort(function(a, b){return b.points - a.points})); //doesn't work, returns unsorted
     }
 
-    getFriendLeaders();
+    getFollowingLeaders();
 
     //controls which leaderboard is displayed
     MutationButton.addEventListener('click', (evt) => {
-      friendLeadersActive = !friendLeadersActive;
-      if(friendLeadersActive)
-        getFriendLeaders();
+      followLeadersActive = !followLeadersActive;
+      if(followLeadersActive)
+        getFollowingLeaders();
       else
         getGlobalLeaders();
     });
