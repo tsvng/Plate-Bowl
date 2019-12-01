@@ -45,6 +45,12 @@ export default class FoodHistory extends React.Component{
        
 	// Create a "close" button and append it to each list item
 	render(){
+    const h1Style ={
+            color: "#BBB2AB",
+            font: "Perpetua",
+            fontSize: '58px',
+        }
+
 		return <div id='main' className = "history">
 			<h1> Food History </h1>
 		</div>;
