@@ -317,10 +317,10 @@ input {
   font-size: 16px;
 }*/
 #searchInput {
-  margin: 0;
+  margin-left: 230px;
   border: none;
   border-radius: 0;
-  width: 75%;
+  width: 50%;
   padding: 10px;
   float: left;
   font-size: 16px;
@@ -328,7 +328,7 @@ input {
 /* Style the "Add" button */
 .addBtn {
   padding: 10px;
-  width: 25%;
+  width: 15%;
   background: #d9d9d9;
   color: #111;
   float: left;
@@ -414,6 +414,7 @@ input {
     right: 0;
     position: fixed;
     background-size: cover;
+    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/whip.jpg');
     overflow-y: scroll;
 }
 

@@ -86,7 +86,7 @@ export default class BucketList extends React.Component{
       <span className="addBtn" id='EditEventButton'>Edit List</span>
       <br></br>
           <div id='QueryResult'></div>
-    </ div>;
+          </div>;
   }
 
 

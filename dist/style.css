@@ -414,6 +414,7 @@ input {
     right: 0;
     position: fixed;
     background-size: cover;
+    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/whip.jpeg');
     overflow-y: scroll;
 }
 
@@ -421,8 +422,8 @@ input {
     height: auto;
     top: 0;
     position: fixed;
+    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/pears.jpeg');
     background-size: cover;
-    background-repeat:repeat;
 }
 
 .app-header#login-page {

@@ -9,6 +9,7 @@ import NavBar from './NavBar.js';
 import LeaderBoard from './Leaderboard.js';
 import BucketList from './BucketList.js';
 import RecommendFood from './RecommendFood.js';
+import Following from './Following.js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -99,6 +100,9 @@ class App extends React.Component {
               <li>
                 <Link to="/bucketlist">BucketList</Link>
               </li>
+              <li>
+                <Link to="/following">Following</Link>
+              </li>
             </ul>
 
             <Switch>
@@ -121,6 +125,10 @@ class App extends React.Component {
               <Route path="/bucketlist">
                 <NavBar />
                 <BucketList />
+              </Route>
+              <Route path="/following">
+                <NavBar />
+                <Following />
               </Route>
               <Route path="/">
                 <Login />
