@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';import NavBar from './NavBar.js';
+import React, { useEffect } from 'react';
+import NavBar from './NavBar.js';
 import LeaderBoard from './Leaderboard.js';
 import BucketList from './BucketList.js';
 import FoodHistory from './FoodHistory.js';
 import RecommendFood from './RecommendFood.js';
+import Following from './Following.js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,7 +15,7 @@ import {
 
 export default class Home extends React.Component{
 
-  render() { return <div id = "home" className = "app">	
+  render() { return <div id="main"><div id = "home" className = "app">	
   <div className="buttonContainer">
 	<div className="app-header-home">
 		<div className="app-logo">
@@ -28,6 +30,7 @@ export default class Home extends React.Component{
 	<Link to="/recommendfood"><i className="fas fa-cookie-bite fa-fw" ></i>Our Suggestions</Link>  
  	</div>
          </div>
+		 </div>
 	}
 }
 
