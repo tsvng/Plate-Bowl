@@ -56,10 +56,10 @@ export default class FoodHistory extends React.Component{
     await sleep(1000);
     console.log(userFoodListArray.length);
     for(let i = 0;i<userFoodListArray.length;i++){
-      restaurant = JSON.parse(userFoodListArray[i]);
-      pic = restaurant['image_url'];
-      name = restaurant['name'];
-      genre = restaurant['genre'];
+      var restaurant = JSON.parse(userFoodListArray[i]);
+      var pic = restaurant['image_url'];
+      var name = restaurant['name'];
+      var genre = restaurant['genre'];
       console.log(pic);
       console.log(name);
       console.log(genre);
