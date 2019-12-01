@@ -72,13 +72,13 @@ class App extends React.Component {
   }
   
   render() {
-    /*if (this.state.user != null) {
+    if (this.state.user != null) {
      return (
        <div>
           <Login/>
        </div>
      );
-    } else {*/
+    } else {
       return (
         <Router>
           <div>
