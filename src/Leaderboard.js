@@ -91,7 +91,7 @@ export default class LeaderBoard extends React.Component {
     const QueryResult = document.getElementById('QueryResult');
 
     //This function displays the Friends Leaderboard
-    async function getFriendLeaders() {
+    function getFriendLeaders() {
       MutationResult.innerHTML = `<h4>${currentUser}'s Friend Leaderboard</h4>`;
       QueryResult.innerHTML = ``;
       var leaderboardArray = [];
@@ -102,7 +102,7 @@ export default class LeaderBoard extends React.Component {
           QueryResult.innerHTML += `<tr><td>${user.username}</td><td>${user.points}</td></tr>`
         });
       })
-      await sleep(250);
+      //await sleep(250);
       //List friend's points by applying a filter that only lists users who have currentUser in their friends list
       API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => { 
