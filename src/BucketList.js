@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import API, { graphqlOperation } from '@aws-amplify/api'
 import Amplify, { Auth, Hub } from 'aws-amplify';
 import PubSub from '@aws-amplify/pubsub';
-import { createUser, createTodo } from './graphql/mutations'
+import { createUser, createTodo, updateUser } from './graphql/mutations'
 import { listUsers, listTodos, getUser } from './graphql/queries';
 import Home from './Home.js';
 import NavBar from './NavBar.js';
@@ -29,39 +29,66 @@ Amplify.configure({
   }
   });
 export default class BucketList extends React.Component{
-	// Create a "close" button and append it to each list item
   async componentDidMount(){
-    const MutationButton = document.getElementById('MutationEventButton');
-    const MutationResult = document.getElementById('MutationResult');
+    const EditEntryButton = document.getElementById('EditEventButton');
 
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
+    var userBucketlistArray = [];
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
     //This function displays the user's bucketlist
     async function getBucketList() {
-      MutationResult.innerHTML = ``;
-      QueryResult.innerHTML = ``;
+      QueryResult.innerHTML = `<p></p>`;
+      userBucketlistArray = []; //wipe array of old page data
       //List own user's bucketlist by using getUser
-      API.graphql(graphqlOperation(getUser, {username:'triggertest'})).then((evt) => {
-        evt.data.getUser.bucketlist.map((Food,i) => 
-        QueryResult.innerHTML += `<p>${Food}</p>`
-        );
+      API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
+        evt.data.getUser.bucketlist.map((Food,i) => {
+          QueryResult.innerHTML += `<p>${Food}</p>`
+          userBucketlistArray.push(Food);
+        });
       })
     }
 
     getBucketList();
 
+    //This function mutates the Bucketlist
+    async function editBucketlist(){
+      var term = document.getElementById("searchInput").value;
+      var duplicateTerms = 0;
+      for(var i = 0; i < userBucketlistArray.length; i++)
+        if(term == userBucketlistArray[i])
+          duplicateTerms=i;
+
+      if(duplicateTerms == 0)
+        userBucketlistArray.push(term);
+      else
+        userBucketlistArray.splice(duplicateTerms,1);
+
+      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: userBucketlistArray}}));
+      await sleep(250);
+      getBucketList();
+    }
+
+    EditEntryButton.addEventListener('click', (evt) => {
+      editBucketlist();
+    });
   }
 
 
-	render(){
-		return <div id='main' className = "bucket">
-    <div className = "containerLeaderBoard">
-			<h1> Bucket List </h1>
-      <button id='MutationEventButton'>Add Entry</button>
-          <div id='MutationResult'></div>
+  render(){
+    return <div id='main' className = "bucket">
+      <h1> Bucket List </h1>
+      <input type="text" id="searchInput" placeholder="Type a cuisine you'd like to add, or type a cusine already in your list to delete it."/> 
+      <span className="addBtn" id='EditEventButton'>Edit List</span>
+      <br></br>
           <div id='QueryResult'></div>
-          </div>
-		</ div>;
-	}
+    </ div>;
+  }
+
+
+
 }
