@@ -63,6 +63,7 @@ export default class LeaderBoard extends React.Component {
           shouldSwitch = false;
           /* Get the two elements you want to compare,
           one from current row and one from the next: */
+          console.log(rows[i]);
           x = rows[i].getElementsByTagName("td")[1];
           y = rows[i + 1].getElementsByTagName("td")[1];
           /* Check if the two rows should switch place,
