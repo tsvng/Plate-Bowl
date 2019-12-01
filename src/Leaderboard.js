@@ -59,7 +59,7 @@ export default class LeaderBoard extends React.Component {
         console.log(rows.length);
         var len = document.getElementById("LeaderBoardTable").getElementsByTagName("tbody")[0].getElementsByTagName("tr").length;
         console.log(len);
-        for (i = 0; i < (len - 1); i++) {
+        for (i = 0; i < 4; i++) {
           shouldSwitch = false;
           /* Get the two elements you want to compare,
           one from current row and one from the next: */
