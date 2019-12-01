@@ -55,14 +55,23 @@ export default class FoodHistory extends React.Component{
     getFoodList();
     await sleep(1000);
     console.log(userFoodListArray);
+    //userFoodListArray = ['{"name":"Diddy Riese Cookies","image_url":"https://s3-media4.fl.yelpcdn.com/bphoto/nGfKbkB51YDIdDGjVol6Qg/o.jpg","genre":"Desserts"}', '{"name":"Starbucks","image_url":"https://s3-media4.fl.yelpcdn.com/bphoto/nGfKbkB51YDIdDGjVol6Qg/o.jpg","genre":"Coffee & Tea"}','{"name":"Diddy Riese Cookies","image_url":"https://s3-media4.fl.yelpcdn.com/bphoto/nGfKbkB51YDIdDGjVol6Qg/o.jpg","genre":"Desserts"}','{"name":"Diddy Riese Cookies","image_url":"https://s3-media4.fl.yelpcdn.com/bphoto/nGfKbkB51YDIdDGjVol6Qg/o.jpg","genre":"Desserts"}','{"name":"Diddy Riese Cookies","image_url":"https://s3-media4.fl.yelpcdn.com/bphoto/nGfKbkB51YDIdDGjVol6Qg/o.jpg","genre":"Desserts"}']
     for(let i = 0;i<userFoodListArray.length;i++){
       var restaurant = JSON.parse(userFoodListArray[i]);
       var pic = restaurant['image_url'];
       var name = restaurant['name'];
       var genre = restaurant['genre'];
-      console.log(pic);
-      console.log(name);
-      console.log(genre);
+      var wrap = document.createElement("div");
+      wrap.className = "wrapper";
+      var textDiv = document.createElement("div");
+      textDiv.className = "text";
+      textDiv.textContent = name;
+      var imgDiv = document.createElement("IMG");
+      imgDiv.className = "tile";
+      imgDiv.setAttribute('src',pic);
+      wrap.appendChild(textDiv);
+      wrap.appendChild(imgDiv);
+      document.getElementById('FoodHistoryDisplay').appendChild(wrap);
     }
   }
        

@@ -83,27 +83,6 @@ class App extends React.Component {
         return (
           <Router>
             <div>
-              <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/recommendfood">RecommendFood</Link>
-                </li>
-                <li>
-                  <Link to="/leaderboard">LeaderBoard</Link>
-                </li>
-                <li>
-                  <Link to="/foodhistory">FoodHistory</Link>
-                </li>
-                <li>
-                  <Link to="/bucketlist">BucketList</Link>
-                </li>
-                <li>
-                  <Link to="/following">Following</Link>
-                </li>
-              </ul>
-
               <Switch>
                 <Route path="/recommendfood">
                   <NavBar />
