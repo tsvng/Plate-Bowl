@@ -29,7 +29,7 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   border-radius: 12px;
   overflow: hidden;
   margin-top: 100px;
-  margin-left: 450px;
+  margin-left: 400px;
   height: 80%;
   width: 60%;
 
@@ -102,41 +102,13 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   left: 0px;
 }
 
-
-.nav {
-  background-color: #4B2E16;
-  overflow: hidden;
-  top: 0;
-  opacity: 0.8;
-}
-
-.nav a {
-  float: left;
-  color: white;
-  border-radius: 8px;
-  text-align:center;
-  margin: 0 5px 0 0;
-  padding: 8px;
-  font-size: 15px;
-  font-family: sans-serif;
-  text-decoration: none;
-}
-
-.nav a:hover {
-  color: #D8D8D8;
-}
-
-.nav-right {
-  float: right;
-}
-
 .sidenav {
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
+  top: 10px; /* Stay at the top */
+  left: 10px;
   background-color: #003366; /*DarkBlue*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
@@ -162,7 +134,7 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
 .sidenav .closebtn {
   position: absolute;
   top: 10px;
-  left: 0px;
+  left: 10px;
   font-size: 15px;
   margin-right: 90px;
 }
@@ -426,7 +398,6 @@ input {
     left: 0;
     right: 0;
     position: fixed;
-    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/GreyWood.jpeg');
     background-size: cover;
     overflow-y: scroll;
 }
@@ -435,7 +406,6 @@ input {
     height: 100%;
     top: 0;
     position: fixed;
-    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/brownBoard.jpg');
     background-size: cover;
 }
 

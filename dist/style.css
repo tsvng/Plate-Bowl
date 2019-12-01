@@ -29,7 +29,7 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   border-radius: 12px;
   overflow: hidden;
   margin-top: 100px;
-  margin-left: 500px;
+  margin-left: 450px;
   height: 80%;
   width: 60%;
 
@@ -413,7 +413,7 @@ input {
     left: 0;
     right: 0;
     position: fixed;
-    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/test2.jpg');
+    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/Test3.jpg');
     background-size: cover;
     overflow-y: scroll;
 }

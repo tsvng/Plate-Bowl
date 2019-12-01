@@ -56,19 +56,12 @@ export default class BucketList extends React.Component{
 
 	render(){
 		return <div id='main' className = "bucket">
-      <div className = "nav">
-      <div className = "nav-right">
-        <a href="#home">Home</a>
-        <a href="#leaderboard">Leaderboard</a>
-        <a href="#recommendFood">Recommendations</a>
-        <a href="#foodHistory">History</a>
-        <a href="#bucketList">Bucket List</a>
-      </div>
-      </div>
+    <div className = "containerLeaderBoard">
 			<h1> Bucket List </h1>
       <button id='MutationEventButton'>Add Entry</button>
           <div id='MutationResult'></div>
           <div id='QueryResult'></div>
+          </div>
 		</ div>;
 	}
 }

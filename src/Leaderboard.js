@@ -108,15 +108,6 @@ export default class LeaderBoard extends React.Component {
 
 	 render() {
     return <div id='main' className = "leaderboard">
-      <div className = "nav">
-      <div className = "nav-right">
-        <a href="#home">Home</a>
-        <a href="#leaderboard" >Leaderboard</a>
-        <a href="#recommendFood">Recommendations</a>
-        <a href="#foodHistory">History</a>
-        <a href="#bucketList">Bucket List</a>
-      </div>
-      </div>
       <div className = "containerLeaderBoard">
           <button id='MutationEventButton'>Change Leaderboard</button>
           <div id='MutationResult'></div>
