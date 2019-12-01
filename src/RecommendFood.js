@@ -9,6 +9,7 @@ import NavBar from './NavBar.js';
 import Leaderboard from './Leaderboard.js';
 
 import awsconfig from './aws-exports';
+import { selectInput } from '@aws-amplify/ui';
 API.configure(awsconfig);
 PubSub.configure(awsconfig);
 
@@ -89,6 +90,9 @@ export default class RecommendFood extends React.Component{
     }
   }
   async searchFood(){
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
     var data = null;
     var userFoodListArray = [];
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
@@ -110,6 +114,7 @@ export default class RecommendFood extends React.Component{
       console.log("adding to Food History");
       var dataIndex = parseInt(this.id,10);
       var dum = await getFoodList();
+      await sleep(1000);
       console.log(userFoodListArray);
       var term = data.businesses[dataIndex].categories[0].title;
       console.log(term);
