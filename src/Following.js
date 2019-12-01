@@ -102,7 +102,7 @@ export default class Following extends React.Component{
       else
         otheruserFollowlistArray.splice(duplicateTerms,1);
 
-      API.graphql(graphqlOperation(updateUser, {input:{username: term, friends: otheruserFollowlistArray}}));
+      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, friends: otheruserFollowlistArray}}));
     }
   }
 
