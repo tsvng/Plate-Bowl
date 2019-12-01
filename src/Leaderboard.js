@@ -52,6 +52,7 @@ export default class LeaderBoard extends React.Component {
         // Start by saying: no switching is done:
         switching = false;
         rows = table.rows;
+        console.log(typeof rows);
         console.log(rows);
       /* Loop through all table rows (except the
       first, which contains table headers): */
@@ -63,6 +64,7 @@ export default class LeaderBoard extends React.Component {
           shouldSwitch = false;
           /* Get the two elements you want to compare,
           one from current row and one from the next: */
+
           console.log(rows[i]);
           x = rows[i].getElementsByTagName("td")[1];
           y = rows[i + 1].getElementsByTagName("td")[1];
