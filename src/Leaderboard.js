@@ -52,6 +52,7 @@ export default class LeaderBoard extends React.Component {
         // Start by saying: no switching is done:
         switching = false;
         rows = table.rows;
+        console.log(typeof rows);
         console.log(rows);
       /* Loop through all table rows (except the
       first, which contains table headers): */
@@ -63,8 +64,10 @@ export default class LeaderBoard extends React.Component {
           shouldSwitch = false;
           /* Get the two elements you want to compare,
           one from current row and one from the next: */
-          x = rows[i].getElementsByTagName("TD")[1];
-          y = rows[i + 1].getElementsByTagName("TD")[1];
+
+          console.log(rows[i]);
+          x = rows[i].getElementsByTagName("td")[1];
+          y = rows[i + 1].getElementsByTagName("td")[1];
           /* Check if the two rows should switch place,
           based on the direction, asc or desc: */
           console.log(x.innerHTML);
@@ -99,14 +102,14 @@ export default class LeaderBoard extends React.Component {
       //List own user's points at top by applying a filter to only query currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
-          QueryResult.innerHTML += `<tr><td>${user.username}</td><td>${user.points}</td></tr>`
+          QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
       await sleep(250);
       //List friend's points by applying a filter that only lists users who have currentUser in their friends list
       API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => { 
-          QueryResult.innerHTML += `<tr><td>${user.username}</td><td>${user.points}</td></tr>`
+          QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
       sortTable();
@@ -158,7 +161,7 @@ export default class LeaderBoard extends React.Component {
       <div className = "containerLeaderBoard">
           <button id='MutationEventButton'>Change Leaderboard</button>
           <div id='MutationResult'></div>
-          <table id = "LeaderBoardTable"><tbody id='QueryResult'></tbody></table>
+          <div id='QueryResult'></div>
           </div>
         </div>
 
