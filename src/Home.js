@@ -16,7 +16,6 @@ import {
 export default class Home extends React.Component{
 
   render() { return 
-  <div id = "main">
   <div id = "home" className = "app">	
   <div className="buttonContainer">
 	<div className="app-header-home">
@@ -32,7 +31,6 @@ export default class Home extends React.Component{
 	<Link to="/recommendfood"><i className="fas fa-cookie-bite fa-fw" ></i>Our Suggestions</Link>  
  	</div>
          </div>
-	</div>
 	}
 }
 
