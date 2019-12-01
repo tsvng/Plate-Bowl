@@ -90,56 +90,52 @@ export default class RecommendFood extends React.Component{
     }
   }
   async searchFood(){
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
     var data = null;
     var userFoodListArray = [];
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     function getFoodList() {
-      console.log("calling getfood");
       userFoodListArray = []; //wipe array of old page data
       //List own user's bucketlist by using getUser
         API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         if(evt.data.getUser.foodhistory!=null){
-          console.log("listNotNull");
         evt.data.getUser.foodhistory.map((Food,i) => {
-          console.log(Food);
           userFoodListArray.push(Food);
         });}
       })
       return 1;
     }
+
     async function addToFoodHistory(){
-      console.log("adding to Food History");
       var dataIndex = parseInt(this.id,10);
       var dum = await getFoodList();
       await sleep(1000);
-      console.log(userFoodListArray);
-      var term = data.businesses[dataIndex].categories[0].title;
+      var obj = {name: data.businesses[dataIndex].name, image_url = data.businesses[dataIndex].image_url, genre: data.businesses[dataIndex].categories[0].title};
+      var term = JSON.stringify(obj);
       console.log(term);
       var duplicateTerms = 0;
-      console.log(userFoodListArray.length);
       for(var i = 0; i < userFoodListArray.length; i++)
         if(term == userFoodListArray[i]){
-          console.log("duplicate");
           duplicateTerms=i;
         }
-
       if(duplicateTerms == 0)
         userFoodListArray.push(term);
       else
         userFoodListArray.splice(duplicateTerms,1);
-      console.log(userFoodListArray);
       API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, foodhistory: userFoodListArray}}));
-
     }
+
     function addToBucketList(){
       console.log("adding To Bucket List")
       var dataIndex = parseInt(this.id,10);
       console.log(dataIndex);
       console.log(data.businesses[dataIndex].name);
     }
+
     const myNode = document.getElementById("searchResults");
     while (myNode.firstChild) {
       myNode.removeChild(myNode.firstChild);
