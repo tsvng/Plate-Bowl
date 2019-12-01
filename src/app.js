@@ -82,7 +82,7 @@ class App extends React.Component {
     else {
         return (
           <Router>
-            <div>
+            <div id="routeDiv">
               <Switch>
                 <Route path="/recommendfood">
                   <NavBar />
