@@ -41,6 +41,7 @@ export default class FoodHistory extends React.Component{
     }
 
     function getFoodList() {
+      console.log("getting food list in food history")
       userFoodListArray = []; //wipe array of old page data
       //List own user's bucketlist by using getUser
         API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
@@ -52,7 +53,8 @@ export default class FoodHistory extends React.Component{
       return 1;
     }
     getFoodList();
-    await sleep(250);
+    await sleep(1000);
+    console.log(userFoodLIstArray.length);
     for(let i = 0;i<userFoodListArray.length;i++){
       restaurant = JSON.parse(userFoodListArray[i]);
       pic = restaurant['image_url'];
