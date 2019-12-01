@@ -3,6 +3,7 @@ html {height:100%;}
 body { font-family: "Amazon Ember", "Helvetica", "sans-serif"; margin: 0; height:100%}
 a { color: #003366; }
 h1 { font-weight: 300; font-family: "Perpetua"; color: white; font-size: 58px;}
+h5 { font-weight: 300; font-family: "Perpetua"; color: black; font-size: 58px;}
 h4 { font-weight: 300; font-family: "Optima"; color:black; font-size: 45px;}
 h3 { font-weight: 300; font-family: "Verdana"; color:black; font-size: 20px; margin: auto;}
 h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; width: 700px; margin-left: -70px; position: relative;}
@@ -101,6 +102,10 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   position: absolute;
   top: 0px;
   left: 0px;
+}
+
+.nav {
+
 }
 
 .sidenav {
@@ -415,6 +420,19 @@ input {
     position: fixed;
     background-size: cover;
     background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/whip.jpg');
+    overflow-y: scroll;
+}
+
+.follow#main{
+    height: 100%;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    background-size: cover;
+    background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/anotherpear.jpeg');
     overflow-y: scroll;
 }
 
