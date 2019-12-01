@@ -153,15 +153,6 @@ export default class RecommendFood extends React.Component{
 		return (
         <div id = "main">
           <div id = "recommend" className="app">
-            <div className = "nav">
-             <div className = "nav-right">
-              <a href="#home">Home</a>
-              <a href="#leaderboard" >Leaderboard</a>
-              <a href="#recommendFood">Recommendations</a>
-              <a href="#foodHistory">History</a>
-              <a href="#bucketList">Bucket List</a>
-            </div>
-            </div>
             <div id = "login-page" className="app-header">
                 <h1>Explore Food</h1>                           
               <div id = "RecommendFood">

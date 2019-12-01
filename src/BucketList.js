@@ -78,17 +78,9 @@ export default class BucketList extends React.Component{
     });
   }
 
+
   render(){
     return <div id='main' className = "bucket">
-      <div className = "nav">
-      <div className = "nav-right">
-        <a href="#home">Home</a>
-        <a href="#leaderboard">Leaderboard</a>
-        <a href="#recommendFood">Recommendations</a>
-        <a href="#foodHistory">History</a>
-        <a href="#bucketList">Bucket List</a>
-      </div>
-      </div>
       <h1> Bucket List </h1>
       <input type="text" id="searchInput" placeholder="Type a cuisine you'd like to add, or type a cusine already in your list to delete it."/> 
       <span className="addBtn" id='EditEventButton'>Edit List</span>
@@ -100,4 +92,3 @@ export default class BucketList extends React.Component{
 
 
 }
-
