@@ -95,7 +95,7 @@ export default class LeaderBoard extends React.Component {
 
     //This function displays the Following Leaderboard
     async function getFollowingLeaders() {
-      MutationResult.innerHTML = `<h4>${currentUser}'s Following Leaderboard</h4>`;
+      MutationResult.innerHTML = `<h5>${currentUser}'s Following Leaderboard</h5>`;
       QueryResult.innerHTML = ``;
       var leaderboardArray = [];
 
@@ -118,7 +118,7 @@ export default class LeaderBoard extends React.Component {
 
     //This function displays the Global Leaderboard
     async function getGlobalLeaders() {
-      MutationResult.innerHTML = `<h4>Global Leaderboard</h4>`;
+      MutationResult.innerHTML = `<h5>Global Leaderboard</h5>`;
       QueryResult.innerHTML = ``;
       var leaderboardArray = [];
       var followingArray = []
