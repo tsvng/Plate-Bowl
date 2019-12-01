@@ -56,6 +56,6 @@ export default class FoodHistory extends React.Component{
       </div>
       </div>
 			<h1> Food History </h1>
-		</ div>;
+		</div>;
 	}
 }
