@@ -100,21 +100,21 @@ export default class RecommendFood extends React.Component{
       console.log("calling getfood");
       userFoodListArray = []; //wipe array of old page data
       //List own user's bucketlist by using getUser
-      API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
+      await (API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         if(evt.data.getUser.foodhistory!=null){
           console.log("listNotNull");
         evt.data.getUser.foodhistory.map((Food,i) => {
           console.log(Food);
           userFoodListArray.push(Food);
         });}
-      })
+      }))
       return 1;
     }
     async function addToFoodHistory(){
       console.log("adding to Food History");
       var dataIndex = parseInt(this.id,10);
       var dum = await getFoodList();
-      await sleep(1000);
+      //await sleep(1000);
       console.log(userFoodListArray);
       var term = data.businesses[dataIndex].categories[0].title;
       console.log(term);
