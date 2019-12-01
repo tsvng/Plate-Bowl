@@ -93,12 +93,14 @@ export default class RecommendFood extends React.Component{
     var userFoodListArray = [];
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     function getFoodList() {
+      console.log("calling getfood");
       userFoodListArray = []; //wipe array of old page data
       //List own user's bucketlist by using getUser
       API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         if(evt.data.getUser.foodhistory!=null){
           console.log("listNotNull");
         evt.data.getUser.foodhistory.map((Food,i) => {
+          console.log(Food);
           userFoodListArray.push(Food);
         });}
       })
@@ -111,6 +113,7 @@ export default class RecommendFood extends React.Component{
       var term = data.businesses[dataIndex].categories[0].title;
       console.log(term);
       var duplicateTerms = 0;
+      console.log(userFoodListArray.length);
       for(var i = 0; i < userFoodListArray.length; i++)
         if(term == userFoodListArray[i]){
           console.log("duplicate");
