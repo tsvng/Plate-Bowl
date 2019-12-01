@@ -84,10 +84,7 @@ class App extends React.Component {
           <div>
             <ul>
               <li>
-                <Link to="/">Login</Link>
-              </li>
-              <li>
-                <Link to="/home">Home</Link>
+                <Link to="/">Home</Link>
               </li>
               <li>
                 <Link to="/recommendfood">RecommendFood</Link>
@@ -107,7 +104,7 @@ class App extends React.Component {
             </ul>
 
             <Switch>
-              <Route path="/home">
+              <Route path="/">
                 <NavBar />
                 <Home />
               </Route>
@@ -130,9 +127,6 @@ class App extends React.Component {
               <Route path="/following">
                 <NavBar />
                 <Following />
-              </Route>
-              <Route path="/">
-                <Login />
               </Route>
             </Switch>
           </div>
