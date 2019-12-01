@@ -112,7 +112,7 @@ export default class LeaderBoard extends React.Component {
           QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
-      sortTable();
+      //sortTable();
     }
 
     //This function displays the Global Leaderboard
