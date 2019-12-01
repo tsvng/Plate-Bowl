@@ -10,6 +10,7 @@ import LeaderBoard from './Leaderboard.js';
 import BucketList from './BucketList.js';
 import RecommendFood from './RecommendFood.js';
 import Following from './Following.js';
+import FoodHistory from './FoodHistory.js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -161,9 +162,6 @@ function Login() {
     </div>;
 }
 
-function FoodHistory() {
-  return <h2>FoodHistory</h2>;
-}
 
 
 export default App

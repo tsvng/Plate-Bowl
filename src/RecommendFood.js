@@ -147,7 +147,7 @@ export default class RecommendFood extends React.Component{
   }
 	render(){
         const h1Style ={
-            fontFamily: 'Optima', 
+            fontFamily: 'Garamond', 
             fontSize: '20pt'
         }
 		return (
