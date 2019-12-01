@@ -72,7 +72,7 @@ class App extends React.Component {
   }
   
   render() {
-    if (this.state.user == null) {
+    if (this.state.user != null) {
      return (
        <div>
           <Login/>
@@ -105,10 +105,6 @@ class App extends React.Component {
               </ul>
 
               <Switch>
-                <Route path="/">
-                  <NavBar />
-                  <Home />
-                </Route>
                 <Route path="/recommendfood">
                   <NavBar />
                   <RecommendFood />
@@ -128,6 +124,10 @@ class App extends React.Component {
                 <Route path="/following">
                   <NavBar />
                   <Following />
+                </Route>
+                <Route path="/">
+                  <NavBar />
+                  <Home />
                 </Route>
               </Switch>
             </div>
