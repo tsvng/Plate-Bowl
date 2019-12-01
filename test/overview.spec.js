@@ -1,0 +1,70 @@
+const { Builder, By, Key, until } = require('selenium-webdriver')
+const assert = require('assert')
+
+describe('Overview', function() {
+  this.timeout(30000)
+  let driver
+  let vars
+  beforeEach(async function() {
+    driver = await new Builder().forBrowser('chrome').build()
+    vars = {}
+  })
+  afterEach(async function() {
+    await driver.quit();
+  })
+  it('Overview', async function() {
+    await driver.get("https://master.d1artn8nksk20o.amplifyapp.com/")
+    await driver.setRect(1288, 1020)
+    await driver.findElement(By.id("SignInButton")).click()
+    await driver.findElement(By.css("div:nth-child(2) > div > div > .cognito-asf #signInFormUsername")).click()
+    await driver.findElement(By.css("div:nth-child(2) > div > div > .cognito-asf #signInFormUsername")).sendKeys("testuser001")
+    await driver.findElement(By.css("div:nth-child(2) > div > div > .cognito-asf #signInFormPassword")).sendKeys("testuser001")
+    await driver.findElement(By.css("div:nth-child(2) > div > div > .cognito-asf > .btn")).click()
+    await driver.findElement(By.linkText("Our Suggestions")).click()
+    await driver.findElement(By.linkText("Home")).click()
+    await driver.findElement(By.linkText("Our Suggestions")).click()
+    {
+      const element = await driver.findElement(By.linkText("Our Suggestions"))
+      await driver.actions({ bridge: true }).moveToElement(element).perform()
+    }
+    await driver.findElement(By.linkText("LeaderBoard")).click()
+    await driver.findElement(By.id("MutationEventButton")).click()
+    await driver.findElement(By.id("floating-button")).click()
+    await driver.findElement(By.css("a:nth-child(3)")).click()
+    await driver.findElement(By.css("a:nth-child(2)")).click()
+    await driver.findElement(By.id("searchInput")).click()
+    await driver.findElement(By.id("floating-button")).click()
+    await driver.findElement(By.id("main")).click()
+    await driver.findElement(By.id("searchInput")).click()
+    await driver.findElement(By.id("searchInput")).sendKeys("Taiwanese")
+    await driver.findElement(By.id("EditEventButton")).click()
+    await driver.findElement(By.id("searchInput")).click()
+    await driver.findElement(By.id("searchInput")).sendKeys("Japanese")
+    await driver.findElement(By.id("EditEventButton")).click()
+    await driver.findElement(By.id("searchInput")).click()
+    await driver.findElement(By.id("EditEventButton")).click()
+    await driver.findElement(By.id("searchInput")).click()
+    await driver.findElement(By.id("searchInput")).sendKeys("Taiwanese")
+    await driver.findElement(By.id("EditEventButton")).click()
+    await driver.findElement(By.id("floating-button")).click()
+    await driver.findElement(By.css("a:nth-child(4)")).click()
+    await driver.findElement(By.id("searchInput")).click()
+    await driver.findElement(By.id("floating-button")).click()
+    await driver.findElement(By.id("searchInput")).click()
+    await driver.findElement(By.id("searchInput")).sendKeys("Sample User One")
+    await driver.findElement(By.id("EditEventButton")).click()
+    await driver.findElement(By.id("searchInput")).click()
+    await driver.findElement(By.id("searchInput")).click()
+    {
+      const element = await driver.findElement(By.id("searchInput"))
+      await driver.actions({ bridge: true}).doubleClick(element).perform()
+    }
+    await driver.findElement(By.id("searchInput")).sendKeys("Sample User Two")
+    await driver.findElement(By.id("EditEventButton")).click()
+    await driver.findElement(By.id("searchInput")).click()
+    await driver.findElement(By.id("EditEventButton")).click()
+    await driver.findElement(By.id("searchInput")).click()
+    await driver.findElement(By.id("searchInput")).sendKeys("Sample User One")
+    await driver.findElement(By.id("EditEventButton")).click()
+  })
+})
