@@ -96,7 +96,7 @@ export default class RecommendFood extends React.Component{
     var data = null;
     var userFoodListArray = [];
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
-    function getFoodList() {
+    async function getFoodList() {
       console.log("calling getfood");
       userFoodListArray = []; //wipe array of old page data
       //List own user's bucketlist by using getUser
