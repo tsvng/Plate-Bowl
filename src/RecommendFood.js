@@ -1,4 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
+import API, { graphqlOperation } from '@aws-amplify/api'
+import Amplify, { Auth, Hub } from 'aws-amplify';
+import PubSub from '@aws-amplify/pubsub';
+import { createUser, createTodo, updateUser } from './graphql/mutations'
+import { listUsers, listTodos, getUser } from './graphql/queries';
+import Home from './Home.js';
+import NavBar from './NavBar.js';
+import Leaderboard from './Leaderboard.js';
+
+import awsconfig from './aws-exports';
+API.configure(awsconfig);
+PubSub.configure(awsconfig);
+
+Amplify.configure({
+  Auth: {
+    IdentityPoolId: 'us-east-1:3198bc65-dde4-426c-bdde-b35ac383f330',
+    region: 'us-east-1',
+    userPoolId: 'us-east-1_uLqyIsqnt',
+    userPoolWebClientId: '224uf0oqjqib1oac70r3jd24g3',
+    mandatorySignIn: true,
+    oauth: {
+      domain: 'platenbowl.auth.us-east-1.amazoncognito.com',
+      scope: ['phone','email','profile','openid','aws.cognito.signin.user.admin'],
+      redirectSignIn: 'https://master.d1artn8nksk20o.amplifyapp.com',
+      redirectSignOut: 'https://master.d1artn8nksk20o.amplifyapp.com',
+      responseType: 'token'
+    }
+  }
+  });
 export default class RecommendFood extends React.Component{ 
   componentDidMount(){
     var options = {
@@ -64,23 +93,49 @@ export default class RecommendFood extends React.Component{
       request.send()
     }
   }
-  searchFood(){
+  async searchFood(){
     var data = null;
-  async function addToFoodHistory(){
-    console.log("adding to Food History");
-    var dataIndex = parseInt(this.id,10);
-    console.log(data.businesses[dataIndex].name);
-  }
-  async function addToBucketList(){
-    console.log("adding To Bucket List")
-    var dataIndex = parseInt(this.id,10);
-    console.log(dataIndex);
-    console.log(data.businesses[dataIndex].name);
-  }
-  const myNode = document.getElementById("searchResults");
-  while (myNode.firstChild) {
-    myNode.removeChild(myNode.firstChild);
-  }
+    var userFoodListArray = [];
+    const currentUser = (await Auth.currentAuthenticatedUser()).username;
+    function getFoodList() {
+      userFoodListArray = []; //wipe array of old page data
+      //List own user's bucketlist by using getUser
+      API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
+        evt.data.getUser.foodhistory.map((Food,i) => {
+          userFoodListArray.push(Food);
+        });
+      })
+    }
+    function addToFoodHistory(){
+      console.log("adding to Food History");
+      var dataIndex = parseInt(this.id,10);
+      console.log(data.businesses[dataIndex].name);
+      getFoodList();
+      var term = data.businesses[dataIndex].categories[0].title;
+      console.log(term);
+      var duplicateTerms = 0;
+      for(var i = 0; i < userFoodListArray.length; i++)
+        if(term == userFoodListArray[i])
+          duplicateTerms=i;
+
+      if(duplicateTerms == 0)
+        userFoodListArray.push(term);
+      else
+        userFoodListArray.splice(duplicateTerms,1);
+
+      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, foodhistory: userFoodListArray}}));
+
+    }
+    function addToBucketList(){
+      console.log("adding To Bucket List")
+      var dataIndex = parseInt(this.id,10);
+      console.log(dataIndex);
+      console.log(data.businesses[dataIndex].name);
+    }
+    const myNode = document.getElementById("searchResults");
+    while (myNode.firstChild) {
+      myNode.removeChild(myNode.firstChild);
+    }
     var term = 'term='.concat('\"',document.getElementById("searchInput").value,'\"');
     var request = new XMLHttpRequest()
     var query = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?'.concat(term,'&location="Los Angeles, CA');
