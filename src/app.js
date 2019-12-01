@@ -78,61 +78,62 @@ class App extends React.Component {
           <Login/>
        </div>
      );
-    } else {
-      return (
-        <Router>
-          <div>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/recommendfood">RecommendFood</Link>
-              </li>
-              <li>
-                <Link to="/leaderboard">LeaderBoard</Link>
-              </li>
-              <li>
-                <Link to="/foodhistory">FoodHistory</Link>
-              </li>
-              <li>
-                <Link to="/bucketlist">BucketList</Link>
-              </li>
-              <li>
-                <Link to="/following">Following</Link>
-              </li>
-            </ul>
+    } 
+    else {
+        return (
+          <Router>
+            <div>
+              <ul>
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/recommendfood">RecommendFood</Link>
+                </li>
+                <li>
+                  <Link to="/leaderboard">LeaderBoard</Link>
+                </li>
+                <li>
+                  <Link to="/foodhistory">FoodHistory</Link>
+                </li>
+                <li>
+                  <Link to="/bucketlist">BucketList</Link>
+                </li>
+                <li>
+                  <Link to="/following">Following</Link>
+                </li>
+              </ul>
 
-            <Switch>
-              <Route path="/">
-                <NavBar />
-                <Home />
-              </Route>
-              <Route path="/recommendfood">
-                <NavBar />
-                <RecommendFood />
-              </Route>
-              <Route path="/leaderboard">
-                <NavBar />
-                <LeaderBoard />
-              </Route>
-              <Route path="/foodhistory">
-                <NavBar />
-                <FoodHistory />
-              </Route>
-              <Route path="/bucketlist">
-                <NavBar />
-                <BucketList />
-              </Route>
-              <Route path="/following">
-                <NavBar />
-                <Following />
-              </Route>
-            </Switch>
-          </div>
-        </Router>
-    );
-    //}
+              <Switch>
+                <Route path="/">
+                  <NavBar />
+                  <Home />
+                </Route>
+                <Route path="/recommendfood">
+                  <NavBar />
+                  <RecommendFood />
+                </Route>
+                <Route path="/leaderboard">
+                  <NavBar />
+                  <LeaderBoard />
+                </Route>
+                <Route path="/foodhistory">
+                  <NavBar />
+                  <FoodHistory />
+                </Route>
+                <Route path="/bucketlist">
+                  <NavBar />
+                  <BucketList />
+                </Route>
+                <Route path="/following">
+                  <NavBar />
+                  <Following />
+                </Route>
+              </Switch>
+            </div>
+          </Router>
+      );
+    }
   }
 }
 

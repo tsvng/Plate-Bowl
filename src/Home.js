@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';import NavBar from './NavBar.js';
+import React, { useEffect } from 'react';
+import NavBar from './NavBar.js';
 import LeaderBoard from './Leaderboard.js';
 import BucketList from './BucketList.js';
 import FoodHistory from './FoodHistory.js';
 import RecommendFood from './RecommendFood.js';
+import Following from './Following.js';
 import {
   BrowserRouter as Router,
   Switch,
