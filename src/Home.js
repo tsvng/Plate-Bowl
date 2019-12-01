@@ -15,18 +15,19 @@ export default class Home extends React.Component{
 
   render() { return <div id = "home" className = "app">	
   <div className="buttonContainer">
-				        <div className="app-header-home">
-				            <div className="app-logo">
-				                <img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style={{width:'400px'}} />
-				              <h3>Welcome Back!</h3>
-                    </div>
-                    </div>
-                  <a class = "a a1" href="#leaderboard">Check Standings</a>
-                  <a class = "a a2" href="#bucketlist">Places to Visit</a>
-                  <a class = "a a3" href="#foodhistory">Your History</a>
-                  <a class = "a a4" href="#recommendFood">Our Suggestions</a>
-			    </div>
-          </div>
+	<div className="app-header-home">
+		<div className="app-logo">
+			<img src="https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/PBLogo.png" style={{width:'400px'}} />
+			<h3>Welcome Back!</h3>
+                </div>
+       	</div>
+  	<Link to="/bucketlist"><i className="fab fa-bitbucket fa-fw"></i>Places to Visit</Link>
+	<Link to="/foodhistory"><i className="fas fa-utensils fa-fw"></i>Your History</Link>
+	<Link to="/following"><i className="fab fa-bitbucket fa-fw"></i>Following</Link>
+	<Link to="/leaderboard"><i className="fas fa-clipboard-list fa-fw"></i>Check Standings</Link>
+	<Link to="/recommendfood"><i className="fas fa-cookie-bite fa-fw" ></i>Our Suggestions</Link>  
+ 	</div>
+         </div>
 	}
 }
 
