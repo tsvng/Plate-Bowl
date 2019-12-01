@@ -56,6 +56,7 @@ export default class NavBar extends React.Component{
 		  			<a href="javascript:void(0)" className="closebtn" onClick={()=>this.toggleNav()}>&times;</a>
 		  			<Link to="/bucketlist"><i className="fab fa-bitbucket fa-fw"></i>BucketList</Link>
 			  		<Link to="/foodhistory"><i className="fas fa-utensils fa-fw"></i>FoodHistory</Link>
+			  		<Link to="/following"><i className="fab fa-bitbucket fa-fw"></i>Following</Link>
 		  			<Link to="/leaderboard"><i className="fas fa-clipboard-list fa-fw"></i>LeaderBoard</Link>
 		  			<Link to="/recommendfood"><i className="fas fa-cookie-bite fa-fw" ></i>RecommendFood</Link>		
 		  			<Link to="/home"><i className="fas fa-door-open fa-fw"></i>Home</Link>
