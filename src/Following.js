@@ -54,7 +54,15 @@ export default class Following extends React.Component{
       })
     }
 
-    getFollowerList();
+    async function getOtherUserFollowerList(otherUser) {
+      otheruserFollowlistArray = []; //wipe array of old page data
+      API.graphql(graphqlOperation(getUser, {username: otherUser})).then((evt) => {
+        evt.data.getUser.friends.map((follower,i) => {
+          otheruserFollowlistArray.push(follower);
+        });
+      })
+
+    }
 
     //This function mutates the follow list
     async function editFollowerlist(){
@@ -69,29 +77,16 @@ export default class Following extends React.Component{
       else
         userFollowlistArray.splice(duplicateTerms,1);
 
+      await sleep(250);
       API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, friends: userFollowlistArray}}));
       await sleep(250);
 
-      //getOtherUserFollowerList
-      otheruserFollowlistArray = []; //wipe array of old page data
-      API.graphql(graphqlOperation(getUser, {username: term})).then((evt) => {
-        evt.data.getUser.friends.map((follower,i) => {
-          otheruserFollowlistArray.push(follower);
-        });
-      })
-      await sleep(250);
-
-
-      editOtherFollowerlist();
       getFollowerList();
     }
 
-    EditFollowerButton.addEventListener('click', (evt) => {
-      editFollowerlist();
-    });
-
     async function editOtherFollowerlist(){
       var term = document.getElementById("searchInput").value;
+      getOtherUserFollowerList(term);   
       var duplicateTerms = 0;
       for(var i = 0; i < otheruserFollowlistArray.length; i++)
         if(term == otheruserFollowlistArray[i])
@@ -102,8 +97,16 @@ export default class Following extends React.Component{
       else
         otheruserFollowlistArray.splice(duplicateTerms,1);
 
-      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, friends: otheruserFollowlistArray}}));
+      await sleep(250);
+      API.graphql(graphqlOperation(updateUser, {input:{username: term, friends: otheruserFollowlistArray}}));
     }
+
+      getFollowerList();
+      EditFollowerButton.addEventListener('click', (evt) => {
+      editFollowerlist();
+      editOtherFollowerlist();
+    });
+
   }
 
   
@@ -117,7 +120,4 @@ export default class Following extends React.Component{
           <div id='QueryResult'></div>
     </ div>;
   }
-
-
-
 }
