@@ -38,11 +38,6 @@ export default class RecommendFood extends React.Component{
 
     function success(pos) {
         var crd = pos.coords;
-
-        console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
         API_Request(`latitude=${crd.latitude}&longitude=${crd.longitude}`);
 
     }
@@ -102,6 +97,7 @@ export default class RecommendFood extends React.Component{
       //List own user's bucketlist by using getUser
       API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         if(evt.data.getUser.foodhistory!=null){
+          console.log("listNotNull");
         evt.data.getUser.foodhistory.map((Food,i) => {
           userFoodListArray.push(Food);
         });}
@@ -110,14 +106,15 @@ export default class RecommendFood extends React.Component{
     function addToFoodHistory(){
       console.log("adding to Food History");
       var dataIndex = parseInt(this.id,10);
-      console.log(data.businesses[dataIndex].name);
       getFoodList();
       var term = data.businesses[dataIndex].categories[0].title;
       console.log(term);
       var duplicateTerms = 0;
       for(var i = 0; i < userFoodListArray.length; i++)
-        if(term == userFoodListArray[i])
+        if(term == userFoodListArray[i]){
+          console.log("duplicate");
           duplicateTerms=i;
+        }
 
       if(duplicateTerms == 0)
         userFoodListArray.push(term);
