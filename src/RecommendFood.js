@@ -107,6 +107,7 @@ export default class RecommendFood extends React.Component{
       console.log("adding to Food History");
       var dataIndex = parseInt(this.id,10);
       getFoodList();
+      console.log(userFoodListArray);
       var term = data.businesses[dataIndex].categories[0].title;
       console.log(term);
       var duplicateTerms = 0;
@@ -120,7 +121,7 @@ export default class RecommendFood extends React.Component{
         userFoodListArray.push(term);
       else
         userFoodListArray.splice(duplicateTerms,1);
-
+      console.log(userFoodListArray);
       API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, foodhistory: userFoodListArray}}));
 
     }
