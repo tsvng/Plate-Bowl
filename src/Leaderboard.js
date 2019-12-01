@@ -93,9 +93,9 @@ export default class LeaderBoard extends React.Component {
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
 
-    //This function displays the Friends Leaderboard
-    async function getFriendLeaders() {
-      MutationResult.innerHTML = `<h4>${currentUser}'s Friend Leaderboard</h4>`;
+    //This function displays the Following Leaderboard
+    async function getFollowingLeaders() {
+      MutationResult.innerHTML = `<h4>${currentUser}'s Following Leaderboard</h4>`;
       QueryResult.innerHTML = ``;
       var leaderboardArray = [];
 
@@ -106,6 +106,7 @@ export default class LeaderBoard extends React.Component {
         });
       })
       await sleep(250);
+
       //List friend's points by applying a filter that only lists users who have currentUser in their friends list
       API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => { 
@@ -120,6 +121,7 @@ export default class LeaderBoard extends React.Component {
       MutationResult.innerHTML = `<h4>Global Leaderboard</h4>`;
       QueryResult.innerHTML = ``;
       var leaderboardArray = [];
+      var followingArray = []
 
       //List own user's points at top by applying a filter to only query currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
@@ -129,6 +131,7 @@ export default class LeaderBoard extends React.Component {
         });
       })
       await sleep(250);
+
       //List other user's points by applying a filter to only query users not equal to currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
