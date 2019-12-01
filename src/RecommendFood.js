@@ -114,7 +114,7 @@ export default class RecommendFood extends React.Component{
       var dataIndex = parseInt(this.id,10);
       var dum = await getFoodList();
       await sleep(1000);
-      var obj = {name: data.businesses[dataIndex].name, image_url = data.businesses[dataIndex].image_url, genre: data.businesses[dataIndex].categories[0].title};
+      var obj = {name: data.businesses[dataIndex].name, image_url: data.businesses[dataIndex].image_url, genre: data.businesses[dataIndex].categories[0].title};
       var term = JSON.stringify(obj);
       console.log(term);
       var duplicateTerms = 0;
