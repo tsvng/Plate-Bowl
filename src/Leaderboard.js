@@ -142,11 +142,11 @@ export default class LeaderBoard extends React.Component {
         });
       })
       //await sleep(2000);
-      console.log(leaderboardArray);
-      leaderboardArray.sort(function(a, b){return b.points - a.points});
-      console.log(leaderboardArray);
+      await console.log(leaderboardArray);
+      await leaderboardArray.sort(function(a, b){return b.points - a.points});
+      await console.log(leaderboardArray);
       //await sleep(2000);
-      leaderboardArray.map((user, i) => {
+      await leaderboardArray.forEach((user, i) => {
         usercount++;
         QueryResult.innerHTML=`<p>${user.username} - ${user.points}</p>`
       })
