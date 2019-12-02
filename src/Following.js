@@ -79,7 +79,6 @@ export default class Following extends React.Component{
 
     async function editOtherFollowerlist(){
       var term = document.getElementById("searchInput").value;
-      await getOtherUserFollowerList(term);
       console.log(otheruserFollowlistArray);
       console.log(currentUser);
       var duplicateTerms = 0;
@@ -97,9 +96,10 @@ export default class Following extends React.Component{
 
       getFollowerList();
       EditFollowerButton.addEventListener('click', (evt) => {
-      editFollowerlist();
-      editOtherFollowerlist();
-    });
+        getOtherUserFollowerList(document.getElementById("searchInput").value);  
+        editFollowerlist();
+        editOtherFollowerlist();
+      });
 
   }
 
