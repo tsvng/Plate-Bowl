@@ -150,20 +150,19 @@ export const onCreateUser = `subscription OnCreateUser(
   $points: Int
   $foodhistory: [String]
   $bucketlist: [String]
-  $disinsterested: [String]
+  $recommendations: [String]
 ) {
   onCreateUser(
     username: $username
     points: $points
     foodhistory: $foodhistory
     bucketlist: $bucketlist
-    disinsterested: $disinsterested
+    recommendations: $recommendations
   ) {
     username
     points
     foodhistory
     bucketlist
-    disinsterested
     recommendations
     following
     followers
@@ -175,20 +174,19 @@ export const onUpdateUser = `subscription OnUpdateUser(
   $points: Int
   $foodhistory: [String]
   $bucketlist: [String]
-  $disinsterested: [String]
+  $recommendations: [String]
 ) {
   onUpdateUser(
     username: $username
     points: $points
     foodhistory: $foodhistory
     bucketlist: $bucketlist
-    disinsterested: $disinsterested
+    recommendations: $recommendations
   ) {
     username
     points
     foodhistory
     bucketlist
-    disinsterested
     recommendations
     following
     followers
@@ -200,20 +198,19 @@ export const onDeleteUser = `subscription OnDeleteUser(
   $points: Int
   $foodhistory: [String]
   $bucketlist: [String]
-  $disinsterested: [String]
+  $recommendations: [String]
 ) {
   onDeleteUser(
     username: $username
     points: $points
     foodhistory: $foodhistory
     bucketlist: $bucketlist
-    disinsterested: $disinsterested
+    recommendations: $recommendations
   ) {
     username
     points
     foodhistory
     bucketlist
-    disinsterested
     recommendations
     following
     followers

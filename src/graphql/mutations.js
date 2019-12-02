@@ -79,7 +79,6 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
     points
     foodhistory
     bucketlist
-    disinsterested
     recommendations
     following
     followers
@@ -92,7 +91,6 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
     points
     foodhistory
     bucketlist
-    disinsterested
     recommendations
     following
     followers
@@ -105,7 +103,6 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
     points
     foodhistory
     bucketlist
-    disinsterested
     recommendations
     following
     followers

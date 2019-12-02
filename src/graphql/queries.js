@@ -111,7 +111,6 @@ export const getUser = `query GetUser($username: String!) {
     points
     foodhistory
     bucketlist
-    disinsterested
     recommendations
     following
     followers
@@ -129,23 +128,6 @@ export const listUsers = `query ListUsers(
       points
       foodhistory
       bucketlist
-      disinsterested
-      recommendations
-      following
-      followers
-    }
-    nextToken
-  }
-}
-`;
-export const queryUsersByPointsIndex = `query QueryUsersByPointsIndex($points: Int!, $first: Int, $after: String) {
-  queryUsersByPointsIndex(points: $points, first: $first, after: $after) {
-    items {
-      username
-      points
-      foodhistory
-      bucketlist
-      disinsterested
       recommendations
       following
       followers
