@@ -38,63 +38,6 @@ export default class LeaderBoard extends React.Component {
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     var followLeadersActive = true;
 
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    function sortTable() {
-      console.log("sorted Ran");
-      var table, rows, switching, i, x, y, shouldSwitch;
-      table = document.getElementById("LeaderBoardTable");
-      console.log(table);
-      switching = true;
-      // Set the sorting direction to ascending:
-      /* Make a loop that will continue until
-      no switching has been done: */
-      while (switching) {
-        // Start by saying: no switching is done:
-        switching = false;
-        rows = table.rows;
-        console.log(typeof rows);
-        console.log(rows);
-      /* Loop through all table rows (except the
-      first, which contains table headers): */
-        // Start by saying there should be no switching:
-        console.log(rows.length);
-        var len = document.getElementById("LeaderBoardTable").getElementsByTagName("tbody")[0].getElementsByTagName("tr").length;
-        console.log(len);
-        for (i = 0; i < len-1; i++) {
-          shouldSwitch = false;
-          /* Get the two elements you want to compare,
-          one from current row and one from the next: */
-
-          console.log(rows[i]);
-          x = rows[i].getElementsByTagName("td")[1];
-          y = rows[i + 1].getElementsByTagName("td")[1];
-          /* Check if the two rows should switch place,
-          based on the direction, asc or desc: */
-          console.log(x.innerHTML);
-          console.log(x);
-          console.log(y.innerHTML)
-          if (x.innerHTML < y.innerHTML) {
-            // If so, mark as a switch and break the loop:
-            shouldSwitch = true;
-            break;
-          }
-        }         
-        if (shouldSwitch) {
-          console.log("shouldSwitchHERE HI");
-          /* If a switch has been marked, make the switch
-          and mark that a switch has been done: */
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-          // Each time a switch is done, increase this count by 1: 
-        }
-      }
-    }
-
-    
-
     //This function displays the Following Leaderboard
     async function getFollowingLeaders() {
       MutationResult.innerHTML = `<h5>${currentUser}'s Following Leaderboard</h5>`;
