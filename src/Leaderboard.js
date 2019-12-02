@@ -31,9 +31,11 @@ Amplify.configure({
 					
 export default class LeaderBoard extends React.Component {
 
-	componentDidMount(){
+	async componentDidMount(){
     const MutationButton = document.getElementById('MutationEventButton');
     const MutationResult = document.getElementById('MutationResult');
+    const QueryResult = document.getElementById('QueryResult');
+    const currentUser = (await Auth.currentAuthenticatedUser()).username;
     var followLeadersActive = true;
 
     function sleep(ms) {
@@ -91,8 +93,7 @@ export default class LeaderBoard extends React.Component {
       }
     }
 
-    const currentUser = (Auth.currentAuthenticatedUser()).username;
-    const QueryResult = document.getElementById('QueryResult');
+    
 
     //This function displays the Following Leaderboard
     async function getFollowingLeaders() {
@@ -101,7 +102,7 @@ export default class LeaderBoard extends React.Component {
       var leaderboardArray = [];
 
       //List own user's points at top by applying a filter to only query currentUser
-      API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
+      await API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
           QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
@@ -109,7 +110,7 @@ export default class LeaderBoard extends React.Component {
       //await sleep(250);
 
       //List friend's points by applying a filter that only lists users who have currentUser in their friends list
-      API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
+      await API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => { 
           QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
@@ -119,14 +120,13 @@ export default class LeaderBoard extends React.Component {
 
     //This function displays the Global Leaderboard
     async function getGlobalLeaders() {
-      componentDidMount.MutationResult.innerHTML = `<h5>Global Leaderboard</h5>`;
-      componentDidMount.QueryResult.innerHTML = ``;
+      MutationResult.innerHTML = `<h5>Global Leaderboard</h5>`;
+      QueryResult.innerHTML = ``;
       var leaderboardArray = [];
-      var followingArray = []
       var usercount = 0;
 
       //List own user's points at top by applying a filter to only query currentUser
-      API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
+      await API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
           leaderboardArray.push(user);
           //QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
@@ -135,14 +135,14 @@ export default class LeaderBoard extends React.Component {
       //await sleep(2000);
 
       //List other user's points by applying a filter to only query users not equal to currentUser
-      API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
+      await API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
           leaderboardArray.push(user);
           //QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
       //await sleep(2000);
-
+      console.log(leaderboardArray);
       leaderboardArray.sort(function(a, b){return b.points - a.points});
       console.log(leaderboardArray);
       //await sleep(2000);
