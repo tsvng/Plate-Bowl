@@ -35,6 +35,7 @@ export default class Following extends React.Component{
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
     var userFollowingListArray = [];
+    //var userFollowerListArray = [];
     var otherUserFollowerListArray= [];
 
     //This function displays the user's following list
@@ -64,7 +65,7 @@ export default class Following extends React.Component{
 
 
     //This function mutates the follow list
-    async function editFollowinglist(){
+    async function editFollowingList(){
       var term = document.getElementById("searchInput").value;
       var duplicateTerm = false;
       var duplicateTermIndex = 0;
@@ -94,7 +95,7 @@ export default class Following extends React.Component{
       getFollowingList();
     }
 
-    async function editOtherFollowerlist(){
+    async function editOtherFollowerList(){
       var term = document.getElementById("searchInput").value;
         if(await API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser) != null)
         {
@@ -120,8 +121,8 @@ export default class Following extends React.Component{
 
     getFollowingList();
     EditFollowingButton.addEventListener('click', (evt) => {
-        editFollowinglist();
-        editOtherFollowerlist();
+        editFollowingList();
+        editOtherFollowerList();
     });
 
   }
@@ -131,7 +132,7 @@ export default class Following extends React.Component{
   render(){
     return <div id='main' className = "follow">
               
-                <h1> Follow List </h1>
+                <h1> Users You Follow </h1>
                 <input type="text" id="searchInput" placeholder="Type a user you'd like to follow, or type a user already in your list to unfollow."/> 
                 <span className="addBtn" id='EditFollowingEventButton'>Add/Remove Follow</span>
                 <br></br><br></br><br></br>

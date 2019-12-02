@@ -37,7 +37,7 @@ export default class BucketList extends React.Component{
     var userBucketlistArray = [];
 
     //This function displays the user's bucketlist
-    async function getBucketList() {
+    async function getBucketlist() {
       QueryResult.innerHTML = `<p></p>`;
       userBucketlistArray = []; //wipe array of old page data
       //List own user's bucketlist by using getUser
@@ -49,7 +49,7 @@ export default class BucketList extends React.Component{
       })
     }
 
-    getBucketList();
+    getBucketlist();
 
     //This function mutates the Bucketlist
     async function editBucketlist(){
@@ -70,7 +70,7 @@ export default class BucketList extends React.Component{
         userBucketlistArray.splice(duplicateTermIndex,1);
 
       await API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: userBucketlistArray}}));
-      getBucketList();
+      getBucketlist();
     }
 
     EditEntryButton.addEventListener('click', (evt) => {
