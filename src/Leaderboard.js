@@ -122,6 +122,7 @@ export default class LeaderBoard extends React.Component {
       QueryResult.innerHTML = ``;
       var leaderboardArray = [];
       var followingArray = []
+      var usercount = 0;
 
       //List own user's points at top by applying a filter to only query currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
@@ -145,8 +146,10 @@ export default class LeaderBoard extends React.Component {
       console.log(leaderboardArray);
       await sleep(700);
       leaderboardArray.map((user, i) => {
+        usercount++;
         QueryResult.innerHTML=`<p>${user.username} - ${user.points}</p>`
       })
+      console.log(usercount);
     }
 
     getFollowingLeaders();
