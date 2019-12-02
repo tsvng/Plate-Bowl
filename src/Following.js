@@ -50,6 +50,9 @@ export default class Following extends React.Component{
       })
     }
 
+    //getFollowerList
+    //editFollowerList
+
     async function getOtherUserFollowerList(otherUser) {
       otherUserFollowerListArray = []; //wipe array of old page data
       await API.graphql(graphqlOperation(getUser, {username: otherUser})).then((evt) => {
@@ -58,6 +61,7 @@ export default class Following extends React.Component{
         });
       })
     }
+
 
     //This function mutates the follow list
     async function editFollowinglist(){
