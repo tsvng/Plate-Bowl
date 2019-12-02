@@ -515,6 +515,7 @@ input {
   overflow:scroll;
 }
 
-ol li{
-  position: relative;
+.centerlist{
+  text-align: center;
+  list-style-position: inside;
 }

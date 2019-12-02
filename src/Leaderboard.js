@@ -119,7 +119,7 @@ export default class LeaderBoard extends React.Component {
 		      	<div className = "containerLeaderBoard">
 		          <button id='MutationEventButton'></button>
 		          <div id='MutationResult'></div>
-		          <ol id='QueryResult'></ol>
+		          <ol class="centerlist" id='QueryResult'></ol>
 		        </div>
           	</div>
 
