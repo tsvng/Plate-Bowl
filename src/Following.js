@@ -40,7 +40,7 @@ export default class Following extends React.Component{
     //This function displays the user's follow list
     async function getFollowerList() {
       QueryResult.innerHTML = `<p></p>`;
-      await userFollowlistArray = []; //wipe array of old page data
+      userFollowlistArray = []; //wipe array of old page data
       //List own user's follow list by using getUser
       await API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         evt.data.getUser.friends.map((follower,i) => {
@@ -51,7 +51,7 @@ export default class Following extends React.Component{
     }
 
     async function getOtherUserFollowerList(otherUser) {
-      await otheruserFollowlistArray = []; //wipe array of old page data
+      otheruserFollowlistArray = []; //wipe array of old page data
       await API.graphql(graphqlOperation(getUser, {username: otherUser})).then((evt) => {
         evt.data.getUser.friends.map((follower,i) => {
           otheruserFollowlistArray.push(follower);
@@ -79,16 +79,17 @@ export default class Following extends React.Component{
 
     async function editOtherFollowerlist(){
       var term = document.getElementById("searchInput").value;
-      var duplicateTerms = 0;
-      console.log(otheruserFollowlistArray);
-      console.log(currentUser);
-     
-      console.log(otheruserFollowlistArray.length);
+      getOtherUserFollowerList(term);   
+      var duplicateTerm = false;
+      var duplicateTermIndex = 0;
       for(var i = 0; i < otheruserFollowlistArray.length; i++)
         if(currentUser == otheruserFollowlistArray[i])
-          duplicateTerms=i;
-      console.log(duplicateTerms);  
-      if(duplicateTerms == 0)
+        {
+          duplicateTerm = true
+          duplicateTermIndex=i;
+        }
+
+      if(duplicateTerm)
         otheruserFollowlistArray.push(currentUser);
       else
         otheruserFollowlistArray.splice(duplicateTerms,1);
@@ -98,10 +99,9 @@ export default class Following extends React.Component{
 
       getFollowerList();
       EditFollowerButton.addEventListener('click', (evt) => {
-        getOtherUserFollowerList(document.getElementById("searchInput").value);  
-        editFollowerlist();
-        editOtherFollowerlist();
-      });
+      editFollowerlist();
+      editOtherFollowerlist();
+    });
 
   }
 
@@ -109,11 +109,11 @@ export default class Following extends React.Component{
 
   render(){
     return <div id='main' className = "follow">
-              <h1> Follow List </h1>
-              <input type="text" id="searchInput" placeholder="Type a user you'd like to follow, or type a user already in your list to unfollow."/> 
-              <span className="addBtn" id='EditEventButton'>Add/Remove Follow</span>
-              <br></br><br></br><br></br>
-              <div id='QueryResult'></div>
-           </div>;
+      <h1> Follow List </h1>
+      <input type="text" id="searchInput" placeholder="Type a user you'd like to follow, or type a user already in your list to unfollow."/> 
+      <span className="addBtn" id='EditEventButton'>Add/Remove Follow</span>
+      <div></div>
+          <div id='QueryResult'></div>
+    </ div>;
   }
 }
