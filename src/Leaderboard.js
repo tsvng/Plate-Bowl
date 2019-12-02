@@ -83,7 +83,7 @@ export default class LeaderBoard extends React.Component {
       })
       		 
       
-      await sleep(1000);
+      await sleep(250);
       console.log(leaderboardArray);
 
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
