@@ -118,7 +118,7 @@ export default class Following extends React.Component{
     }
 
     async function deleteFollowerList(){
-      var term = document.getElementById("searchInput").value;
+      var term = document.getElementById("searchInput2").value;
       var duplicateTerm = false;
       var duplicateTermIndex = 0;
 
@@ -147,7 +147,8 @@ export default class Following extends React.Component{
     }
 
     async function editOtherFollowingList(){
-      var term = document.getElementById("searchInput").value;
+      var term = document.getElementById("searchInput2").value;
+      console.log(API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser));
         if(await API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser) != null)
         {
           await getOtherUserFollowingList(term);   
@@ -171,7 +172,7 @@ export default class Following extends React.Component{
     }
 
     async function editOtherFollowerList(){
-      var term = document.getElementById("searchInput").value;
+      var term = document.getElementById("searchInput2").value;
         if(await API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser) != null)
         {
           await getOtherUserFollowerList(term);   
@@ -222,7 +223,7 @@ export default class Following extends React.Component{
                   <div id='FollowingResult'></div>
                 </div>
                 <br></br><br></br><br></br>
-                <input type="text" id="searchInput" placeholder="Type a user you'd like to remove from following you."/> 
+                <input type="text" id="searchInput2" placeholder="Type a user you'd like to remove from following you."/> 
                 <span className="addBtn" id='DeleteFollowerEventButton'>Remove Follower</span>
                 <div className = "containerLeaderBoard">
                   <div id='FollowerResult'></div>
