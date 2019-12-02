@@ -60,6 +60,7 @@ export default class Following extends React.Component{
         evt.data.getUser.friends.map((follower,i) => {
           otheruserFollowlistArray.push(follower);
         });
+      })
     }
 
     //This function mutates the follow list
