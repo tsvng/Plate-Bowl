@@ -28,9 +28,9 @@ export default class NavBar extends React.Component{
 			document.getElementById("floating-button")&&
 			document.getElementById("main")
 			){
-	  		document.getElementById("mySidenav").style.width = "250px";
-	  		document.getElementById("floating-button").style.marginLeft = "250px";
-	  		document.getElementById("main").style.marginLeft = "250px";
+	  		document.getElementById("mySidenav").style.height = "390px";
+	  		document.getElementById("mySidenav").style.visibility = "visible";
+	  		document.getElementById("floating-button").style.visibility = "hidden";
 		}
 	}
 	/* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
@@ -39,9 +39,9 @@ export default class NavBar extends React.Component{
 			document.getElementById("floating-button")&&
 			document.getElementById("main")
 			){
-	  		document.getElementById("mySidenav").style.width = "0px";
-	  		document.getElementById("floating-button").style.marginLeft = "0px";
-	  		document.getElementById("main").style.marginLeft = "0px";
+	  		document.getElementById("mySidenav").style.visibility = "hidden";
+	  		document.getElementById("floating-button").style.visibility = "visible";
+	  		document.getElementById("mySidenav").style.height = "0px";
 		}
 	}
 	signOut() {
