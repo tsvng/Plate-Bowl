@@ -81,7 +81,13 @@ export default class LeaderBoard extends React.Component {
       })
 
       console.log(userFollowingListArray);
-      await userFollowingListArray.forEach((followedUserName) => pushFollowedUsers(followedUserName))
+      await userFollowingListArray.forEach((followedUserName) => {
+      	API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:followedUsername}}})).then((evt) => {
+	    		evt.data.listUsers.items.map((followedUser, i) => { 
+	      			leaderboardArray.push(followedUser);
+	    		});
+	  		})
+      }
       		 
       
       await sleep(1500);
