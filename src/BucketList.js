@@ -86,7 +86,7 @@ export default class BucketList extends React.Component{
                 <input type="text" id="searchInput" placeholder="Enter a cuisine you'd like to add, or type a cuisine already in your list to delete it."/> 
                 <span className="addBtn" id='EditEventButton'>Edit List</span>
                 <br></br><br></br><br></br>
-                <div className = "containerLeaderBoard">
+                <div className = "containerfollowing">
                     <div id='QueryResult'></div>
                 </div>
            </div>;
