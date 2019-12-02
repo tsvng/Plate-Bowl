@@ -41,6 +41,11 @@ export default class Following extends React.Component{
     var otherUserFollowerListArray= [];
     var otherUserFollowingListArray= [];
 
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+
     //This function displays the user's following list
     async function getFollowingList() {
       FollowingResult.innerHTML = `<p></p>`;
@@ -151,6 +156,8 @@ export default class Following extends React.Component{
         await getOtherUserFollowingList(term);   
         var duplicateTerm = false;
         var duplicateTermIndex = 0;
+        await sleep(1000);
+
         console.log(otherUserFollowingListArray);
 
         for(var i = 0; i < otherUserFollowingListArray.length; i++)
@@ -159,6 +166,7 @@ export default class Following extends React.Component{
             duplicateTerm = true
             duplicateTermIndex = i;
           }
+
 
         if(duplicateTerm)
           otherUserFollowingListArray.splice(duplicateTermIndex,1);
@@ -176,6 +184,7 @@ export default class Following extends React.Component{
           await getOtherUserFollowerList(term);   
           var duplicateTerm = false;
           var duplicateTermIndex = 0;
+          await sleep(1000);
 
           for(var i = 0; i < otherUserFollowerListArray.length; i++)
             if(currentUser == otherUserFollowerListArray[i])
