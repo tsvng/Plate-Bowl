@@ -93,7 +93,7 @@ export default class RecommendFood extends React.Component{
     var data = null;
     var userFoodListArray = [];
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
-
+    var userPoints = 0;
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -102,6 +102,9 @@ export default class RecommendFood extends React.Component{
       userFoodListArray = []; //wipe array of old page data
       //List own user's bucketlist by using getUser
         API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
+          if(evt.data.getUser.points!=null){
+            userPoints = evt.data.getUser.points;
+          }
         if(evt.data.getUser.foodhistory!=null){
         evt.data.getUser.foodhistory.map((Food,i) => {
           userFoodListArray.push(Food);
@@ -114,17 +117,26 @@ export default class RecommendFood extends React.Component{
       var dataIndex = parseInt(this.id,10);
       var dum = await getFoodList();
       await sleep(1000);
-      var obj = {name: data.businesses[dataIndex].name, image_url: data.businesses[dataIndex].image_url, genre: data.businesses[dataIndex].categories[0].title};
-      var term = JSON.stringify(obj);
-      console.log(term);
+      var obj = {name: data.businesses[dataIndex].name, image_url: data.businesses[dataIndex].image_url, genre: data.businesses[dataIndex].categories[0].title, points: 0};
+      //var term = JSON.stringify(obj);
+      //console.log(term);
       var duplicateTerms = 0;
+      var basePoints = 100;//100 starting points 
       for(var i = 0; i < userFoodListArray.length; i++)
-        if(term == userFoodListArray[i]){
+        var cRestaurant = JSON.parse(userFoodListArray[i]);
+        if(data.businesses[dataIndex].image_url == cRestaurant['image_url']){
           duplicateTerms++;
         }
-      if(duplicateTerms == 0)
-        userFoodListArray.push(term);
-      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, foodhistory: userFoodListArray}}));
+        if(obj['genre']==cRestaurant['genre']){
+          if(basePoints >=20)
+            basePoints-=5;
+        }
+      if(duplicateTerms == 0){
+        obj['points'] = basePoints;
+        userFoodListArray.push(JSON.stringify(obj));
+      }
+      userPoints = userPoints + basePoints;
+      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, foodhistory: userFoodListArray, points: userPoints}}));
     }
 
     function addToBucketList(){
