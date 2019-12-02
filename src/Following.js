@@ -54,7 +54,7 @@ export default class Following extends React.Component{
       otherUserFollowerListArray = []; //wipe array of old page data
       await API.graphql(graphqlOperation(getUser, {username: otherUser})).then((evt) => {
         evt.data.getUser.followers.map((followerUsername,i) => {
-          otherUserFollowListArray.push(followerUsername);
+          otherUserFollowerListArray.push(followerUsername);
         });
       })
     }
