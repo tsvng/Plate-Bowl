@@ -1,30 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTodo = `mutation CreateTodo($input: CreateTodoInput!) {
-  createTodo(input: $input) {
-    id
-    name
-    description
-  }
-}
-`;
-export const updateTodo = `mutation UpdateTodo($input: UpdateTodoInput!) {
-  updateTodo(input: $input) {
-    id
-    name
-    description
-  }
-}
-`;
-export const deleteTodo = `mutation DeleteTodo($input: DeleteTodoInput!) {
-  deleteTodo(input: $input) {
-    id
-    name
-    description
-  }
-}
-`;
 export const createRestaurant = `mutation CreateRestaurant($input: CreateRestaurantInput!) {
   createRestaurant(input: $input) {
     name
@@ -105,7 +81,8 @@ export const createUser = `mutation CreateUser($input: CreateUserInput!) {
     bucketlist
     disinsterested
     recommendations
-    friends
+    following
+    followers
   }
 }
 `;
@@ -117,7 +94,8 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
     bucketlist
     disinsterested
     recommendations
-    friends
+    following
+    followers
   }
 }
 `;
@@ -129,7 +107,8 @@ export const deleteUser = `mutation DeleteUser($input: DeleteUserInput!) {
     bucketlist
     disinsterested
     recommendations
-    friends
+    following
+    followers
   }
 }
 `;
