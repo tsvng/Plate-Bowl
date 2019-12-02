@@ -104,18 +104,18 @@ export default class LeaderBoard extends React.Component {
       //List own user's points at top by applying a filter to only query currentUser
       await API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
-          QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
+          leaderboardArray.push(user);
         });
       })
-      //await sleep(250);
 
-      //List friend's points by applying a filter that only lists users who have currentUser in their friends list
+      //List follow's points by applying a filter that only lists users who have currentUser in their friends list
       await API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => { 
-          QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
+          leaderboardArray.push(user);
         });
       })
-      //sortTable();
+      await leaderboardArray.sort(function(a, b){return b.points - a.points});
+      leaderboardArray.forEach((user) => QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`);
     }
 
     //This function displays the Global Leaderboard
@@ -131,7 +131,6 @@ export default class LeaderBoard extends React.Component {
         });
       })
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
-      ///await sleep(2000);
       leaderboardArray.forEach((user) => QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`);
     }
 
