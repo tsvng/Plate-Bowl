@@ -67,7 +67,7 @@ export default class Following extends React.Component{
 
       console.log(API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser));
       //ensure username exists
-      if(API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser) != null)
+      if(await API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser) != null)
       {
         for(var i = 0; i < userFollowlistArray.length; i++)
         if(term == userFollowlistArray[i])
