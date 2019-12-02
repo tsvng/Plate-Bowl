@@ -122,7 +122,7 @@ export default class RecommendFood extends React.Component{
       //console.log(term);
       var duplicateTerms = 0;
       var basePoints = 100;//100 starting points 
-      for(var i = 0; i < userFoodListArray.length; i++)
+      for(var i = 0; i < userFoodListArray.length; i++){
         var cRestaurant = JSON.parse(userFoodListArray[i]);
         if(data.businesses[dataIndex].image_url == cRestaurant['image_url']){
           duplicateTerms++;
@@ -131,6 +131,7 @@ export default class RecommendFood extends React.Component{
           if(basePoints >=20)
             basePoints-=5;
         }
+      }
       if(duplicateTerms == 0){
         obj['points'] = basePoints;
         userFoodListArray.push(JSON.stringify(obj));
