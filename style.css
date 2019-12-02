@@ -108,21 +108,23 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
 }
 
 .sidenav {
-  height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
+  height: 0%; /* Initially 0px, change w/ javascript */
+  width: 225px; /* Initially 100% width */ 
   position: fixed; /* Stay in place */
   z-index: 1; /* Stay on top */
-  top: 10px; /* Stay at the top */
-  left: 10px;
+  top: 100px; /* Stay at the top */
+  left: 45px;
   background-color: #003366; /*DarkBlue*/
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  padding: 50px;
+  visibility: hidden;
+  border-radius: 10px;
 }
 
 /* The navigation menu links */
 .sidenav a {
-  padding: 8px 8px 8px 20px;
+  padding: 8px 8px 8px 8px;
   text-decoration: none;
   font-size: 18px;
   color: #818181;
@@ -151,7 +153,7 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   background: #003366;
   position: absolute;
   color: white;
-  top: 0px;
+  top: 45px;
   left: 5px;
   padding: 0;
   border: none;
