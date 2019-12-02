@@ -505,3 +505,7 @@ input {
   height:100%;
   overflow:scroll;
 }
+
+ol li{
+  position: relative;
+}
