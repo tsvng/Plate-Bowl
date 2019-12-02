@@ -66,7 +66,7 @@ export default class Following extends React.Component{
       var duplicateTermIndex = 0;
 
       console.log(API.graphql(graphqlOperation(getUser, {username: term})));
-      if(await API.graphql(graphqlOperation(getUser, {username: term})))
+      if(await API.graphql(graphqlOperation(getUser, {username: term})) != null)
       {
         for(var i = 0; i < userFollowlistArray.length; i++)
         if(term == userFollowlistArray[i])
