@@ -76,12 +76,12 @@ export default class BucketList extends React.Component{
 
   render(){
     return <div id='main' className = "bucket">
-      <h1> Bucket List </h1>
-      <input type="text" id="searchInput" placeholder="Type a cuisine you'd like to add, or type a cuisine already in your list to delete it."/> 
-      <span className="addBtn" id='EditEventButton'>Edit List</span>
-      <br></br><br></br><br></br>
-          <div id='QueryResult'></div>
-          </div>;
+              <h1> Bucket List </h1>
+              <input type="text" id="searchInput" placeholder="Type a cuisine you'd like to add, or type a cuisine already in your list to delete it."/> 
+              <span className="addBtn" id='EditEventButton'>Edit List</span>
+              <br></br><br></br><br></br>
+                  <div id='QueryResult'></div>
+           </div>;
   }
 
 
