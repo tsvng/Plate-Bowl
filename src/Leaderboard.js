@@ -60,7 +60,7 @@ export default class LeaderBoard extends React.Component {
         console.log(rows.length);
         var len = document.getElementById("LeaderBoardTable").getElementsByTagName("tbody")[0].getElementsByTagName("tr").length;
         console.log(len);
-        for (i = 0; i < 4; i++) {
+        for (i = 0; i < len-1; i++) {
           shouldSwitch = false;
           /* Get the two elements you want to compare,
           one from current row and one from the next: */
@@ -130,7 +130,7 @@ export default class LeaderBoard extends React.Component {
           QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
-      await sleep(250);
+      await sleep(1000);
 
       //List other user's points by applying a filter to only query users not equal to currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
@@ -139,10 +139,10 @@ export default class LeaderBoard extends React.Component {
           QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
+      await sleep(1000);
 
-      JSON.stringify(leaderboardArray);
       console.log(leaderboardArray); //console returns the array
-      console.log(leaderboardArray['1']); //console returns undefined???
+      console.log(leaderboardArray[1]); //console returns undefined???
       console.log(leaderboardArray.sort(function(a, b){return b.points - a.points})); //doesn't work, returns unsorted
     }
 
