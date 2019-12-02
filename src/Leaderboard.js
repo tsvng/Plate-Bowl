@@ -70,7 +70,7 @@ export default class LeaderBoard extends React.Component {
 
       console.log(userFollowingListArray);
       await userFollowingListArray.forEach((followedUserName) => 
-      		await API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:followedUserName}}})).then((evt) => {
+      		API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:followedUserName}}})).then((evt) => {
 	        evt.data.listUsers.items.map((followedUser, i) => { 
 	          leaderboardArray.push(followedUser);
 	        });
@@ -79,7 +79,7 @@ export default class LeaderBoard extends React.Component {
       console.log(leaderboardArray);
 
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
-      leaderboardArray.forEach((user) => QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`);
+      await leaderboardArray.forEach((user) => QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`);
     }
 
     //This function displays the Global Leaderboard
