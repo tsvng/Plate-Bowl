@@ -60,8 +60,6 @@ export default class Following extends React.Component{
         evt.data.getUser.friends.map((follower,i) => {
           otheruserFollowlistArray.push(follower);
         });
-      })
-
     }
 
     //This function mutates the follow list
@@ -93,12 +91,12 @@ export default class Following extends React.Component{
           duplicateTerms=i;
 
       if(duplicateTerms == 0)
-        otheruserFollowlistArray.push(term);
+        otheruserFollowlistArray.push(currentUser);
       else
         otheruserFollowlistArray.splice(duplicateTerms,1);
 
       await sleep(250);
-      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, friends: otheruserFollowlistArray}}));
+      API.graphql(graphqlOperation(updateUser, {input:{username: term, friends: otheruserFollowlistArray}}));
     }
 
       getFollowerList();
