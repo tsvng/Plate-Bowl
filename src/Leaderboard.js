@@ -38,6 +38,10 @@ export default class LeaderBoard extends React.Component {
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     var followLeadersActive = true;
 
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
     //This function displays the Following Leaderboard
     async function getFollowingLeaders() {
       MutationResult.innerHTML = `<h5>${currentUser}'s Following Leaderboard</h5>`;
@@ -79,10 +83,12 @@ export default class LeaderBoard extends React.Component {
       console.log(userFollowingListArray);
       await userFollowingListArray.forEach((followedUserName) => pushFollowedUsers(followedUserName))
       		 
-      	
+      
+      await sleep(1500);
       console.log(leaderboardArray);
 
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
+      console.log(leaderboardArray);
       await leaderboardArray.forEach((user) => QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`);
     }
 
