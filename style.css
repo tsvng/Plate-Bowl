@@ -51,15 +51,13 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
 .buttonContainer a {
   color: #DDEAF4;
   background-color: #328DD1;
-  border-radius: 15px;
+  border-radius: 5px;
   text-align:center;
   margin: 10px 30px 10px 10px;
   font-size: 15px;
   font-family: sans-serif;
   text-decoration: none;
-  position: absolute;
-  padding: 15px;
-  top: 430px;
+  padding: 12px;
 }
 
 .buttonContainer a:hover {
