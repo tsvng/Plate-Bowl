@@ -62,7 +62,7 @@ export default class Following extends React.Component{
       await API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         evt.data.getUser.followers.map((followerUsername,i) => {
           FollowerResult.innerHTML += `<p>${followerUsername}</p>`
-          userFollowingListArray.push(followerUsername);
+          userFollowerListArray.push(followerUsername);
         });
       })
     }
@@ -92,7 +92,6 @@ export default class Following extends React.Component{
       var duplicateTerm = false;
       var duplicateTermIndex = 0;
 
-      console.log(API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser));
       //ensure username exists
       if(await API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser) != null)
       {
@@ -122,7 +121,6 @@ export default class Following extends React.Component{
       var duplicateTerm = false;
       var duplicateTermIndex = 0;
 
-      console.log(API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser));
       //ensure username exists
       if(await API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser) != null)
       {
@@ -142,37 +140,37 @@ export default class Following extends React.Component{
       else
         console.log("user being removed from followers dne");
       
-
       getFollowerList();
     }
 
     async function editOtherFollowingList(){
       var term = document.getElementById("searchInput2").value;
-      console.log(API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser));
-        if(await API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser) != null)
-        {
-          await getOtherUserFollowingList(term);   
-          var duplicateTerm = false;
-          var duplicateTermIndex = 0;
+ 
+      if(await API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser) != null)
+      {
+        await getOtherUserFollowingList(term);   
+        var duplicateTerm = false;
+        var duplicateTermIndex = 0;
+        console.log(otherUserFollowingListArray);
 
-          for(var i = 0; i < otherUserFollowingListArray.length; i++)
-            if(currentUser == otherUserFollowingListArray[i])
-            {
-              duplicateTerm = true
-              duplicateTermIndex = i;
-            }
+        for(var i = 0; i < otherUserFollowingListArray.length; i++)
+          if(currentUser == otherUserFollowingListArray[i])
+          {
+            duplicateTerm = true
+            duplicateTermIndex = i;
+          }
 
-          if(duplicateTerm)
-            otherUserFollowingListArray.splice(duplicateTermIndex,1);
+        if(duplicateTerm)
+          otherUserFollowingListArray.splice(duplicateTermIndex,1);
 
-          await API.graphql(graphqlOperation(updateUser, {input:{username: term, followers: otherUserFollowingListArray}}));
+        await API.graphql(graphqlOperation(updateUser, {input:{username: term, followers: otherUserFollowingListArray}}));
       }
       else
         console.log("user being removed from followers dne");
     }
 
     async function editOtherFollowerList(){
-      var term = document.getElementById("searchInput2").value;
+      var term = document.getElementById("searchInput").value;
         if(await API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser) != null)
         {
           await getOtherUserFollowerList(term);   
