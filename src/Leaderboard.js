@@ -30,6 +30,7 @@ Amplify.configure({
   });
 					
 export default class LeaderBoard extends React.Component {
+  
 	async componentDidMount(){
     const MutationButton = document.getElementById('MutationEventButton');
     const MutationResult = document.getElementById('MutationResult');
@@ -117,7 +118,7 @@ export default class LeaderBoard extends React.Component {
     }
 
     //This function displays the Global Leaderboard
-    function getGlobalLeaders() {
+    async function getGlobalLeaders() {
       MutationResult.innerHTML = `<h5>Global Leaderboard</h5>`;
       QueryResult.innerHTML = ``;
       var leaderboardArray = [];
@@ -131,7 +132,7 @@ export default class LeaderBoard extends React.Component {
           //QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
-      //await sleep(700);
+      await sleep(2000);
 
       //List other user's points by applying a filter to only query users not equal to currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
@@ -140,11 +141,11 @@ export default class LeaderBoard extends React.Component {
           //QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
-      //await sleep(700);
+      await sleep(2000);
 
       leaderboardArray.sort(function(a, b){return b.points - a.points});
       console.log(leaderboardArray);
-      //await sleep(700);
+      await sleep(2000);
       leaderboardArray.map((user, i) => {
         usercount++;
         QueryResult.innerHTML=`<p>${user.username} - ${user.points}</p>`
