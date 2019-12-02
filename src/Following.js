@@ -37,16 +37,12 @@ export default class Following extends React.Component{
     var userFollowlistArray = [];
     var otheruserFollowlistArray= [];
 
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     //This function displays the user's follow list
     async function getFollowerList() {
       QueryResult.innerHTML = `<p></p>`;
       userFollowlistArray = []; //wipe array of old page data
       //List own user's follow list by using getUser
-      API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
+      await API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         evt.data.getUser.friends.map((follower,i) => {
           QueryResult.innerHTML += `<p>${follower}</p>`
           userFollowlistArray.push(follower);
@@ -56,7 +52,7 @@ export default class Following extends React.Component{
 
     async function getOtherUserFollowerList(otherUser) {
       otheruserFollowlistArray = []; //wipe array of old page data
-      API.graphql(graphqlOperation(getUser, {username: otherUser})).then((evt) => {
+      await API.graphql(graphqlOperation(getUser, {username: otherUser})).then((evt) => {
         evt.data.getUser.friends.map((follower,i) => {
           otheruserFollowlistArray.push(follower);
         });
@@ -76,9 +72,7 @@ export default class Following extends React.Component{
       else
         userFollowlistArray.splice(duplicateTerms,1);
 
-      await sleep(250);
-      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, friends: userFollowlistArray}}));
-      await sleep(250);
+      await API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, friends: userFollowlistArray}}));
 
       getFollowerList();
     }
@@ -96,8 +90,7 @@ export default class Following extends React.Component{
       else
         otheruserFollowlistArray.splice(duplicateTerms,1);
 
-      await sleep(250);
-      API.graphql(graphqlOperation(updateUser, {input:{username: term, friends: otheruserFollowlistArray}}));
+      await API.graphql(graphqlOperation(updateUser, {input:{username: term, friends: otheruserFollowlistArray}}));
     }
 
       getFollowerList();

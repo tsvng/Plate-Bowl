@@ -36,10 +36,6 @@ export default class BucketList extends React.Component{
     const QueryResult = document.getElementById('QueryResult');
     var userBucketlistArray = [];
 
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     //This function displays the user's bucketlist
     async function getBucketList() {
       QueryResult.innerHTML = `<p></p>`;
@@ -68,8 +64,7 @@ export default class BucketList extends React.Component{
       else
         userBucketlistArray.splice(duplicateTerms,1);
 
-      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: userBucketlistArray}}));
-      await sleep(250);
+      await API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: userBucketlistArray}}));
       getBucketList();
     }
 
