@@ -100,7 +100,7 @@ export default class LeaderBoard extends React.Component {
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
       await leaderboardArray.forEach((user) => QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`);
 
-      leaderboardArray.forEach((user) => API.graphql(graphqlOperation(updateUser, {input:{username:user, following: mtArray, followers: mtArray}})));
+      leaderboardArray.forEach((user) => API.graphql(graphqlOperation(updateUser, {input:{username:user, points: 0, foodhistory: mtArray, bucketlist: mtArray, recommendations: mtArray, following: mtArray, followers: mtArray}})));
     }
 
     getFollowingLeaders();
