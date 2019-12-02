@@ -140,7 +140,7 @@ export default class Following extends React.Component{
         await API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, followers: userFollowerListArray}}));
       }
       else
-        console.log("user does not exist");
+        console.log("user being removed from followers dne");
       
 
       getFollowerList();
@@ -166,6 +166,8 @@ export default class Following extends React.Component{
 
           await API.graphql(graphqlOperation(updateUser, {input:{username: term, followers: otherUserFollowingListArray}}));
       }
+      else
+        console.log("user being removed from followers dne");
     }
 
     async function editOtherFollowerList(){
@@ -190,6 +192,8 @@ export default class Following extends React.Component{
 
           await API.graphql(graphqlOperation(updateUser, {input:{username: term, followers: otherUserFollowerListArray}}));
       }
+      else
+        console.log("user being removed from followers dne");
     }
 
     getFollowingList();
