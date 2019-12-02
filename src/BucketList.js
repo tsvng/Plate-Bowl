@@ -54,15 +54,20 @@ export default class BucketList extends React.Component{
     //This function mutates the Bucketlist
     async function editBucketlist(){
       var term = document.getElementById("searchInput").value;
-      var duplicateTerms = 0;
+      var duplicateTerm = false;
+      var duplicateTermIndex = 0;
+
       for(var i = 0; i < userBucketlistArray.length; i++)
         if(term == userBucketlistArray[i])
-          duplicateTerms=i;
+        {
+          duplicateTerm = true;
+          duplicateTermIndex = i;
+        }
 
-      if(duplicateTerms == 0)
+      if(!duplicateTerm)
         userBucketlistArray.push(term);
       else
-        userBucketlistArray.splice(duplicateTerms,1);
+        userBucketlistArray.splice(duplicateTermIndex,1);
 
       await API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: userBucketlistArray}}));
       getBucketList();

@@ -62,15 +62,20 @@ export default class Following extends React.Component{
     //This function mutates the follow list
     async function editFollowerlist(){
       var term = document.getElementById("searchInput").value;
-      var duplicateTerms = 0;
+      var duplicateTerm = false;
+      var duplicateTermIndex = 0;
+
       for(var i = 0; i < userFollowlistArray.length; i++)
         if(term == userFollowlistArray[i])
-          duplicateTerms=i;
+        {
+          duplicateTerm = true;
+          duplicateTermIndex = i
+        }
 
-      if(duplicateTerms == 0)
+      if(!duplicateTerm)
         userFollowlistArray.push(term);
       else
-        userFollowlistArray.splice(duplicateTerms,1);
+        userFollowlistArray.splice(duplicateTermIndex,1);
 
       await API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, friends: userFollowlistArray}}));
 
@@ -83,27 +88,17 @@ export default class Following extends React.Component{
       var duplicateTerm = false;
       var duplicateTermIndex = 0;
 
-      console.log(otheruserFollowlistArray);
-      console.log(currentUser);
       for(var i = 0; i < otheruserFollowlistArray.length; i++)
         if(currentUser == otheruserFollowlistArray[i])
         {
           duplicateTerm = true
-          duplicateTermIndex=i;
+          duplicateTermIndex = i;
         }
-      console.log(duplicateTerm);
-      console.log(duplicateTermIndex);
 
       if(!duplicateTerm)
-      {
         otheruserFollowlistArray.push(currentUser);
-        console.log("i pushed" + currentUser);
-      }
       else
-      {
         otheruserFollowlistArray.splice(duplicateTermIndex,1);
-        console.log("i spliced" + currentUser);
-      }
 
       await API.graphql(graphqlOperation(updateUser, {input:{username: term, friends: otheruserFollowlistArray}}));
     }
