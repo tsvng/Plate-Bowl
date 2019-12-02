@@ -105,10 +105,16 @@ export default class Following extends React.Component{
       await API.graphql(graphqlOperation(updateUser, {input:{username: term, friends: otheruserFollowlistArray}}));
     }
 
-      getFollowingList();
-      EditFollowingButton.addEventListener('click', (evt) => {
-      editFollowinglist();
-      editOtherFollowerlist();
+    getFollowingList();
+    EditFollowingButton.addEventListener('click', (evt) => {
+      if(API.graphql(graphqlOperation(getUser, {username: document.getElementById("searchInput").value})))
+      {
+        editFollowinglist();
+        editOtherFollowerlist();
+      }
+      else
+        console.log("user does not exist");
+      
     });
 
   }
