@@ -117,15 +117,11 @@ export default class RecommendFood extends React.Component{
       var obj = {name: data.businesses[dataIndex].name, image_url: data.businesses[dataIndex].image_url, genre: data.businesses[dataIndex].categories[0].title};
       var term = JSON.stringify(obj);
       console.log(term);
-      var duplicateTerms = 0;
-      for(var i = 0; i < userFoodListArray.length; i++)
-        if(term == userFoodListArray[i]){
-          duplicateTerms=i;
+      for(var i = 0; i < userFoodListArray.length; i++){
+        if(term != userFoodListArray[i]){
+          userFoodListArray.push(term)
         }
-      if(duplicateTerms == 0)
-        userFoodListArray.push(term);
-      else
-        userFoodListArray.splice(duplicateTerms,1);
+      }
       API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, foodhistory: userFoodListArray}}));
     }
 
