@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import API, { graphqlOperation } from '@aws-amplify/api'
 import Amplify, { Auth, Hub } from 'aws-amplify';
 import PubSub from '@aws-amplify/pubsub';
-import { createUser, createTodo, updateUser } from './graphql/mutations'
-import { listUsers, listTodos, getUser } from './graphql/queries';
+import { createUser, updateUser } from './graphql/mutations'
+import { listUsers, getUser } from './graphql/queries';
 import Home from './Home.js';
 import NavBar from './NavBar.js';
 import Leaderboard from './Leaderboard.js';
@@ -81,11 +81,14 @@ export default class BucketList extends React.Component{
 
   render(){
     return <div id='main' className = "bucket">
-              <h1> Bucket List </h1>
-              <input type="text" id="searchInput" placeholder="Type a cuisine you'd like to add, or type a cuisine already in your list to delete it."/> 
-              <span className="addBtn" id='EditEventButton'>Edit List</span>
-              <br></br><br></br><br></br>
-                  <div id='QueryResult'></div>
+              
+                <h1> Bucket List </h1>
+                <input type="text" id="searchInput" placeholder="Type a cuisine you'd like to add, or type a cuisine already in your list to delete it."/> 
+                <span className="addBtn" id='EditEventButton'>Edit List</span>
+                <br></br><br></br><br></br>
+                <div className = "containerLeaderBoard">
+                    <div id='QueryResult'></div>
+                </div>
            </div>;
   }
 

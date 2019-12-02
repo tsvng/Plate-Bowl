@@ -30,7 +30,7 @@
                 "IdentityPoolName": "platebowl1b339ffc_identitypool_1b339ffc__awsenr",
                 "UserPoolName": "platebowl1b339ffc_userpool_1b339ffc"
             },
-            "lastPushTimeStamp": "2019-11-28T23:43:17.634Z",
+            "lastPushTimeStamp": "2019-12-02T12:34:50.847Z",
             "providerMetadata": {
                 "s3TemplateURL": "https://s3.amazonaws.com/amplify-plate-bowl-awsenr-01707-deployment/amplify-cfn-templates/auth/platebowl1b339ffc-cloudformation-template.yml",
                 "logicalId": "authplatebowl1b339ffc"
@@ -73,7 +73,7 @@
                 "name": "Plate&Bowl",
                 "region": "us-east-1"
             },
-            "lastPushTimeStamp": "2019-11-28T23:54:22.500Z"
+            "lastPushTimeStamp": "2019-12-02T12:35:29.040Z"
         }
     }
 }

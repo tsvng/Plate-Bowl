@@ -1,30 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTodo = `subscription OnCreateTodo($id: ID, $name: String, $description: String) {
-  onCreateTodo(id: $id, name: $name, description: $description) {
-    id
-    name
-    description
-  }
-}
-`;
-export const onUpdateTodo = `subscription OnUpdateTodo($id: ID, $name: String, $description: String) {
-  onUpdateTodo(id: $id, name: $name, description: $description) {
-    id
-    name
-    description
-  }
-}
-`;
-export const onDeleteTodo = `subscription OnDeleteTodo($id: ID, $name: String, $description: String) {
-  onDeleteTodo(id: $id, name: $name, description: $description) {
-    id
-    name
-    description
-  }
-}
-`;
 export const onCreateRestaurant = `subscription OnCreateRestaurant(
   $name: String
   $cuisine: String
@@ -189,7 +165,8 @@ export const onCreateUser = `subscription OnCreateUser(
     bucketlist
     disinsterested
     recommendations
-    friends
+    following
+    followers
   }
 }
 `;
@@ -213,7 +190,8 @@ export const onUpdateUser = `subscription OnUpdateUser(
     bucketlist
     disinsterested
     recommendations
-    friends
+    following
+    followers
   }
 }
 `;
@@ -237,7 +215,8 @@ export const onDeleteUser = `subscription OnDeleteUser(
     bucketlist
     disinsterested
     recommendations
-    friends
+    following
+    followers
   }
 }
 `;

@@ -1,29 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getTodo = `query GetTodo($id: ID!) {
-  getTodo(id: $id) {
-    id
-    name
-    description
-  }
-}
-`;
-export const listTodos = `query ListTodos(
-  $filter: TableTodoFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      name
-      description
-    }
-    nextToken
-  }
-}
-`;
 export const getRestaurant = `query GetRestaurant($name: String!) {
   getRestaurant(name: $name) {
     name
@@ -136,7 +113,8 @@ export const getUser = `query GetUser($username: String!) {
     bucketlist
     disinsterested
     recommendations
-    friends
+    following
+    followers
   }
 }
 `;
@@ -153,7 +131,8 @@ export const listUsers = `query ListUsers(
       bucketlist
       disinsterested
       recommendations
-      friends
+      following
+      followers
     }
     nextToken
   }
@@ -168,7 +147,8 @@ export const queryUsersByPointsIndex = `query QueryUsersByPointsIndex($points: I
       bucketlist
       disinsterested
       recommendations
-      friends
+      following
+      followers
     }
     nextToken
   }

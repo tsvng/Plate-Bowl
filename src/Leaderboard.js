@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import API, { graphqlOperation } from '@aws-amplify/api'
 import Amplify, { Auth, Hub } from 'aws-amplify';
 import PubSub from '@aws-amplify/pubsub';
-import { createUser, createTodo } from './graphql/mutations'
-import { listUsers, listTodos, getUser } from './graphql/queries';
+import { createUser } from './graphql/mutations'
+import { listUsers, getUser } from './graphql/queries';
 import Home from './Home.js';
 import NavBar from './NavBar.js';
 import BucketList from './BucketList.js';
@@ -58,29 +58,22 @@ export default class LeaderBoard extends React.Component {
 	  		})
       	}
 
-      //List own user's points at top by applying a filter to only query currentUser
+      //Push own user onto leaderboard array applying a filter to only query currentUser
       await API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
           leaderboardArray.push(user);
         });
       })
 
-      /*/List follow's points by applying a filter that only lists users who have currentUser in their friends list
-      await API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
-        evt.data.listUsers.items.map((user, i) => { 
-          leaderboardArray.push(user);
-        });
-      })*/
-
-      //test a new way to get Following Leaderboard
       //put every person currentUser is following into an array
       await API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
-        evt.data.getUser.friends.map((following,i) => {
+        evt.data.getUser.following.map((following,i) => {
           userFollowingListArray.push(following);
         });
       })
 
       console.log(userFollowingListArray);
+      //grab the data of every user being followed by currentUser and push onto leaderboard array
       await userFollowingListArray.forEach((followedUsername) => {
       	API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:followedUsername}}})).then((evt) => {
 	    		evt.data.listUsers.items.map((followedUser, i) => { 
@@ -90,7 +83,7 @@ export default class LeaderBoard extends React.Component {
       })
       		 
       
-      await sleep(1500);
+      await sleep(750);
       console.log(leaderboardArray);
 
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
