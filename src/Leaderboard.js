@@ -31,7 +31,7 @@ Amplify.configure({
 					
 export default class LeaderBoard extends React.Component {
 
-	async componentDidMount(){
+	componentDidMount(){
     const MutationButton = document.getElementById('MutationEventButton');
     const MutationResult = document.getElementById('MutationResult');
     var followLeadersActive = true;
@@ -91,7 +91,7 @@ export default class LeaderBoard extends React.Component {
       }
     }
 
-    const currentUser = (await Auth.currentAuthenticatedUser()).username;
+    const currentUser = (Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
 
     //This function displays the Following Leaderboard
@@ -106,7 +106,7 @@ export default class LeaderBoard extends React.Component {
           QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
-      await sleep(250);
+      //await sleep(250);
 
       //List friend's points by applying a filter that only lists users who have currentUser in their friends list
       API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
@@ -118,21 +118,7 @@ export default class LeaderBoard extends React.Component {
     }
 
     //This function displays the Global Leaderboard
-    
-
-    getFollowingLeaders();
-
-    //controls which leaderboard is displayed
-    MutationButton.addEventListener('click', (evt) => {
-      followLeadersActive = !followLeadersActive;
-      if(followLeadersActive)
-        getFollowingLeaders();
-      else
-        getGlobalLeaders();
-    });
-
-  }
-  getGlobalLeaders() {
+    async function getGlobalLeaders() {
       componentDidMount.MutationResult.innerHTML = `<h5>Global Leaderboard</h5>`;
       componentDidMount.QueryResult.innerHTML = ``;
       var leaderboardArray = [];
@@ -166,6 +152,19 @@ export default class LeaderBoard extends React.Component {
       })
       console.log(usercount);
     }
+
+    getFollowingLeaders();
+
+    //controls which leaderboard is displayed
+    MutationButton.addEventListener('click', (evt) => {
+      followLeadersActive = !followLeadersActive;
+      if(followLeadersActive)
+        getFollowingLeaders();
+      else
+        getGlobalLeaders();
+    });
+
+  }
 
 	 render() {
     return <div id='main' className = "leaderboard">
