@@ -63,7 +63,7 @@ export default class Following extends React.Component{
         });
       })
 
-      FollowingDisplay.innerHTML += `<p>Following:${followingCount}</p>`
+      FollowingDisplay.innerHTML += `<h3>Following:${followingCount}</h3>`
     }
 
     //getFollowerList
@@ -80,7 +80,7 @@ export default class Following extends React.Component{
         });
       })
 
-      FollowersDisplay.innerHTML+=`<h1>Followers:${followersCount}</h1>`
+      FollowersDisplay.innerHTML+=`<h3>Followers:${followersCount}</h3>`
     }
 
     async function getOtherUserFollowerList(otherUser) {
@@ -232,16 +232,16 @@ export default class Following extends React.Component{
                 <h1>Follow Page</h1>
                 <input type="text" id="searchInput" placeholder="Type a user you'd like to follow, or type a user already in your list to unfollow."/> 
                 <span className="addBtn" id='EditFollowingEventButton'>Add/Remove Follow</span>
+                <div id='FollowingDisplay'></div>
                 <div className = "containerLeaderBoard">
-                  <div id='FollowingDisplay'></div>
                   <div id='FollowingResult'></div>
                   
                 </div>
                 <br></br><br></br><br></br>
                 <input type="text" id="searchInput2" placeholder="Type a user you'd like to remove from following you."/> 
                 <span className="addBtn" id='DeleteFollowerEventButton'>Remove Follower</span>
+                <div id='FollowersDisplay'></div>
                 <div className = "containerLeaderBoard">
-                  <div id='FollowersDisplay'></div>
                   <div id='FollowerResult'></div>
                 </div>
            </div>;
