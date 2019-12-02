@@ -79,20 +79,31 @@ export default class Following extends React.Component{
 
     async function editOtherFollowerlist(){
       var term = document.getElementById("searchInput").value;
-      getOtherUserFollowerList(term);   
+      await getOtherUserFollowerList(term);   
       var duplicateTerm = false;
       var duplicateTermIndex = 0;
+
+      console.log(otheruserFollowlistArray);
+      console.log(currentUser);
       for(var i = 0; i < otheruserFollowlistArray.length; i++)
         if(currentUser == otheruserFollowlistArray[i])
         {
           duplicateTerm = true
           duplicateTermIndex=i;
         }
+      console.log(duplicateTerm);
+      console.log(duplicateTermIndex);
 
       if(!duplicateTerm)
+      {
         otheruserFollowlistArray.push(currentUser);
+        console.log("i pushed" + currentUser);
+      }
       else
+      {
         otheruserFollowlistArray.splice(duplicateTermIndex,1);
+        console.log("i spliced" + currentUser);
+      }
 
       await API.graphql(graphqlOperation(updateUser, {input:{username: term, friends: otheruserFollowlistArray}}));
     }
