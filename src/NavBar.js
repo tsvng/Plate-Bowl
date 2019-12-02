@@ -28,7 +28,7 @@ export default class NavBar extends React.Component{
 			document.getElementById("floating-button")&&
 			document.getElementById("main")
 			){
-	  		document.getElementById("mySidenav").style.height = "300px";
+	  		document.getElementById("mySidenav").style.height = "390px";
 	  		document.getElementById("mySidenav").style.visibility = "visible";
 	  		document.getElementById("floating-button").style.visibility = "hidden";
 		}
