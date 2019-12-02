@@ -36,6 +36,8 @@ export default class Following extends React.Component{
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const FollowingResult = document.getElementById('FollowingResult');
     const FollowerResult = document.getElementById('FollowerResult');
+    const FollowingDisplay = document.getElementById('FollowingDisplay');
+    const FollowersDisplay = document.getElementById('FollowersDisplay');
     var userFollowingListArray = [];
     var userFollowerListArray = [];
     var otherUserFollowerListArray= [];
@@ -57,11 +59,11 @@ export default class Following extends React.Component{
           FollowingResult.innerHTML += `<p>${followingUsername}</p>`
           userFollowingListArray.push(followingUsername);
           followingCount++;
+          
         });
       })
 
-      FollowingDisplay.HTML=`<h1>Following:${followingCount}</h1>`
-      console.log("getFollowingList ran");
+      FollowingDisplay.innerHTML += `<p>Following:${followingCount}</p>`
     }
 
     //getFollowerList
@@ -78,8 +80,7 @@ export default class Following extends React.Component{
         });
       })
 
-      FollowersDisplay.HTML=`<h1>Followers:${followersCount}</h1>`
-      console.log("getFollowerList ran");
+      FollowersDisplay.innerHTML+=`<h1>Followers:${followersCount}</h1>`
     }
 
     async function getOtherUserFollowerList(otherUser) {
@@ -228,17 +229,19 @@ export default class Following extends React.Component{
 
   render(){
     return <div id='main' className = "follow">
-                <div id= 'FollowingDisplay'></div>
-                <div id= 'FollowersDisplay'></div>
+                <h1>Follow Page</h1>
                 <input type="text" id="searchInput" placeholder="Type a user you'd like to follow, or type a user already in your list to unfollow."/> 
                 <span className="addBtn" id='EditFollowingEventButton'>Add/Remove Follow</span>
                 <div className = "containerLeaderBoard">
+                  <div id='FollowingDisplay'></div>
                   <div id='FollowingResult'></div>
+                  
                 </div>
                 <br></br><br></br><br></br>
                 <input type="text" id="searchInput2" placeholder="Type a user you'd like to remove from following you."/> 
                 <span className="addBtn" id='DeleteFollowerEventButton'>Remove Follower</span>
                 <div className = "containerLeaderBoard">
+                  <div id='FollowersDisplay'></div>
                   <div id='FollowerResult'></div>
                 </div>
            </div>;
