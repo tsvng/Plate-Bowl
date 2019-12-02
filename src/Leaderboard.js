@@ -130,7 +130,7 @@ export default class LeaderBoard extends React.Component {
           //QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
-      await sleep(1000);
+      await sleep(300);
 
       //List other user's points by applying a filter to only query users not equal to currentUser
       API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
@@ -139,9 +139,11 @@ export default class LeaderBoard extends React.Component {
           //QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
-      await sleep(1000);
+      await sleep(300);
 
-      leaderboardArray.sort(function(a, b){return b.points - a.points})
+      leaderboardArray.sort(function(a, b){return b.points - a.points});
+      console.log(leaderboardArray);
+      await sleep(300);
       leaderboardArray.map((user, i) => {
         QueryResult.innerHTML=`<p>${user.username} - ${user.points}</p>`
       })
