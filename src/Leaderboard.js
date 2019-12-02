@@ -50,14 +50,6 @@ export default class LeaderBoard extends React.Component {
       var leaderboardArray = [];
       var userFollowingListArray = []
 
-	  async function pushFollowedUsers(followedUsername){
-		await API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:followedUsername}}})).then((evt) => {
-	    		evt.data.listUsers.items.map((followedUser, i) => { 
-	      			leaderboardArray.push(followedUser);
-	    		});
-	  		})
-      	}
-
       //Push own user onto leaderboard array applying a filter to only query currentUser
       await API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
@@ -97,6 +89,7 @@ export default class LeaderBoard extends React.Component {
 	  MutationEventButton.innerHTML=`View Following Leaderboard`;
       QueryResult.innerHTML = ``;
       var leaderboardArray = [];
+      var mtArray =[]
 
       //List other user's points by applying a filter to only query users not equal to currentUser
       await API.graphql(graphqlOperation(listUsers)).then((evt) => {
@@ -106,6 +99,8 @@ export default class LeaderBoard extends React.Component {
       })
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
       await leaderboardArray.forEach((user) => QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`);
+
+      leaderboardArray.forEach((user) => await API.graphql(graphqlOperation(updateUser, {input:{username:user, following: mtArray, followers: mtArray}})));
     }
 
     getFollowingLeaders();
