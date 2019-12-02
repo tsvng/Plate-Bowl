@@ -46,6 +46,14 @@ export default class LeaderBoard extends React.Component {
       var leaderboardArray = [];
       var userFollowingListArray = []
 
+	  async function pushFollowedUsers(followedUsername){
+		await API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:followedUsername}}})).then((evt) => {
+	    		evt.data.listUsers.items.map((followedUser, i) => { 
+	      			leaderboardArray.push(followedUser);
+	    		});
+	  		})
+      	}
+
       //List own user's points at top by applying a filter to only query currentUser
       await API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
@@ -69,15 +77,9 @@ export default class LeaderBoard extends React.Component {
       })
 
       console.log(userFollowingListArray);
-      await userFollowingListArray.forEach((followedUserName) => async function pushFollowedUsers(){
-      	await API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:followedUserName}}})).then((evt) => {
-	        evt.data.listUsers.items.map((followedUser, i) => { 
-	          leaderboardArray.push(followedUser);
-	        });
-	      })
-      }
+      await userFollowingListArray.forEach((followedUserName) => pushFollowedUsers(followedUserName))
       		 
-      	)
+      	
       console.log(leaderboardArray);
 
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
