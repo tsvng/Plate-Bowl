@@ -40,7 +40,7 @@ export default class Following extends React.Component{
     //This function displays the user's follow list
     async function getFollowerList() {
       QueryResult.innerHTML = `<p></p>`;
-      userFollowlistArray = []; //wipe array of old page data
+      await userFollowlistArray = []; //wipe array of old page data
       //List own user's follow list by using getUser
       await API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         evt.data.getUser.friends.map((follower,i) => {
@@ -51,7 +51,7 @@ export default class Following extends React.Component{
     }
 
     async function getOtherUserFollowerList(otherUser) {
-      otheruserFollowlistArray = []; //wipe array of old page data
+      await otheruserFollowlistArray = []; //wipe array of old page data
       await API.graphql(graphqlOperation(getUser, {username: otherUser})).then((evt) => {
         evt.data.getUser.friends.map((follower,i) => {
           otheruserFollowlistArray.push(follower);
@@ -79,9 +79,11 @@ export default class Following extends React.Component{
 
     async function editOtherFollowerlist(){
       var term = document.getElementById("searchInput").value;
+      var duplicateTerms = 0;
       console.log(otheruserFollowlistArray);
       console.log(currentUser);
-      var duplicateTerms = 0;
+     
+      console.log(otheruserFollowlistArray.length);
       for(var i = 0; i < otheruserFollowlistArray.length; i++)
         if(currentUser == otheruserFollowlistArray[i])
           duplicateTerms=i;
