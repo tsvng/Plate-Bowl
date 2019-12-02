@@ -125,15 +125,6 @@ export default class LeaderBoard extends React.Component {
       var leaderboardArray = [];
       var usercount = 0;
 
-      //List own user's points at top by applying a filter to only query currentUser
-      /*await API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
-        evt.data.listUsers.items.map((user, i) => {
-          leaderboardArray.push(user);
-          QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
-        });
-      })*/
-      //await sleep(2000);
-
       //List other user's points by applying a filter to only query users not equal to currentUser
       await API.graphql(graphqlOperation(listUsers)).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
@@ -142,9 +133,8 @@ export default class LeaderBoard extends React.Component {
           QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
-      //await sleep(2000);
-     /* await console.log(leaderboardArray);
-      await leaderboardArray.sort(function(a, b){return b.points - a.points});
+     console.log(leaderboardArray[1]);
+      /*await leaderboardArray.sort(function(a, b){return b.points - a.points});
       await console.log(leaderboardArray);
       //await sleep(2000);
       await leaderboardArray.forEach((user, i) => {
