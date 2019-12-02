@@ -44,6 +44,7 @@ export default class LeaderBoard extends React.Component {
       MutationEventButton.innerHTML=`View Global Leaderboard`;
       QueryResult.innerHTML = ``;
       var leaderboardArray = [];
+      var userFollowingListArray = []
 
       //List own user's points at top by applying a filter to only query currentUser
       await API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
@@ -52,12 +53,29 @@ export default class LeaderBoard extends React.Component {
         });
       })
 
-      //List follow's points by applying a filter that only lists users who have currentUser in their friends list
+      /*/List follow's points by applying a filter that only lists users who have currentUser in their friends list
       await API.graphql(graphqlOperation(listUsers, {filter:{friends:{contains:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => { 
           leaderboardArray.push(user);
         });
+      })*/
+
+      //test a new way to get Following Leaderboard
+      //put every person currentUser is following into an array
+      await API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
+        evt.data.getUser.friends.map((following,i) => {
+          userFollowingListArray.push(following);
+        });
       })
+
+      await userFollowingListArray.forEach((followedUser) => 
+      		API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:followedUser}}})).then((evt) => {
+	        evt.data.listUsers.items.map((followedUser, i) => { 
+	          leaderboardArray.push(followedUser);
+	        });
+	      })
+      	)
+
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
       leaderboardArray.forEach((user) => QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`);
     }
