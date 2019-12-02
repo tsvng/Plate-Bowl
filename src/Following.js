@@ -68,7 +68,7 @@ export default class Following extends React.Component{
       var term = document.getElementById("searchInput").value;
       var duplicateTerms = 0;
       for(var i = 0; i < userFollowlistArray.length; i++)
-        if(currentUser == userFollowlistArray[i])
+        if(term == userFollowlistArray[i])
           duplicateTerms=i;
 
       if(duplicateTerms == 0)
@@ -88,7 +88,7 @@ export default class Following extends React.Component{
       getOtherUserFollowerList(term);   
       var duplicateTerms = 0;
       for(var i = 0; i < otheruserFollowlistArray.length; i++)
-        if(term == otheruserFollowlistArray[i])
+        if(currentUser == otheruserFollowlistArray[i])
           duplicateTerms=i;
 
       if(duplicateTerms == 0)
