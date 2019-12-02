@@ -37,6 +37,15 @@ h2 {font-family: "system-ui", cursive; font-size: 15px; font-style: normal; widt
   width: 60%;
 }
 
+.containerfollowing {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 20px;
+  margin-left: 400px;
+  width: 60%;
+}
+
 .buttonContainer {
   height: 65%;
   width: 55%;

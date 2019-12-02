@@ -234,7 +234,7 @@ export default class Following extends React.Component{
                 <span className="addBtn" id='EditFollowingEventButton'>Add/Remove Follow</span>
                 <br></br><br></br><br></br>
                 <div id='FollowingDisplay'></div>
-                <div className = "containerLeaderBoard">
+                <div className = "containerfollowing">
                   <div id='FollowingResult'></div>
                   
                 </div>
@@ -243,7 +243,7 @@ export default class Following extends React.Component{
                 <span className="addBtn" id='DeleteFollowerEventButton'>Remove Follower</span>
                 <br></br><br></br><br></br>
                 <div id='FollowersDisplay'></div>
-                <div className = "containerLeaderBoard">
+                <div className = "containerfollowing">
                   <div id='FollowerResult'></div>
                 </div>
            </div>;
