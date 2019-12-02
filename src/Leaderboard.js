@@ -143,7 +143,7 @@ export default class LeaderBoard extends React.Component {
         });
       })
       //await sleep(2000);
-      await console.log(leaderboardArray);
+     /* await console.log(leaderboardArray);
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
       await console.log(leaderboardArray);
       //await sleep(2000);
@@ -151,7 +151,7 @@ export default class LeaderBoard extends React.Component {
         usercount++;
         QueryResult.innerHTML=`<p>${user.username} - ${user.points}</p>`
       })
-      console.log(usercount);
+      console.log(usercount);*/
     }
 
     getFollowingLeaders();
