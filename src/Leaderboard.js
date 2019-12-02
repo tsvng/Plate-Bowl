@@ -68,13 +68,15 @@ export default class LeaderBoard extends React.Component {
         });
       })
 
-      await userFollowingListArray.forEach((followedUser) => 
-      		API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:followedUser.username}}})).then((evt) => {
+      console.log(userFollowingListArray);
+      await userFollowingListArray.forEach((followedUserName) => 
+      		API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:followedUserName}}})).then((evt) => {
 	        evt.data.listUsers.items.map((followedUser, i) => { 
 	          leaderboardArray.push(followedUser);
 	        });
 	      })
       	)
+      console.log(leaderboardArray);
 
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
       leaderboardArray.forEach((user) => QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`);
