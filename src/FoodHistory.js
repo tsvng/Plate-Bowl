@@ -10,6 +10,7 @@ import Leaderboard from './Leaderboard.js';
 
 import awsconfig from './aws-exports';
 import { selectInput } from '@aws-amplify/ui';
+import { strict } from 'assert';
 API.configure(awsconfig);
 PubSub.configure(awsconfig);
 
@@ -40,6 +41,20 @@ export default class FoodHistory extends React.Component{
       return new Promise(resolve => setTimeout(resolve, ms));
     }
 
+    function deleteFromHistory(){
+      var ID = this.id;
+      var element =document.getElementById("hist".concat("-",ID));
+      var img_url = element.getElementsByTagName("img")[0].src;
+      for(let j = 0;j<userFoodListArray.length;j++){
+        if(userFoodListArray[j].indexOf(img_url)!= -1){
+          userFoodListArray.splice(j,1);
+          j--;
+        }
+      }
+      element.parentNode.removeChild(element);
+      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, foodhistory: userFoodListArray}}));
+    }
+
     function getFoodList() {
       console.log("getting food list in food history")
       userFoodListArray = []; //wipe array of old page data
@@ -63,12 +78,18 @@ export default class FoodHistory extends React.Component{
       var genre = restaurant['genre'];
       var wrap = document.createElement("div");
       wrap.className = "wrapper";
+      wrap.id = "hist".concat("-",i.toString());
       var textDiv = document.createElement("div");
       textDiv.className = "text";
       textDiv.textContent = name;
       var imgDiv = document.createElement("IMG");
       imgDiv.className = "tile";
       imgDiv.setAttribute('src',pic);
+      var closeBtn = document.createElement("a");
+      closeBtn.textContent = "x";
+      closeBtn.id = i.toString();
+      closeBtn.addEventListener('click',deleteFromHistory);
+      textDiv.appendChild(closeBtn);
       wrap.appendChild(textDiv);
       wrap.appendChild(imgDiv);
       document.getElementById('FoodHistoryDisplay').appendChild(wrap);
