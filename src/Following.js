@@ -49,27 +49,37 @@ export default class Following extends React.Component{
     //This function displays the user's following list
     async function getFollowingList() {
       FollowingResult.innerHTML = `<p></p>`;
+      var followingCount = 0;
       userFollowingListArray = []; //wipe array of old page data
       //List own user's follow list by using getUser
       await API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         evt.data.getUser.following.map((followingUsername,i) => {
           FollowingResult.innerHTML += `<p>${followingUsername}</p>`
           userFollowingListArray.push(followingUsername);
+          followingCount++;
         });
       })
+
+      FollowingDisplay.HTML=`<h1>Following:${followingCount}</h1>`
+      console.log("getFollowingList ran");
     }
 
     //getFollowerList
     async function getFollowerList() {
       FollowerResult.innerHTML = `<p></p>`;
+      var followersCount = 0;
       userFollowerListArray = []; //wipe array of old page data
       //List own user's follow list by using getUser
       await API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         evt.data.getUser.followers.map((followerUsername,i) => {
           FollowerResult.innerHTML += `<p>${followerUsername}</p>`
           userFollowerListArray.push(followerUsername);
+          followersCount++;
         });
       })
+
+      FollowersDisplay.HTML=`<h1>Followers:${followersCount}</h1>`
+      console.log("getFollowerList ran");
     }
 
     async function getOtherUserFollowerList(otherUser) {
@@ -218,8 +228,8 @@ export default class Following extends React.Component{
 
   render(){
     return <div id='main' className = "follow">
-              
-                <h1>Follow</h1>
+                <div id= 'FollowingDisplay'></div>
+                <div id= 'FollowersDisplay'></div>
                 <input type="text" id="searchInput" placeholder="Type a user you'd like to follow, or type a user already in your list to unfollow."/> 
                 <span className="addBtn" id='EditFollowingEventButton'>Add/Remove Follow</span>
                 <div className = "containerLeaderBoard">

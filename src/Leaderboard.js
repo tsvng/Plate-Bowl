@@ -80,13 +80,13 @@ export default class LeaderBoard extends React.Component {
 
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
       console.log(leaderboardArray);
-      await leaderboardArray.forEach((user) => QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`);
+      await leaderboardArray.forEach((user) => QueryResult.innerHTML += `<li>${user.username} - ${user.points}</li>`);
     }
 
     //This function displays the Global Leaderboard
     async function getGlobalLeaders() {
       MutationResult.innerHTML = `<h5>Global Leaderboard</h5>`;
-	  MutationEventButton.innerHTML=`View Following Leaderboard`;
+	    MutationEventButton.innerHTML=`View Following Leaderboard`;
       QueryResult.innerHTML = ``;
       var leaderboardArray = [];
       var mtArray =[]
@@ -98,7 +98,7 @@ export default class LeaderBoard extends React.Component {
         });
       })
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
-      await leaderboardArray.forEach((user) => QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`);
+      await leaderboardArray.forEach((user) => QueryResult.innerHTML += `<li>${user.username} - ${user.points}</li>`);
     }
 
     getFollowingLeaders();
@@ -119,7 +119,7 @@ export default class LeaderBoard extends React.Component {
 		      	<div className = "containerLeaderBoard">
 		          <button id='MutationEventButton'></button>
 		          <div id='MutationResult'></div>
-		          <div id='QueryResult'></div>
+		          <ol id='QueryResult'></ol>
 		        </div>
           	</div>
 
