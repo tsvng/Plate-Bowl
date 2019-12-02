@@ -68,7 +68,7 @@ export default class Following extends React.Component{
       var term = document.getElementById("searchInput").value;
       var duplicateTerms = 0;
       for(var i = 0; i < userFollowlistArray.length; i++)
-        if(term == userFollowlistArray[i])
+        if(currentUser == userFollowlistArray[i])
           duplicateTerms=i;
 
       if(duplicateTerms == 0)
