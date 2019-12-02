@@ -30,7 +30,7 @@ Amplify.configure({
   });
 export default class Following extends React.Component{
   async componentDidMount(){
-    const EditFollowerButton = document.getElementById('EditEventButton');
+    const EditFollowingButton = document.getElementById('EditFollowingEventButton');
 
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
@@ -64,6 +64,8 @@ export default class Following extends React.Component{
       var term = document.getElementById("searchInput").value;
       var duplicateTerm = false;
       var duplicateTermIndex = 0;
+
+
 
       for(var i = 0; i < userFollowlistArray.length; i++)
         if(term == userFollowlistArray[i])
@@ -104,7 +106,7 @@ export default class Following extends React.Component{
     }
 
       getFollowingList();
-      EditFollowerButton.addEventListener('click', (evt) => {
+      EditFollowingButton.addEventListener('click', (evt) => {
       editFollowinglist();
       editOtherFollowerlist();
     });
@@ -117,7 +119,7 @@ export default class Following extends React.Component{
     return <div id='main' className = "follow">
               <h1> Follow List </h1>
               <input type="text" id="searchInput" placeholder="Type a user you'd like to follow, or type a user already in your list to unfollow."/> 
-              <span className="addBtn" id='EditEventButton'>Add/Remove Follow</span>
+              <span className="addBtn" id='EditFollowingEventButton'>Add/Remove Follow</span>
               <br></br><br></br><br></br>
               <div id='QueryResult'></div>
            </div>;
