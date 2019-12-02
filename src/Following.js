@@ -158,7 +158,9 @@ export default class Following extends React.Component{
         var duplicateTermIndex = 0;
         await sleep(1000);
 
-        console.log(otherUserFollowingListArray);
+        console.log(otherUserFollowerListArray);
+        console.log(otherUserFollowerListArray[0]);
+        console.log(currentUser);
 
         for(var i = 0; i < otherUserFollowingListArray.length; i++)
           if(currentUser == otherUserFollowingListArray[i])
@@ -166,6 +168,7 @@ export default class Following extends React.Component{
             duplicateTerm = true
             duplicateTermIndex = i;
           }
+        console.log(duplicateTerm);
 
 
         if(duplicateTerm)
