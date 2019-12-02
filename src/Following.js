@@ -66,20 +66,25 @@ export default class Following extends React.Component{
       var duplicateTermIndex = 0;
 
 
-
-      for(var i = 0; i < userFollowlistArray.length; i++)
+      if(await API.graphql(graphqlOperation(getUser, {username: term})))
+      {
+        for(var i = 0; i < userFollowlistArray.length; i++)
         if(term == userFollowlistArray[i])
         {
           duplicateTerm = true;
           duplicateTermIndex = i
         }
 
-      if(!duplicateTerm)
-        userFollowlistArray.push(term);
-      else
-        userFollowlistArray.splice(duplicateTermIndex,1);
+        if(!duplicateTerm)
+          userFollowlistArray.push(term);
+        else
+          userFollowlistArray.splice(duplicateTermIndex,1);
 
-      await API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, friends: userFollowlistArray}}));
+        await API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, friends: userFollowlistArray}}));
+      }
+      else
+        console.log("user does not exist");
+      
 
       getFollowingList();
     }
@@ -107,14 +112,8 @@ export default class Following extends React.Component{
 
     getFollowingList();
     EditFollowingButton.addEventListener('click', (evt) => {
-      if(API.graphql(graphqlOperation(getUser, {username: document.getElementById("searchInput").value})))
-      {
         editFollowinglist();
         editOtherFollowerlist();
-      }
-      else
-        console.log("user does not exist");
-      
     });
 
   }
