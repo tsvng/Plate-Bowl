@@ -98,7 +98,7 @@ export default class Following extends React.Component{
         otheruserFollowlistArray.splice(duplicateTerms,1);
 
       await sleep(250);
-      API.graphql(graphqlOperation(updateUser, {input:{username: term, friends: otheruserFollowlistArray}}));
+      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, friends: otheruserFollowlistArray}}));
     }
 
       getFollowerList();
