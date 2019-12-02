@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import API, { graphqlOperation } from '@aws-amplify/api'
 import Amplify, { Auth, Hub } from 'aws-amplify';
 import PubSub from '@aws-amplify/pubsub';
-import { createUser, createTodo } from './graphql/mutations'
-import { listUsers, listTodos, getUser } from './graphql/queries';
+import { createUser } from './graphql/mutations'
+import { listUsers, getUser } from './graphql/queries';
 import Home from './Home.js';
 import NavBar from './NavBar.js';
 import BucketList from './BucketList.js';
@@ -67,7 +67,7 @@ export default class LeaderBoard extends React.Component {
 
       //put every person currentUser is following into an array
       await API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
-        evt.data.getUser.friends.map((following,i) => {
+        evt.data.getUser.following.map((following,i) => {
           userFollowingListArray.push(following);
         });
       })

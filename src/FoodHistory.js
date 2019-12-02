@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import API, { graphqlOperation } from '@aws-amplify/api'
 import Amplify, { Auth, Hub } from 'aws-amplify';
 import PubSub from '@aws-amplify/pubsub';
-import { createUser, createTodo, updateUser } from './graphql/mutations'
-import { listUsers, listTodos, getUser } from './graphql/queries';
+import { createUser, updateUser } from './graphql/mutations'
+import { listUsers, getUser } from './graphql/queries';
 import Home from './Home.js';
 import NavBar from './NavBar.js';
 import Leaderboard from './Leaderboard.js';
