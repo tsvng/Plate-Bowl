@@ -156,7 +156,7 @@ export default class Following extends React.Component{
         await getOtherUserFollowingList(term);   
         var duplicateTerm = false;
         var duplicateTermIndex = 0;
-        await sleep(1000);
+        await sleep(3000);
 
         console.log(otherUserFollowerListArray);
         console.log(otherUserFollowerListArray[0]);
@@ -171,8 +171,10 @@ export default class Following extends React.Component{
         console.log(duplicateTerm);
 
 
-        if(duplicateTerm)
+        if(duplicateTerm){
           otherUserFollowingListArray.splice(duplicateTermIndex,1);
+          console.log(currentUser + " was spliced from " + term "'s following list")
+        }
 
         await API.graphql(graphqlOperation(updateUser, {input:{username: term, followers: otherUserFollowingListArray}}));
       }
@@ -187,7 +189,7 @@ export default class Following extends React.Component{
           await getOtherUserFollowerList(term);   
           var duplicateTerm = false;
           var duplicateTermIndex = 0;
-          await sleep(1000);
+          await sleep(3000);
 
           for(var i = 0; i < otherUserFollowerListArray.length; i++)
             if(currentUser == otherUserFollowerListArray[i])
