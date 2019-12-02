@@ -123,31 +123,15 @@ export default class LeaderBoard extends React.Component {
       MutationResult.innerHTML = `<h5>Global Leaderboard</h5>`;
       QueryResult.innerHTML = ``;
       var leaderboardArray = [];
-      var usercount = 0;
 
       //List other user's points by applying a filter to only query users not equal to currentUser
       await API.graphql(graphqlOperation(listUsers)).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
           leaderboardArray.push(user);
-          //QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
-
-     console.log(leaderboardArray);
-     console.log(leaderboardArray[1]);
-      /*await leaderboardArray.sort(function(a, b){return b.points - a.points});
-      await console.log(leaderboardArray);
-      //await sleep(2000);
-      await leaderboardArray.forEach((user, i) => {
-        usercount++;
-        QueryResult.innerHTML=`<p>${user.username} - ${user.points}</p>`
-      })
-      console.log(usercount);*/
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
-      console.log("sorted");
-      console.log(leaderboardArray);
-      console.log(leaderboardArray[1]);
-      await sleep(2000);
+      ///await sleep(2000);
       leaderboardArray.forEach((user) => QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`);
     }
 
