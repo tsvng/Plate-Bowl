@@ -138,7 +138,7 @@ export default class LeaderBoard extends React.Component {
       await API.graphql(graphqlOperation(listUsers)).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
           leaderboardArray.push(user);
-          leaderboardArray.sort(function(a, b){return b.points - a.points});
+          //leaderboardArray.sort(function(a, b){return b.points - a.points});
           QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
