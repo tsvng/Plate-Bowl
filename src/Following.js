@@ -89,7 +89,7 @@ export default class Following extends React.Component{
           duplicateTermIndex=i;
         }
 
-      if(duplicateTerm)
+      if(!duplicateTerm)
         otheruserFollowlistArray.push(currentUser);
       else
         otheruserFollowlistArray.splice(duplicateTermIndex,1);
