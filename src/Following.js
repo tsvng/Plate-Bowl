@@ -173,7 +173,7 @@ export default class Following extends React.Component{
 
         if(duplicateTerm){
           otherUserFollowingListArray.splice(duplicateTermIndex,1);
-          console.log(currentUser + " was spliced from " + term "'s following list")
+          console.log(currentUser + " was spliced from following list");
         }
 
         await API.graphql(graphqlOperation(updateUser, {input:{username: term, followers: otherUserFollowingListArray}}));
