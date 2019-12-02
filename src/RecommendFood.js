@@ -223,7 +223,6 @@ export default class RecommendFood extends React.Component{
                             <div className="wrapper"><div className="text" id = "r4name"></div><img id = "rec4" className = "tile"></img></div>
                         </div>
                         <div id = "CuisineSearch">
-                        <h1 style = {h1Style}>Cuisine Search</h1>
                         <input type="text" id="searchInput" placeholder="Search..."/> 
                         <span onClick={() => this.searchFood()} className="addBtn">Search</span>
                         <div id = "searchResults"></div> 
