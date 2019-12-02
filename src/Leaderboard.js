@@ -129,8 +129,7 @@ export default class LeaderBoard extends React.Component {
       await API.graphql(graphqlOperation(listUsers)).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
           leaderboardArray.push(user);
-         
-          QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
+          //QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
 
@@ -148,6 +147,8 @@ export default class LeaderBoard extends React.Component {
       console.log("sorted");
       console.log(leaderboardArray);
       console.log(leaderboardArray[1]);
+      await sleep(2000);
+      leaderboardArray.forEach((user) => QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`);
     }
 
     getFollowingLeaders();
