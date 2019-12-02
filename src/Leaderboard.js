@@ -87,7 +87,7 @@ export default class LeaderBoard extends React.Component {
 	      			leaderboardArray.push(followedUser);
 	    		});
 	  		})
-      }
+      })
       		 
       
       await sleep(1500);
