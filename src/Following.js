@@ -110,7 +110,7 @@ export default class Following extends React.Component{
       <h1> Follow List </h1>
       <input type="text" id="searchInput" placeholder="Type a user you'd like to follow, or type a user already in your list to unfollow."/> 
       <span className="addBtn" id='EditEventButton'>Add/Remove Follow</span>
-      <br>/<br><br>/<br><br>/<br>
+      <br></br><br></br><br></br>
           <div id='QueryResult'></div>
     </ div>;
   }
