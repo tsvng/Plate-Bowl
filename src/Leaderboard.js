@@ -30,7 +30,7 @@ Amplify.configure({
   });
 					
 export default class LeaderBoard extends React.Component {
-  
+
 	async componentDidMount(){
     const MutationButton = document.getElementById('MutationEventButton');
     const MutationResult = document.getElementById('MutationResult');
@@ -118,40 +118,7 @@ export default class LeaderBoard extends React.Component {
     }
 
     //This function displays the Global Leaderboard
-    async function getGlobalLeaders() {
-      MutationResult.innerHTML = `<h5>Global Leaderboard</h5>`;
-      QueryResult.innerHTML = ``;
-      var leaderboardArray = [];
-      var followingArray = []
-      var usercount = 0;
-
-      //List own user's points at top by applying a filter to only query currentUser
-      API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
-        evt.data.listUsers.items.map((user, i) => {
-          leaderboardArray.push(user);
-          //QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
-        });
-      })
-      await sleep(2000);
-
-      //List other user's points by applying a filter to only query users not equal to currentUser
-      API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
-        evt.data.listUsers.items.map((user, i) => {
-          leaderboardArray.push(user);
-          //QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
-        });
-      })
-      await sleep(2000);
-
-      leaderboardArray.sort(function(a, b){return b.points - a.points});
-      console.log(leaderboardArray);
-      await sleep(2000);
-      leaderboardArray.map((user, i) => {
-        usercount++;
-        QueryResult.innerHTML=`<p>${user.username} - ${user.points}</p>`
-      })
-      console.log(usercount);
-    }
+    
 
     getFollowingLeaders();
 
@@ -165,6 +132,40 @@ export default class LeaderBoard extends React.Component {
     });
 
   }
+  getGlobalLeaders() {
+      componentDidMount.MutationResult.innerHTML = `<h5>Global Leaderboard</h5>`;
+      componentDidMount.QueryResult.innerHTML = ``;
+      var leaderboardArray = [];
+      var followingArray = []
+      var usercount = 0;
+
+      //List own user's points at top by applying a filter to only query currentUser
+      API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
+        evt.data.listUsers.items.map((user, i) => {
+          leaderboardArray.push(user);
+          //QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
+        });
+      })
+      //await sleep(2000);
+
+      //List other user's points by applying a filter to only query users not equal to currentUser
+      API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
+        evt.data.listUsers.items.map((user, i) => {
+          leaderboardArray.push(user);
+          //QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
+        });
+      })
+      //await sleep(2000);
+
+      leaderboardArray.sort(function(a, b){return b.points - a.points});
+      console.log(leaderboardArray);
+      //await sleep(2000);
+      leaderboardArray.map((user, i) => {
+        usercount++;
+        QueryResult.innerHTML=`<p>${user.username} - ${user.points}</p>`
+      })
+      console.log(usercount);
+    }
 
 	 render() {
     return <div id='main' className = "leaderboard">
