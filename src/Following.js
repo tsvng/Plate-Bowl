@@ -31,28 +31,40 @@ Amplify.configure({
 export default class Following extends React.Component{
   async componentDidMount(){
     const EditFollowingButton = document.getElementById('EditFollowingEventButton');
+    const DeleteFollowerButton = document.getElementById('DeleteFollowerEventButton');
 
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
-    const QueryResult = document.getElementById('QueryResult');
+    const FollowingResult = document.getElementById('FollowingResult');
+    const FollowerResult = document.getElementById('FollowerResult');
     var userFollowingListArray = [];
-    //var userFollowerListArray = [];
+    var userFollowerListArray = [];
     var otherUserFollowerListArray= [];
 
     //This function displays the user's following list
     async function getFollowingList() {
-      QueryResult.innerHTML = `<p></p>`;
+      FollowingResult.innerHTML = `<p></p>`;
       userFollowingListArray = []; //wipe array of old page data
       //List own user's follow list by using getUser
       await API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
         evt.data.getUser.following.map((followingUsername,i) => {
-          QueryResult.innerHTML += `<p>${followingUsername}</p>`
+          FollowingResult.innerHTML += `<p>${followingUsername}</p>`
           userFollowingListArray.push(followingUsername);
         });
       })
     }
 
     //getFollowerList
-    //editFollowerList
+    async function getFollowerList() {
+      FollowerResult.innerHTML = `<p></p>`;
+      userFollowerListArray = []; //wipe array of old page data
+      //List own user's follow list by using getUser
+      await API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
+        evt.data.getUser.followers.map((followerUsername,i) => {
+          FollowerResult.innerHTML += `<p>${followerUsername}</p>`
+          userFollowingListArray.push(followerUsername);
+        });
+      })
+    }
 
     async function getOtherUserFollowerList(otherUser) {
       otherUserFollowerListArray = []; //wipe array of old page data
@@ -93,6 +105,35 @@ export default class Following extends React.Component{
       
 
       getFollowingList();
+    }
+
+    async function deleteFollowerList(){
+      var term = document.getElementById("searchInput").value;
+      var duplicateTerm = false;
+      var duplicateTermIndex = 0;
+
+      console.log(API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser));
+      //ensure username exists
+      if(await API.graphql(graphqlOperation(getUser, {username: term})).then((evt) =>evt.data.getUser) != null)
+      {
+        for(var i = 0; i < userFollowerListArray.length; i++)
+        if(term == userFollowerListArray[i])
+        {
+          duplicateTerm = true;
+          duplicateTermIndex = i
+        }
+
+        if(duplicateTerm)
+          userFollowerListArray.splice(duplicateTermIndex,1);
+          
+
+        await API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, followers: userFollowerListArray}}));
+      }
+      else
+        console.log("user does not exist");
+      
+
+      getFollowerList();
     }
 
     async function editOtherFollowerList(){
@@ -137,7 +178,12 @@ export default class Following extends React.Component{
                 <span className="addBtn" id='EditFollowingEventButton'>Add/Remove Follow</span>
                 <br></br><br></br><br></br>
                 <div className = "containerLeaderBoard">
-                  <div id='QueryResult'></div>
+                  <div id='FollowingResult'></div>
+                </div>
+                <input type="text" id="searchInput" placeholder="Type a user you'd like to remove from following you."/> 
+                <span className="addBtn" id='DeleteFollowerEventButton'>Remove Follower</span>
+                <div className = "containerLeaderBoard">
+                  <div id='FollowerResult'></div>
                 </div>
            </div>;
           }
