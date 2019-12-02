@@ -127,7 +127,7 @@ export default class LeaderBoard extends React.Component {
       API.graphql(graphqlOperation(listUsers, {filter:{username:{eq:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
           leaderboardArray.push(user);
-          QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
+          //QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
       await sleep(1000);
@@ -136,14 +136,15 @@ export default class LeaderBoard extends React.Component {
       API.graphql(graphqlOperation(listUsers, {filter:{username:{ne:currentUser}}})).then((evt) => {
         evt.data.listUsers.items.map((user, i) => {
           leaderboardArray.push(user);
-          QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
+          //QueryResult.innerHTML += `<p>${user.username} - ${user.points}</p>`
         });
       })
       await sleep(1000);
 
-      console.log(leaderboardArray); //console returns the array
-      console.log(leaderboardArray[1]); //console returns undefined???
-      console.log(leaderboardArray.sort(function(a, b){return b.points - a.points})); //doesn't work, returns unsorted
+      leaderboardArray.sort(function(a, b){return b.points - a.points})
+      leaderboardArray.forall((user, i) => {
+        QueryResult.innerHTML=`<p>${user.username} - ${user.points}</p>`
+      })
     }
 
     getFollowingLeaders();
