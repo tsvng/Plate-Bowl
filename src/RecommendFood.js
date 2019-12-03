@@ -175,7 +175,7 @@ export default class RecommendFood extends React.Component{
         obj['points'] = basePoints;
         userBucketListArray.push(JSON.stringify(obj));
       }
-      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketList: userBucketListArray}}));
+      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: userBucketListArray}}));
     }
 
     const myNode = document.getElementById("searchResults");
