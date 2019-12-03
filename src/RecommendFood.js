@@ -92,6 +92,7 @@ export default class RecommendFood extends React.Component{
   async searchFood(){
     var data = null;
     var userFoodListArray = [];
+    var userBucketListArray= [];
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     var userPoints = 0;
     function sleep(ms) {
@@ -140,11 +141,41 @@ export default class RecommendFood extends React.Component{
       API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, foodhistory: userFoodListArray, points: userPoints}}));
     }
 
+    function getBucketList() {
+      userBucketListArray = []; //wipe array of old page data
+      //List own user's bucketlist by using getUser
+        API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
+        if(evt.data.getUser.bucketlist!=null){
+        evt.data.getUser.bucketlist.map((Food,i) => {
+          userBucketListArray.push(Food);
+        });}
+      })
+      return 1;
+    }
     function addToBucketList(){
-      console.log("adding To Bucket List")
       var dataIndex = parseInt(this.id,10);
-      console.log(dataIndex);
-      console.log(data.businesses[dataIndex].name);
+      var dum = await getBucketList();
+      await sleep(1000);
+      var obj = {name: data.businesses[dataIndex].name, image_url: data.businesses[dataIndex].image_url, genre: data.businesses[dataIndex].categories[0].title, points: 0};
+      //var term = JSON.stringify(obj);
+      //console.log(term);
+      var duplicateTerms = 0;
+      var basePoints = 100;//100 starting points 
+      for(var i = 0; i < userBucketListArray.length; i++){
+        var cRestaurant = JSON.parse(userBucketListArray[i]);
+        if(data.businesses[dataIndex].image_url == cRestaurant['image_url']){
+          duplicateTerms++;
+        }
+        if(obj['genre']==cRestaurant['genre']){
+          if(basePoints >=20)
+            basePoints-=5;
+        }
+      }
+      if(duplicateTerms == 0){
+        obj['points'] = basePoints;
+        userBucketListArray.push(JSON.stringify(obj));
+      }
+      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketList: userBucketListArray}}));
     }
 
     const myNode = document.getElementById("searchResults");
