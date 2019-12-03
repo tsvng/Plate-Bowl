@@ -143,7 +143,6 @@ export default class BucketList extends React.Component{
     return <div id='main' className = "bucket">
               
                 <h1> Bucket List </h1>
-			<h1> Food History </h1>
       <div id = 'bucketlistDisplay'></div>
 		</div>;
   }
