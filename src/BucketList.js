@@ -30,7 +30,7 @@ Amplify.configure({
   });
 export default class BucketList extends React.Component{
   async componentDidMount(){
-    const EditEntryButton = document.getElementById('EditEventButton');
+/*     const EditEntryButton = document.getElementById('EditEventButton');
 
     const currentUser = (await Auth.currentAuthenticatedUser()).username;
     const QueryResult = document.getElementById('QueryResult');
@@ -75,7 +75,67 @@ export default class BucketList extends React.Component{
 
     EditEntryButton.addEventListener('click', (evt) => {
       editBucketlist();
-    });
+    }); */
+    var userBucketListArray = [];
+    const currentUser = (await Auth.currentAuthenticatedUser()).username;
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function deleteFromHistory(){
+      var ID = this.id;
+      var element =document.getElementById("bucket".concat("-",ID));
+      var img_url = element.getElementsByTagName("img")[0].src;
+      for(let j = 0;j<userBucketListArray.length;j++){
+        if(userBucketListArray[j].indexOf(img_url)!= -1){
+          userBucketListArray.splice(j,1);
+          j--;
+        }
+      }
+      element.parentNode.removeChild(element);
+      API.graphql(graphqlOperation(updateUser, {input:{username: currentUser, bucketlist: userBucketListArray}}));
+    }
+
+    function getFoodList() {
+      console.log("getting food list in food history")
+      userBucketListArray = []; //wipe array of old page data
+      //List own user's bucketlist by using getUser
+        API.graphql(graphqlOperation(getUser, {username: currentUser})).then((evt) => {
+        if(evt.data.getUser.bucketlist!=null){
+        evt.data.getUser.bucketlist.map((Food,i) => {
+          userBucketListArray.push(Food);
+        });}
+      })
+      return 1;
+    }
+    getFoodList();
+    await sleep(1000);
+    console.log(userBucketListArray);
+    //userBucketListArray = ['{"name":"Diddy Riese Cookies","image_url":"https://s3-media4.fl.yelpcdn.com/bphoto/nGfKbkB51YDIdDGjVol6Qg/o.jpg","genre":"Desserts"}', '{"name":"Starbucks","image_url":"https://s3-media4.fl.yelpcdn.com/bphoto/nGfKbkB51YDIdDGjVol6Qg/o.jpg","genre":"Coffee & Tea"}','{"name":"Diddy Riese Cookies","image_url":"https://s3-media4.fl.yelpcdn.com/bphoto/nGfKbkB51YDIdDGjVol6Qg/o.jpg","genre":"Desserts"}','{"name":"Diddy Riese Cookies","image_url":"https://s3-media4.fl.yelpcdn.com/bphoto/nGfKbkB51YDIdDGjVol6Qg/o.jpg","genre":"Desserts"}','{"name":"Diddy Riese Cookies","image_url":"https://s3-media4.fl.yelpcdn.com/bphoto/nGfKbkB51YDIdDGjVol6Qg/o.jpg","genre":"Desserts"}']
+    for(let i = 0;i<userBucketListArray.length;i++){
+      var restaurant = JSON.parse(userBucketListArray[i]);
+      var pic = restaurant['image_url'];
+      var name = restaurant['name'];
+      var genre = restaurant['genre'];
+      var wrap = document.createElement("div");
+      wrap.className = "wrapper";
+      wrap.id = "bucket".concat("-",i.toString());
+      var textDiv = document.createElement("div");
+      textDiv.className = "text";
+      textDiv.textContent = name;
+      var imgDiv = document.createElement("IMG");
+      imgDiv.className = "tile";
+      imgDiv.setAttribute('src',pic);
+      var closeBtn = document.createElement("a");
+      closeBtn.textContent = "x";
+      closeBtn.id = i.toString();
+      closeBtn.addEventListener('click',deleteFromHistory);
+      textDiv.appendChild(closeBtn);
+      wrap.appendChild(textDiv);
+      wrap.appendChild(imgDiv);
+      document.getElementById('bucketlistDisplay').appendChild(wrap);
+    }
   }
 
 
