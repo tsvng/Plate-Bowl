@@ -152,7 +152,7 @@ export default class RecommendFood extends React.Component{
       })
       return 1;
     }
-    function addToBucketList(){
+    async function addToBucketList(){
       var dataIndex = parseInt(this.id,10);
       var dum = await getBucketList();
       await sleep(1000);
