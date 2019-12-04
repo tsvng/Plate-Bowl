@@ -81,7 +81,7 @@ export default class FoodHistory extends React.Component{
       wrap.id = "hist".concat("-",i.toString());
       var textDiv = document.createElement("div");
       textDiv.className = "text";
-      textDiv.textContent = name;
+      textDiv.textContent = name.concat("-",genre);
       var imgDiv = document.createElement("IMG");
       imgDiv.className = "tile";
       imgDiv.setAttribute('src',pic);
