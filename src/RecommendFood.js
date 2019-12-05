@@ -98,6 +98,11 @@ export default class RecommendFood extends React.Component{
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
+    var optionsSearch = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+      };
 
     function getFoodList() {
       userFoodListArray = []; //wipe array of old page data
@@ -182,69 +187,82 @@ export default class RecommendFood extends React.Component{
     while (myNode.firstChild) {
       myNode.removeChild(myNode.firstChild);
     }
-    var term = 'term='.concat('\"',document.getElementById("searchInput").value,'\"');
-    var request = new XMLHttpRequest()
-    var query = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?'.concat(term,'&location="Los Angeles, CA');
+    function successSearch(pos) {
+      var crd = pos.coords;
+      searchRequest(`latitude=${crd.latitude}&longitude=${crd.longitude}`);
 
-    request.open('GET', query, true)
-    request.setRequestHeader('Authorization', 'Bearer GOwKiYf6YgplxeQAJWLN6kZ6oF56Su8hiZ9yv1fk4Zw6D-xFG0GGteQiwPWBw0Wa7glsFlfSyydsFSegpPSF3rb4dm0xe6IqKn0jrKHnsKAbQCWJvc0cjfArvQKlXXYx')
-    request.onload = function() {
-      // Begin accessing JSON data here
-      data = JSON.parse(this.response)
-
-      if (request.status >= 200 && request.status < 400) {
-          console.log(data.total);
-          console.log(data.businesses.length);
-          //create divs for search results
-          for(let i = 0; i< data.businesses.length;i++){
-            //create the containing div for each result
-            var newDiv = document.createElement("div");
-            newDiv.style.cssText = "width:50%; height:300px; position:relative;float:left;background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/wooden.jpg');background-size: cover;background-repeat:repeat;"
-            
-            //image for the result
-            var newImg = document.createElement("IMG");
-            newImg.src=data.businesses[i].image_url;
-            newImg.className = "searchImage";
-            newDiv.appendChild(newImg);
-            
-            //span to hold the restaurant name and address in the same line as the image
-            var newSpan = document.createElement("span");
-            var restName = document.createElement("p");
-            restName.textContent = data.businesses[i].name;
-            newSpan.appendChild(restName);
-
-            //restaurant address
-            var address1 = document.createElement("p");
-            address1.textContent=data.businesses[i].location.address1;
-            var address2 = document.createElement("p");
-            address2.textContent=data.businesses[i].location.address2;
-            newSpan.appendChild(address1);
-            //newSpan.appendChild(address2);
-            newDiv.appendChild(newSpan);
-
-            //button to add to bucketList
-            var bucketButton = document.createElement("BUTTON");
-            bucketButton.id = i.toString();
-            bucketButton.addEventListener("click",addToBucketList);
-            bucketButton.textContent = "Bucket";
-
-            //button to add element to food history
-            var histButton = document.createElement("BUTTON");
-            histButton.id = i.toString();
-            histButton.addEventListener("click",addToFoodHistory);
-            histButton.textContent = "History";
-
-            newDiv.appendChild(bucketButton);
-            newDiv.appendChild(histButton);
-
-            document.getElementById("searchResults").appendChild(newDiv);
-          }    
-      }
-      else{
-        console.log("error");
-      }   
     }
-    request.send()
+
+    function errorSearch(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+      errorRequest('location="Los Angeles, CA"')
+    }
+    function searchRequest(loc){
+      var term = 'term='.concat('\"',document.getElementById("searchInput").value,'\"');
+      var request = new XMLHttpRequest()
+      var query = 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?'.concat(term,loc);
+
+      request.open('GET', query, true)
+      request.setRequestHeader('Authorization', 'Bearer GOwKiYf6YgplxeQAJWLN6kZ6oF56Su8hiZ9yv1fk4Zw6D-xFG0GGteQiwPWBw0Wa7glsFlfSyydsFSegpPSF3rb4dm0xe6IqKn0jrKHnsKAbQCWJvc0cjfArvQKlXXYx')
+      request.onload = function() {
+        // Begin accessing JSON data here
+        data = JSON.parse(this.response)
+
+        if (request.status >= 200 && request.status < 400) {
+            console.log(data.total);
+            console.log(data.businesses.length);
+            //create divs for search results
+            for(let i = 0; i< data.businesses.length;i++){
+              //create the containing div for each result
+              var newDiv = document.createElement("div");
+              newDiv.style.cssText = "width:50%; height:300px; position:relative;float:left;background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/wooden.jpg');background-size: cover;background-repeat:repeat;"
+              
+              //image for the result
+              var newImg = document.createElement("IMG");
+              newImg.src=data.businesses[i].image_url;
+              newImg.className = "searchImage";
+              newDiv.appendChild(newImg);
+              
+              //span to hold the restaurant name and address in the same line as the image
+              var newSpan = document.createElement("span");
+              var restName = document.createElement("p");
+              restName.textContent = data.businesses[i].name;
+              newSpan.appendChild(restName);
+
+              //restaurant address
+              var address1 = document.createElement("p");
+              address1.textContent=data.businesses[i].location.address1;
+              var address2 = document.createElement("p");
+              address2.textContent=data.businesses[i].location.address2;
+              newSpan.appendChild(address1);
+              //newSpan.appendChild(address2);
+              newDiv.appendChild(newSpan);
+
+              //button to add to bucketList
+              var bucketButton = document.createElement("BUTTON");
+              bucketButton.id = i.toString();
+              bucketButton.addEventListener("click",addToBucketList);
+              bucketButton.textContent = "Bucket";
+
+              //button to add element to food history
+              var histButton = document.createElement("BUTTON");
+              histButton.id = i.toString();
+              histButton.addEventListener("click",addToFoodHistory);
+              histButton.textContent = "History";
+
+              newDiv.appendChild(bucketButton);
+              newDiv.appendChild(histButton);
+
+              document.getElementById("searchResults").appendChild(newDiv);
+            }    
+        }
+        else{
+          console.log("error");
+        }   
+      }
+      request.send()
+  }
+  navigator.geolocation.getCurrentPosition(successSearch, errorSearch, optionsSearch);
   }
 	render(){
         const h1Style ={
