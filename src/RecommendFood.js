@@ -189,13 +189,13 @@ export default class RecommendFood extends React.Component{
     }
     function successSearch(pos) {
       var crd = pos.coords;
-      searchRequest(`latitude=${crd.latitude}&longitude=${crd.longitude}`);
+      searchRequest(`&latitude=${crd.latitude}&longitude=${crd.longitude}`);
 
     }
 
     function errorSearch(err) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
-      errorRequest('location="Los Angeles, CA"')
+      errorRequest('&location="Los Angeles, CA"')
     }
     function searchRequest(loc){
       var term = 'term='.concat('\"',document.getElementById("searchInput").value,'\"');
