@@ -533,7 +533,7 @@ input {
   margin-right: 130px;
 }
 
-#CuisineSearch>#searchResults {
+#CuisineSearch>#searchInput {
   width: 1000px;
   margin-left: 0px;
 }
@@ -541,4 +541,8 @@ input {
 #MutationResult>h5 {
   margin-block-start: 0px;
   margin-block-end: 0px;
+}
+
+#searchResults>div>button {
+  margin: 1em;
 }

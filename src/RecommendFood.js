@@ -215,7 +215,7 @@ export default class RecommendFood extends React.Component{
             for(let i = 0; i< data.businesses.length;i++){
               //create the containing div for each result
               var newDiv = document.createElement("div");
-              newDiv.style.cssText = "width:50%; height:300px; position:relative;float:left;background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/wooden.jpg');background-size: cover;background-repeat:repeat;"
+              newDiv.style.cssText = "margin: 2%; width:46%; height:220px; position:relative;float:left;background-image: url('https://amplify-platenbowl-test-154226-deployment.s3.amazonaws.com/assets/wooden.jpg');background-size: cover;background-repeat:repeat;"
               
               //image for the result
               var newImg = document.createElement("IMG");
