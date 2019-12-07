@@ -239,12 +239,12 @@ export default class Following extends React.Component{
                   <div id='FollowingResult'></div>
                   
                 </div>
-                <br></br><br></br>
+                <br></br><br></br><br></br>
                 <div id='FollowersDisplay'></div>
                 <br></br>
                 <input type="text" id="searchInput2" placeholder="Enter a user you'd like to stop from following you."/> 
                 <span className="addBtn" id='DeleteFollowerEventButton'>Remove Follower</span>
-                <br></br><br></br><br></br>
+                <br></br><br></br>
                 <div className = "containerfollowing">
                   <div id='FollowerResult'></div>
                 </div>
