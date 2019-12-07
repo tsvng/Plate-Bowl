@@ -199,6 +199,8 @@ button#logout {
   margin: 0 20px 0 20px;
   overflow:auto;
   height: 450px; 
+  display: flex;
+  margin-right: 80px;
 }
 
 .tileHistory{
@@ -524,4 +526,19 @@ input {
 .centerlist{
   text-align: center;
   list-style-position: inside;
+}
+
+#RecommendFood {
+  margin-left: 300px;
+  margin-right: 130px;
+}
+
+#CuisineSearch>#searchResults {
+  width: 1000px;
+  margin-left: 0px;
+}
+
+#MutationResult>h5 {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
 }
