@@ -54,11 +54,11 @@ export default class NavBar extends React.Component{
 				<script src="https://kit.fontawesome.com/43b2224741.js" crossOrigin="anonymous"></script>
 				<div id="mySidenav" className="sidenav">
 		  			<a href="javascript:void(0)" className="closebtn" onClick={()=>this.toggleNav()}>&times;</a>
-		  			<Link to="/bucketlist"><i className="fab fa-bitbucket fa-fw"></i>BucketList</Link>
-			  		<Link to="/foodhistory"><i className="fas fa-utensils fa-fw"></i>FoodHistory</Link>
+		  			<Link to="/bucketlist"><i className="fab fa-bitbucket fa-fw"></i>Bucket List</Link>
+			  		<Link to="/foodhistory"><i className="fas fa-utensils fa-fw"></i>Food History</Link>
 			  		<Link to="/following"><i className="fab fa-bitbucket fa-fw"></i>Following</Link>
-		  			<Link to="/leaderboard"><i className="fas fa-clipboard-list fa-fw"></i>LeaderBoard</Link>
-		  			<Link to="/recommendfood"><i className="fas fa-cookie-bite fa-fw" ></i>Recommend</Link>		
+		  			<Link to="/leaderboard"><i className="fas fa-clipboard-list fa-fw"></i>Leaderboard</Link>
+		  			<Link to="/recommendfood"><i className="fas fa-cookie-bite fa-fw" ></i>Recommended</Link>		
 		  			<Link to="/home"><i className="fas fa-door-open fa-fw"></i>Home</Link>
 		  			<button id = "logout" onClick={()=>this.signOut()}>LogOut</button>
 				</div>
