@@ -80,7 +80,7 @@ export default class LeaderBoard extends React.Component {
 
       await leaderboardArray.sort(function(a, b){return b.points - a.points});
       console.log(leaderboardArray);
-      await leaderboardArray.forEach((user) => QueryResult.innerHTML += `<li>${user.username} - ${user.points}</li>`);
+      await leaderboardArray.forEach((user, i) => QueryResult.innerHTML += `<div style="display: flex; justify-content: space-between; padding: 10px; margin-left: auto; margin-right: auto; margin-top: 10px; margin-bottom: 10px; width: 500; border-radius: 25px; border-style: solid;"><div>${i}</div><div style="font-weight: bold;">${user.username}</div><div>${user.points}</div></div>`);
     }
 
     //This function displays the Global Leaderboard
