@@ -335,19 +335,19 @@ input {
   font-size: 16px;
 }*/
 #searchInput {
-  margin-left: 230px;
+  margin-left: 400px;
   border: none;
   border-radius: 0;
-  width: 50%;
+  width: 45%;
   padding: 10px;
   float: left;
   font-size: 16px;
 }
 #searchInput2 {
-  margin-left: 230px;
+  margin-left: 400px;
   border: none;
   border-radius: 0;
-  width: 50%;
+  width: 45%;
   padding: 10px;
   float: left;
   font-size: 16px;
