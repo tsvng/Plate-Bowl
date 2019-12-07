@@ -546,3 +546,8 @@ input {
 #searchResults>div>button {
   margin: 1em;
 }
+
+#FollowersDisplay, #FollowingDisplay {
+  text-align: left;
+  margin-left: 400px;
+}

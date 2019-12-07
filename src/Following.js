@@ -230,19 +230,21 @@ export default class Following extends React.Component{
   render(){
     return <div id='main' className = "follow">
                 <h1>Follow Page</h1>
+                <div id='FollowingDisplay'></div>
+                <br></br>
                 <input type="text" id="searchInput" placeholder="Enter a user you'd like to follow, or type a user already in your list to unfollow."/> 
                 <span className="addBtn" id='EditFollowingEventButton'>Add/Remove Follow</span>
-                <br></br><br></br><br></br>
-                <div id='FollowingDisplay'></div>
+                <br></br><br></br>
                 <div className = "containerfollowing">
                   <div id='FollowingResult'></div>
                   
                 </div>
-                <br></br><br></br><br></br>
+                <br></br><br></br>
+                <div id='FollowersDisplay'></div>
+                <br></br>
                 <input type="text" id="searchInput2" placeholder="Enter a user you'd like to stop from following you."/> 
                 <span className="addBtn" id='DeleteFollowerEventButton'>Remove Follower</span>
                 <br></br><br></br><br></br>
-                <div id='FollowersDisplay'></div>
                 <div className = "containerfollowing">
                   <div id='FollowerResult'></div>
                 </div>
